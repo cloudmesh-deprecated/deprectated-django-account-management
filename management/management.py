@@ -1,3 +1,4 @@
+from mongoengine import *
 class Person(Document):
     firstname = StringField()
     lasname = StringField()
@@ -5,8 +6,14 @@ class Person(Document):
     title = StringField()
     email = StringField()
     address =  StringField()
+    
+    def get_Info(self):
+        return firstname
+        
 
-class Role(Document)
+class Role(Document):
+
+
 class Project
 
 
