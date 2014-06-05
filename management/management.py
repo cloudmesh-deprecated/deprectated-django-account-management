@@ -1,28 +1,17 @@
-class People
+class Person(Document):
+    firstname = StringField()
+    lasname = StringField()
+    middlename = StringField()
+    title = StringField()
+    email = StringField()
+    address =  StringField()
 
-    person = {}
-
-    project = {}
-
-    def add_person(p)
-        pass
-
-    def add_project(p)
-        pass
-
-    def add_role(person, project):
-        pass
-
-    def __str__():
-        return ""
-        
-class Person
-
-    def __init__()
-
-
+class Role(Document)
 class Project
 
+
+281
+929936
     def __init__()
 
         
