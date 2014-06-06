@@ -20,7 +20,7 @@ class Account(Document):
     password = StringField()
     
     def __str__(self):
-        return "{0} {1} {2} {3}".format(self.owner,self.username)
+        return "{0} {1}".format(self.owner,self.username)
     
     
 class ContactInfo(Document):
