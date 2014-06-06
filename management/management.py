@@ -9,7 +9,7 @@ class User(Document):
     email = StringField()
     
     def __str__(self):
-        return (self.title,self.firstname, self.lastname, self.email)
+        return "{0} {3}".format(self.title,self.firstname, self.lastname, self.email)
     
     
         
@@ -54,6 +54,10 @@ class ContactInfo(Document):
 
     for account in accounts:
         print account.owner, ":", account
+        
+    print
+    print
+    print 70 * "-"
     
     
 
