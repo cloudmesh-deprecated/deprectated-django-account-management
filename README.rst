@@ -39,39 +39,40 @@ Mongoengine
 
 Test
 ----------------------------------------------------------------------
-from mongoengine import *
 
-connect('user')
+::
+  from mongoengine import *
 
-class User(Document):
-    firstname = StringField()
-    lastname = StringField()
+  connect('user')
 
-    def __str__(self):
-        return "{0} {1}".format(self.firstname, self.lastname)
+  class User(Document):
+      firstname = StringField()
+      lastname = StringField()
+
+      def __str__(self):
+	  return "{0} {1}".format(self.firstname, self.lastname)
 
 
 
-user = User(firstname="Gregor", lastname="von Laszewski")
-user.save()
+  user = User(firstname="Gregor", lastname="von Laszewski")
+  user.save()
 
-user = User(firstname="Fugang", lastname="Wang")
-user.save()
+  user = User(firstname="Fugang", lastname="Wang")
+  user.save()
 
-print
-print "LIST OBJECTS"
-print 70 * "-"
+  print
+  print "LIST OBJECTS"
+  print 70 * "-"
 
-for user in User.objects:
-    print user.firstname, ":",  user
+  for user in User.objects:
+      print user.firstname, ":",  user
 
-print
-print "FIND OBJECTS"
-print 70 * "-"
+  print
+  print "FIND OBJECTS"
+  print 70 * "-"
 
-users = User.objects(firstname="Gregor")
+  users = User.objects(firstname="Gregor")
 
-for user in users:
-    print user.firstname, ":", user
-
+  for user in users:
+      print user.firstname, ":", user
 
