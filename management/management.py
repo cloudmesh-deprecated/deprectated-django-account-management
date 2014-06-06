@@ -9,7 +9,7 @@ class User(Document):
     email = StringField()
     
     def __str__(self):
-        return "{0} {3}".format(self.title,self.firstname, self.lastname, self.email)
+        return "".format(self.title,self.firstname, self.lastname, self.email)
     
     
         
@@ -49,13 +49,13 @@ class ContactInfo(Document):
     print
     print "LIST OBJECTS"
     print 70 * "-"
+    print
 
     accounts = Account.objects(owner = ifeanyi)
 
     for account in accounts:
         print account.owner, ":", account
-        
-    print
+
     print
     print 70 * "-"
     
