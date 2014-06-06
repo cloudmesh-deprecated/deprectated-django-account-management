@@ -1,20 +1,61 @@
 from mongoengine import *
-class Person(Document):
-    firstname = StringField()
-    lasname = StringField()
-    middlename = StringField()
+
+connet ('user')
+
+class User(Document):
     title = StringField()
+    firstname = StringField()
+    lastname = StringField()
     email = StringField()
-    address =  StringField()
     
-    def get_Info(self):
-        return firstname
+    def __str__(self):
+        return "{0} {1}".format(self.title,self.firstname, self.lastname, self.email)
         
+class Account(Document):
+    owner = ReferenceField(User)
+    username = StringField()
+    email = StringField()
+    password = StringField()
+    
+class ContactInfo(Document):
+    PhoneNumber = StringField()    
+    Department = StringField()
+    Institution = StringField()
+    Adviser_Contact_Info = StringField()
+    Inst_Address = StringField()
+    Insitution_Country = StringField()
+    url = StringField()
+    Citizenship = StringField()
+    Bio = StringField()
+    SignUp_Code = StringField()
 
-class Role(Document):
+    ifeanyi = User(title = "Mr.", firstname = "Ifeanyi", 
+                   lastname = "Onyenweaku", 
+                   email = "rowlandifeanyi17@gmail.com")
+    ifeanyi.save()
+    
+    account = Account(username = "rowlandifeanyi",
+                      email = "rowlandifeanyi17@gmail.com",
+                      password = "17ROW1992")
+    account.owner = ifeanyi
+    account.save()
+    
+    print
+    print "LIST OBJECTS"
+    print 70 * "-"
+
+    for account in Account.objects:
+        print account
+    
+    
 
 
-class Project
+
+
+
+
+
+"""class Project
 
 
 281
@@ -31,8 +72,8 @@ class Role
         pass
     
     def list():
-        """returns an array of roles
-        
+        returns an array of roles
+"""        
     
 
     
