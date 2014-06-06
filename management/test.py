@@ -1,6 +1,12 @@
 from management import User
-from management import Accoun
+from management import Account
 from management import Contact
+from mongoengine import *
+#
+# 
+#
+
+connect ('user', port=27777)
 
 ifeanyi = User(title="Mr.", firstname="Ifeanyi",
                lastname="Onyenweaku",

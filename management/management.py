@@ -1,6 +1,6 @@
 from mongoengine import *
 
-connect ('user')
+#    mongod --noauth --dbpath . --port 27777
 
 class User(Document):
     title = StringField()
