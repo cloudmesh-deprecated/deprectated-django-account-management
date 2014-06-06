@@ -17,6 +17,10 @@ class Account(Document):
     email = StringField()
     password = StringField()
     
+    def __str__(self):
+        return "{0} {1}".format(self.owner,self.username, self.email, self.password)
+    
+    
 class ContactInfo(Document):
     PhoneNumber = StringField()    
     Department = StringField()
