@@ -54,7 +54,7 @@ class ContactInfo(Document):
     accounts = Account.objects(owner = ifeanyi)
 
     for account in accounts:
-        print account.owner, ":", account
+        print account.owner.firstname, ":", account
 
     print
     print 70 * "-"
