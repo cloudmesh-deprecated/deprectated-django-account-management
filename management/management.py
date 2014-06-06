@@ -10,8 +10,6 @@ class User(Document):
     
     def __str__(self):
         return "{0} {1} {2} {3}".format(self.title,self.firstname, self.lastname, self.email)
-    
-    
         
 class Account(Document):
     owner = ReferenceField(User)
@@ -23,7 +21,7 @@ class Account(Document):
         return "{0} {1}".format(self.owner,self.username)
     
     
-class ContactInfo(Document):
+class Contact(Document):
     PhoneNumber = StringField()    
     Department = StringField()
     Institution = StringField()
@@ -35,42 +33,6 @@ class ContactInfo(Document):
     Bio = StringField()
     SignUp_Code = StringField()
 
-    ifeanyi = User(title = "Mr.", firstname = "Ifeanyi", 
-                   lastname = "Onyenweaku", 
-                   email = "rowlandifeanyi17@gmail.com")
-    ifeanyi.save()
-    
-    account = Account(username = "rowlandifeanyi",
-                      email = "rowlandifeanyi17@gmail.com",
-                      password = "17ROW1992")
-    account.owner = ifeanyi
-    account.save()
-    
-    jeff = User(title = "Mr.", firstname = "Jeffery", 
-                   lastname = "Ridgeway", 
-                   email = "jeff01@gmail.com")
-    jeff.save()
-    
-    account = Account(username = "jeff01",
-                      email = "jeff01@gmail.com",
-                      password = "17JEFF1992")
-    account.owner = jeff
-    account.save()
-    
-    print
-    print "LIST OBJECTS"
-    print 70 * "-"
-    print
-
-    accounts = Account.objects()
-
-    for account in accounts:
-        print account.owner.firstname, ":", account
-
-    print
-    print 70 * "-"
-    
-    
 
 
 
@@ -78,25 +40,3 @@ class ContactInfo(Document):
 
 
 
-"""class Project
-
-
-281
-929936
-    def __init__()
-
-        
-class Role
-
-    def __init__():
-        pass
-
-    def add(role):
-        pass
-    
-    def list():
-        returns an array of roles
-"""        
-    
-
-    
