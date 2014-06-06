@@ -76,16 +76,16 @@ print len(names)
 
 
 
-def print_contacts(columns)
+def print_contacts(columns):
     pass
 
-print_contacts(["username", "phone", "email"]
+print_contacts(["username", "phone", "email"])
 
 print_summary()
 
-   how many users from bloomington
+"""how many users from bloomington
    how many from chicago
-   mhao many for that isntitue
+   mhao many for that isntitue"""
 
    
    
