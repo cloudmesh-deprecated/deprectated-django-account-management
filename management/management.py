@@ -1,6 +1,6 @@
 from mongoengine import *
 
-connet ('user')
+connect ('user')
 
 class User(Document):
     title = StringField()
