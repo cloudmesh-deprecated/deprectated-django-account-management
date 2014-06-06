@@ -1,51 +1,10 @@
-from management import User
-from management import Account
-from management import Contact
-from mongoengine import *
+from flask import Flask
+app = Flask(__name__)
 
-# https://code.google.com/p/prettytable/
-#  https://code.google.com/p/prettytable/source/browse/trunk/README
-# 
-#
+@app.route("/")
+def hello():
 
-connect ('user', port=27777)
-
-ifeanyi = User(title="Mr.", firstname="Ifeanyi",
-               lastname="Onyenweaku",
-               email="rowlandifeanyi17@gmail.com")
-ifeanyi.save()
-
-account = Account(username="rowlandifeanyi",
-                    email="rowlandifeanyi17@gmail.com",
-                    password="17ROW1992")
-account.owner = ifeanyi
-account.save()
-
-jeff = User(title="Mr.", firstname="Jeffery",
-            lastname="Ridgeway",
-            email="jeff01@gmail.com")
-jeff.save()
-
-account = Account(username="jeff01",
-                    email="jeff01@gmail.com",
-                    password="17JEFF1992")
-account.owner = jeff
-account.save()
-
-print
-print "LIST OBJECTS"
-print 70 * "-"
-print
-
-accounts = Account.objects()
-
-for account in accounts:
-    print account.owner.firstname, ":", account
-
-print
-print 70 * "-"
-
-names=["Juan", "Benjamin", "Santiago", "Thiago", "Lucas", "Joaquin", "Santino", "Lautaro",
+    names=["Juan", "Benjamin", "Santiago", "Thiago", "Lucas", "Joaquin", "Santino", "Lautaro",
         "Ian", "Mateo", "Daniel", "Dylan/Dyllan", "Kevin/Keven", "Miguel", "Davi", "Arthur",
         "Gabriel", "Pedro", "Lucas", "Matheus", "Bernardo", "Rafael", "Guilherme", "William",
         "Jacob", "Liam", "Nathan", "Noah", "Ethan", "Lucas", "Lukas", "Benjamin", "Samuel",
@@ -69,23 +28,12 @@ names=["Juan", "Benjamin", "Santiago", "Thiago", "Lucas", "Joaquin", "Santino", 
         "Nolan", "Peter", "Ryker", "Sebastian", "Simon", "Tanner", "Taylor", "Theo", "Turner",
         "Ty", "Tye", "William", "Nathan", "Samuel"]
 
-for name in names:
-    print name
+    r = "<table border=\"1\">"
+    for name in names:
+        r = r + "<tr> <td> {0} </td> </tr>".format(name)
+    r = r + "</table>"
+    
+    return r
 
-print len(names)
-
-
-
-def print_contacts(columns)
-    pass
-
-print_contacts(["username", "phone", "email"]
-
-print_summary()
-
-   how many users from bloomington
-   how many from chicago
-   mhao many for that isntitue
-
-   
-   
+if __name__ == "__main__":
+    app.run()
