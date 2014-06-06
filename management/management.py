@@ -19,15 +19,14 @@ class Account(Document):
     
     def __str__(self):
         return "{0} {1}".format(self.owner,self.username)
-    
-    
+
 class Contact(Document):
-    PhoneNumber = StringField()    
+    Phone = StringField()    
     Department = StringField()
     Institution = StringField()
-    Adviser_Contact_Info = StringField()
-    Inst_Address = StringField()
-    Insitution_Country = StringField()
+    Adviser_Contact = StringField()
+    Institute_Address = StringField()
+    Institute_Country = StringField()
     url = StringField()
     Citizenship = StringField()
     Bio = StringField()

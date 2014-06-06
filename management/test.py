@@ -2,7 +2,9 @@ from management import User
 from management import Account
 from management import Contact
 from mongoengine import *
-#
+
+# https://code.google.com/p/prettytable/
+#  https://code.google.com/p/prettytable/source/browse/trunk/README
 # 
 #
 
