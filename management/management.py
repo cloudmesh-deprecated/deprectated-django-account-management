@@ -46,7 +46,7 @@ class ContactInfo(Document):
 
     accounts = Account.objects(owner = ifeanyi)
 
-    for account in Account.objects:
+    for account in accounts:
         print account
     
     
