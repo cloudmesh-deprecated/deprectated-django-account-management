@@ -46,6 +46,17 @@ class ContactInfo(Document):
     account.owner = ifeanyi
     account.save()
     
+    jeff = User(title = "Mr.", firstname = "Jeffery", 
+                   lastname = "Ridgeway", 
+                   email = "jeff01@gmail.com")
+    jeff.save()
+    
+    account = Account(username = "jeff01",
+                      email = "jeff01@gmail.com",
+                      password = "17JEFF1992")
+    account.owner = ifeanyi
+    account.save()
+    
     print
     print "LIST OBJECTS"
     print 70 * "-"
