@@ -9,7 +9,7 @@ class User(Document):
     email = StringField()
     
     def __str__(self):
-        return "".format(self.title,self.firstname, self.lastname, self.email)
+        return "{0:3}".format(self.title,self.firstname, self.lastname, self.email)
     
     
         
