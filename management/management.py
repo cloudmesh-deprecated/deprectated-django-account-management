@@ -54,7 +54,7 @@ class ContactInfo(Document):
     account = Account(username = "jeff01",
                       email = "jeff01@gmail.com",
                       password = "17JEFF1992")
-    account.owner = ifeanyi
+    account.owner = jeff
     account.save()
     
     print
@@ -62,7 +62,7 @@ class ContactInfo(Document):
     print 70 * "-"
     print
 
-    accounts = Account.objects(owner = ifeanyi)
+    accounts = Account.objects()
 
     for account in accounts:
         print account.owner.firstname, ":", account
