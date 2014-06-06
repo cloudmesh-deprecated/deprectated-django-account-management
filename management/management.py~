@@ -8,8 +8,8 @@ class User(Document):
     lastname = StringField()
     email = StringField()
     
-    def __str__(self):
-        return "{0} {1} {2} {3}".format(self.title,self.firstname, self.lastname, self.email)
+    def __repr__(self):
+        return self
     
     
         
@@ -20,7 +20,7 @@ class Account(Document):
     password = StringField()
     
     def __str__(self):
-        return "{0} {1} {2} {3}".format(self.owner,self.username, self.email, self.password)
+        return "{0} {1}".format(self.owner,self.username, self.email, self.password)
     
     
 class ContactInfo(Document):
