@@ -44,6 +44,8 @@ class ContactInfo(Document):
     print "LIST OBJECTS"
     print 70 * "-"
 
+    accounts = Account.objects(owner = ifeanyi)
+
     for account in Account.objects:
         print account
     
