@@ -7,6 +7,7 @@ Cloudmesh Django
    :maxdepth: -1
 
    form
+   mongo
 
 
 
