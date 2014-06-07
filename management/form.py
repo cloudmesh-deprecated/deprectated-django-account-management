@@ -1,43 +1,40 @@
 account_information = {
-
-{"username" : {
-    "label"="Username",
-    "required" = True,
-    "help": """Usernames must be between 3 and 10 characters in
-		     length and may contain only lowercase letters (a-z),
+    {"username" : {
+        "label"="Username",
+        "required" = True,
+        "help": """Usernames must be between 3 and 10 characters in
+            length and may contain only lowercase letters (a-z),
 		     numbers (0-9), and hyphens (-), and should begin with
 		     a letter."""
-             },
- "email" : {
-    "label"="E-mail",
-    "required" = True,
-    "help":	"""Please use your e-mail from your university or
-		    organization.  Please avoid using gmail, hotmail or
-		    other non organizational e-mails, as they may lead to
-		    a delay or in some cases to a rejection of the account
-		    request. All e-mails from the system will be sent to
-		    this address. The e-mail address is not made public
-		    and will only be used if you wish to receive a new
-		    password or wish to receive certain news or
-		    notifications by e-mail."""
-            },
- "password"	: {	
-    "label"="Password",
-    "required" = True
-    },
-#"Does not have a stringfield for confirm password yet"
- "Confirm_password" : {
-    "label" = "Confirm password",
-    "required" = True,
-    "help" = """Provide a password for the new account in both fields.
-		Force password change on first-time login If this box
-		is checked, the user will be forced to change their
-		password on their first login."""
-        }
-
-        }
-
-        }
+        },
+    "email" : {
+        "label"="E-mail",
+        "required" = True,
+        "help":	"""Please use your e-mail from your university or
+                organization.  Please avoid using gmail, hotmail or
+                other non organizational e-mails, as they may lead to
+                a delay or in some cases to a rejection of the account
+                request. All e-mails from the system will be sent to
+                this address. The e-mail address is not made public
+                and will only be used if you wish to receive a new
+                password or wish to receive certain news or
+                notifications by e-mail."""
+        },
+     "password"	: {	
+        "label"="Password",
+        "required" = True
+        },
+      # Does not have a stringfield for confirm password yet
+     "Confirm_password" : {
+        "label" = "Confirm password",
+        "required" = True,
+        "help" = """Provide a password for the new account in both fields.
+            Force password change on first-time login If this box
+            is checked, the user will be forced to change their
+            password on their first login."""
+            }
+    }
+}
 
 contact_info =  {
 
@@ -146,8 +143,8 @@ contact_info =  {
 		in this box."""
         }
         
-        }
+}
                  
-        }
+}
 
 
