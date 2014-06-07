@@ -70,8 +70,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Futuregrid REU'
-copyright = u'2014, FutureGrid'
+project = u'Cloudmesh Django'
+copyright = u'2014, Gregor von Laszewski for FutureGrid'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -134,7 +134,7 @@ html_theme = 'bootstrap'
 # html_theme_options = {}
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
-    'navbar_title': "REU",
+    'navbar_title': "Django",
 
     # Tab name for entire site. (Default: "Site")
     'navbar_site_name': "Site",
