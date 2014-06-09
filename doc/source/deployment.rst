@@ -1,7 +1,7 @@
 Preparing Machine for Django
 ======================================
 
-First you need to install pythin if you not already have it installed::
+First you need to install python if you not already have it installed::
 
 	sudo apt-get install python 
 
@@ -26,7 +26,7 @@ The next step includes creating a virtual env with ::
 
    virtualenv ~/ENV
 
-Please acativate it with 
+Please activate it with 
 
   source ~/ENV/bin/activate
 
