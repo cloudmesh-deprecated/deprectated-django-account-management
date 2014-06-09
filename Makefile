@@ -14,6 +14,8 @@ setup:
 
 c:
 	google-chrome doc/build/html/index.html
+f:
+	firefox doc/build/html/index.html
 
 FILE=index
 
