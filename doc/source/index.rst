@@ -8,8 +8,8 @@ Cloudmesh Django
 
    deployment
    git
+   install-django
    form
-   mongo
 
 
 

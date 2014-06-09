@@ -1,71 +1,34 @@
 Preparing Machine for Django
 ======================================
 
-1. Install python on Ubuntu Machine (if you haven't already)
+First you need to install pythin if you not already have it installed::
+
 	sudo apt-get install python 
 
-2. Install pip on Ubuntu Machine (if you haven't already)
+Next you will have to install pip,if you haven't already installed it::
+
 	sudo apt-get install python-pip
-    *If you get “E: Unable to locate package python-pip” message then you will have to download python distribute package. 
 
-Following these next steps:
-Go to (https://pypi.python.org/pypi/distribute/0.6.49) and download the most recent distribute package 
+Next we make sure the proper vesrion of distribute is installed::
 
-Then extract the download into your desktop and 
-go into terminal (make sure you're in root) and then go to Desktop directory
+  curl -O http://python-distribute.org/distribute_setup.py
+  python distribute_setup.py
 
-cd distribute-0.6.49
+Next we make sure to install pip::
 
-python distribute_setup.py
+  sudo easy_install pip
 
-Ensure easy_install is installed run the following commands:
+Now we install virtualenv::
 
-which easy_install
-
-(a typical response after hitting enter or return would be: /usr/local/bin/easy_install)
-
-Now, pip can be installed by following the command below:
-
-sudo easy_install pip
-
-3. Install Virtualenv on Ubuntu Machine (if you haven't already)
         sudo pip install --upgrade virtualenv
 
-4. Install SQLite on Ubuntu Machine (if you haven't already)
-Go to www.sqlite.org/download.html and download the sqlite-shell-linux
-Extract download to your respective directory 
+The next step includes creating a virtual env with ::
 
-	
-5. Execute the following commands in the terminal (for some commands user might need to be in root):
-         sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) universe”
+   virtualenv ~/ENV
 
+Please acativate it with 
 
-
-6. Make a django directory and then install django
-       
-pip install django
-
-exit
+  source ~/ENV/bin/activate
 
 
-7.  The type the following while in the $ directory:
-       
-	django-admin.py startproject mysite 
-
-        cd mysite
-
-        python manage.py runserver
-
-        
-8. After connecting to server
-	
-	Ctrl C
-
-	python manage.py syncdb
-
-	python manage.py runserver
-
-	
-9. On server page
-	/admin on the url and login to your server
 
