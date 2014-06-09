@@ -41,7 +41,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
-    'sphinxcontrib.webmocks',
+#    'sphinxcontrib.webmocks',
     'sphinx.ext.viewcode']
 
 

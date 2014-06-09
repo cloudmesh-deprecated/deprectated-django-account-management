@@ -12,6 +12,9 @@ all:
 setup:
 	make -f Makefile setupbuild_ubuntu
 
+c:
+	google-chrome doc/build/html/index.html
+
 FILE=index
 
 watchdog:

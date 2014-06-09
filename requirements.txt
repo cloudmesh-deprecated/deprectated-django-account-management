@@ -1,2 +1,4 @@
 pbr
 d2to1
+sphinx_bootstrap_theme
+sphinxcontrib_autorun
