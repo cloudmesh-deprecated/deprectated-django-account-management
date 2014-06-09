@@ -30,11 +30,10 @@ http://127.0.0.1:8000/
 
 If you get the following prompt::
 	
-	It worked!
-Congratulations on your first Django-powered page.
+	It worked! Congratulations on your first Django-powered page.
 
-Of course, you haven't actually done any work yet. Next, start your first app by running python manage.py startapp [appname].
-You're seeing this message because you have DEBUG = True in your Django settings file and you haven't configured any URLs. Get to work!
+	Of course, you haven't actually done any work yet. Next, start your first app by running python manage.py startapp [appname].
+	You're seeing this message because you have DEBUG = True in your Django settings file and you haven't configured any URLs. Get to work!
 
 Then you have successfully accessed the database. 
 
