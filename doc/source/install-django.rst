@@ -17,9 +17,9 @@ To install django you simply call::
 
 To stat a new django web site you can use the following commands::
        
-	$ django-admin.py startproject mysite 
-        $ cd mysite
-
+	$ django-admin.py startproject example_site 
+        $ cd example_site
+        
 ???? this seesm not right as the syncdb should be first ???? but not sure ????::
 
         $ python manage.py runserver
@@ -28,7 +28,15 @@ in browser do
 
 http://127.0.0.1:8000/
 
+If you get the following prompt::
+	
+	It worked!
+Congratulations on your first Django-powered page.
 
+Of course, you haven't actually done any work yet. Next, start your first app by running python manage.py startapp [appname].
+You're seeing this message because you have DEBUG = True in your Django settings file and you haven't configured any URLs. Get to work!
+
+Then you have successfully accessed the database. 
 
 To sync the database, you have to execute::
 
@@ -74,4 +82,4 @@ Next you will need to run the server again::
 
 To browse if the server is running shose your web beowser and enter as url::
 
-  http://127.0.0.1:8000/
+  http://127.0.0.1:8000/admin
