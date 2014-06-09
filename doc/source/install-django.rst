@@ -20,7 +20,7 @@ To stat a new django web site you can use the following commands::
 	$ django-admin.py startproject example_site 
         $ cd example_site
         
-???? this seesm not right as the syncdb should be first ???? but not sure ????::
+???? this seems not right as the syncdb should be first ???? but not sure ????::
 
         $ python manage.py runserver
 
@@ -70,8 +70,8 @@ This will give you an ask you for some user information similar to::
 
 .. note::
 
-  The user alber is just our example user, please replace it with the
-  username you like. Please chosea a responsible password
+  The user albert is just our example user, please replace it with the
+  username you like. Please chose a responsible password
 
 
 Next you will need to run the server again::
@@ -79,6 +79,6 @@ Next you will need to run the server again::
 	$ python manage.py runserver
 
 
-To browse if the server is running shose your web beowser and enter as url::
+To browse if the server is running on your web browser and enter as url::
 
   http://127.0.0.1:8000/admin
