@@ -8,10 +8,10 @@ How to Install Django on Ubuntu Machine:
     *If you get “E: Unable to locate package python-pip” message then you will have to download python distribute package. 
 
 Following these next steps:
-Go to pypi.python.org and download the most recent distribute package (https://pypi.python.org/pypi/distribute/0.6.49)
+Go to (https://pypi.python.org/pypi/distribute/0.6.49) and download the most recent distribute package 
 
-Then extract the download into your desktop 
-Go into terminal (make sure you're in root) and then go to Desktop directory
+Then extract the download into your desktop and 
+go into terminal (make sure you're in root) and then go to Desktop directory
 
 cd distribute-0.6.49
 
@@ -24,6 +24,7 @@ which easy_install
 (a typical response after hitting enter or return would be: /usr/local/bin/easy_install)
 
 Now, pip can be installed by following the command below:
+
 sudo easy_install pip
 
 3. Install Virtualenv on Ubuntu Machine (if you haven't already)
@@ -44,10 +45,6 @@ Extract download to your respective directory
 pip install django
 
 exit
-	
-
-      You should be able to type in python and type import django and get the following
-
 
 
 7.  The type the following while in the $ directory:
