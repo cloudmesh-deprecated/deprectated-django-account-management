@@ -18,9 +18,13 @@ Then extract the download into your desktop
 Go into terminal (make sure you're in root) and then go to Desktop directory
 
 cd distribute-0.6.49
+
 python distribute_setup.py
+
 Ensure easy_install is installed run the following commands:
+
 which easy_install
+
 (a typical response after hitting enter or return would be: /usr/local/bin/easy_install)
 
 Now, pip can be installed by following the command below:
