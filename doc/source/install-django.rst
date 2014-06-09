@@ -77,8 +77,12 @@ This will give you an ask you for some user information similar to::
 Next you will need to run the server again::
 
 	$ python manage.py runserver
+	
+in the browser do again
+
+http://127.0.0.1:8000/
 
 
-To browse if the server is running on your web browser and enter as url::
+To browse if the server is running on your web browser, enter this url and then login::
 
   http://127.0.0.1:8000/admin
