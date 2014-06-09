@@ -26,7 +26,7 @@ The next step includes creating a virtual env with ::
 
    virtualenv ~/ENV
 
-Please activate it with 
+Please activate it with::
 
   source ~/ENV/bin/activate
 
