@@ -2,10 +2,6 @@ How to Install Django on Ubuntu Machine:
 
 1. Install python on Ubuntu Machine (if you haven't already)
 	sudo apt-get install python 
-   *After entering command type python and you should get the following prompt:
-
-
- 
 
 2. Install pip on Ubuntu Machine (if you haven't already)
 	sudo apt-get install python-pip
@@ -45,8 +41,9 @@ Extract download to your respective directory
 
 6. Make a django directory and then install django
        
-	pip install django
-	exit
+pip install django
+
+exit
 	
 
       You should be able to type in python and type import django and get the following
@@ -56,14 +53,20 @@ Extract download to your respective directory
 7.  The type the following while in the $ directory:
        
 	django-admin.py startproject mysite 
+
         cd mysite
+
         python manage.py runserver
+
         
 8. After connecting to server
 	
 	Ctrl C
+
 	python manage.py syncdb
+
 	python manage.py runserver
+
 	
 9. On server page
 	/admin on the url and login to your server
