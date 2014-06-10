@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 
@@ -6,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Index &mdash; Cloudmesh Django 0.1 documentation</title>
+    <title>Installing Django &mdash; Cloudmesh Django 0.1 documentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -32,6 +31,8 @@
     <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="Cloudmesh Django 0.1 documentation" href="index.html" />
+    <link rel="next" title="Account information" href="form.html" />
+    <link rel="prev" title="Useful Git Workflows" href="git.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -72,13 +73,13 @@
      href="index.html">Site <b class="caret"></b></a>
   <ul class="dropdown-menu globaltoc"
       role="menu"
-      aria-labelledby="dLabelGlobalToc"><ul>
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Preparing Machine for Django</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">Useful Git Workflows</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="git.html#git-pull">Git Pull</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="install-django.html">Installing Django</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Installing Django</a></li>
 <li class="toctree-l1"><a class="reference internal" href="form.html">Account information</a></li>
 <li class="toctree-l1"><a class="reference internal" href="form.html#contact">Contact</a></li>
 </ul>
@@ -93,19 +94,34 @@
      href="#">Page <b class="caret"></b></a>
   <ul class="dropdown-menu localtoc"
       role="menu"
-      aria-labelledby="dLabelLocalToc"></ul>
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Installing Django</a></li>
+</ul>
+</ul>
 </li>
               
             
             
               
                 
+  <li>
+    <a href="git.html" title="Previous Chapter: Useful Git Workflows"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Useful Git Workf...</span>
+    </a>
+  </li>
+  <li>
+    <a href="form.html" title="Next Chapter: Account information"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Account informat... &raquo;</span>
+    </a>
+  </li>
               
             
             
             
             
-              <li class="hidden-sm"></li>
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/install-django.txt"
+     rel="nofollow">Source</a>
+</div></li>
             
           </ul>
 
@@ -127,10 +143,10 @@
   <div class="row">
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Preparing Machine for Django</a></li>
 <li class="toctree-l1"><a class="reference internal" href="git.html">Useful Git Workflows</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install-django.html">Installing Django</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Installing Django</a></li>
 <li class="toctree-l1"><a class="reference internal" href="form.html">Account information</a></li>
 <li class="toctree-l1"><a class="reference internal" href="form.html#contact">Contact</a></li>
 </ul>
@@ -148,11 +164,83 @@
       </div>
     <div class="col-md-9">
       
+  <div class="section" id="installing-django">
+<h1>Installing Django<a class="headerlink" href="#installing-django" title="Permalink to this headline">¶</a></h1>
+<p>????? Install SQLite on Ubuntu Machine (if you haven&#8217;t already) Go to
+www.sqlite.org/download.html and download the sqlite-shell-linux
+Extract download to your respective directory</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">WHY IS THIS NEEDED, ????? IS this right???</p>
+</div>
+<p>To install django you simply call:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ pip install django
+</pre></div>
+</div>
+<p>To stat a new django web site you can use the following commands:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ django-admin.py startproject example_site
+$ cd example_site
+</pre></div>
+</div>
+<p>???? this seems not right as the syncdb should be first ???? but not sure ????:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ python manage.py runserver
+</pre></div>
+</div>
+<p>in browser do</p>
+<p><a class="reference external" href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></p>
+<p>If you get the following prompt:</p>
+<div class="highlight-python"><div class="highlight"><pre>It worked! Congratulations on your first Django-powered page.
 
-<h1 id="index">Index</h1>
+Of course, you haven&#39;t actually done any work yet. Next, start your first app by running python manage.py startapp [appname].
+You&#39;re seeing this message because you have DEBUG = True in your Django settings file and you haven&#39;t configured any URLs. Get to work!
+</pre></div>
+</div>
+<p>Then you have successfully accessed the database.</p>
+<p>To sync the database, you have to execute:</p>
+<div class="highlight-python"><div class="highlight"><pre>Ctrl C
+$ python manage.py syncdb
+</pre></div>
+</div>
+<p>This will give you an ask you for some user information similar to:</p>
+<div class="highlight-python"><div class="highlight"><pre>python manage.py syncdb
+Creating tables ...
+Creating table django_admin_log
+Creating table auth_permission
+Creating table auth_group_permissions
+Creating table auth_group
+Creating table auth_user_groups
+Creating table auth_user_user_permissions
+Creating table auth_user
+Creating table django_content_type
+Creating table django_session
 
-<div class="genindex-jumpbox">
- 
+You just installed Django&#39;s auth system, which means you don&#39;t have any superusers defined.
+Would you like to create one now? (yes/no): yes
+Username (leave blank to use &#39;albert&#39;):
+Email address: albert@example.com
+Password:
+Password (again):
+Superuser created successfully.
+Installing custom SQL ...
+Installing indexes ...
+Installed 0 object(s) from 0 fixture(s)
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The user albert is just our example user, please replace it with the
+username you like. Please chose a responsible password</p>
+</div>
+<p>Next you will need to run the server again:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ python manage.py runserver
+</pre></div>
+</div>
+<p>in the browser do again</p>
+<p><a class="reference external" href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a></p>
+<p>To browse if the server is running on your web browser, enter this url and then login:</p>
+<div class="highlight-python"><div class="highlight"><pre>http://127.0.0.1:8000/admin
+</pre></div>
+</div>
 </div>
 
 

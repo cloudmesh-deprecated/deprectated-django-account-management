@@ -6,8 +6,10 @@ Cloudmesh Django
 .. toctree::
    :maxdepth: -1
 
+   deployment
+   git
+   install-django
    form
-   mongo
 
 
 
