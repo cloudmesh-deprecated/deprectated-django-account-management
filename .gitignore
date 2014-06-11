@@ -1,11 +1,16 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *.sqlite3
+=======
+*.py[cod]
+>>>>>>> 1cba0c85621efa61499076f20e47a8f60a67fae3
 
 # C extensions
 *.so
 
+<<<<<<< HEAD
 # Distribution / packaging
 .Python
 env/
@@ -37,12 +42,42 @@ coverage.xml
 
 # Translations
 *.mo
+=======
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+
+# Installer logs
+pip-log.txt
+*.log
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+*.pot
+>>>>>>> 1cba0c85621efa61499076f20e47a8f60a67fae3
 
 # Mr Developer
 .mr.developer.cfg
 .project
 .pydevproject
 
+<<<<<<< HEAD
 # Rope
 .ropeproject
 
@@ -52,4 +87,18 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+=======
+# Complexity
+output/*.html
+output/*/index.html
+
+# Sphinx
+docs/_build
+
+# Pycharm
+.idea*
+
+# Django
+local_settings.py
+>>>>>>> 1cba0c85621efa61499076f20e47a8f60a67fae3
 
