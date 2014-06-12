@@ -1,6 +1,8 @@
 from management import User
 from management import Account
 from management import Contact
+import random
+
 from mongoengine import *
 
 # https://code.google.com/p/prettytable/
@@ -8,8 +10,10 @@ from mongoengine import *
 # 
 #
 
-connect ('user', port=27777)
 
+connect ('user')#, port=27777)
+
+"""
 ifeanyi = User(title="Mr.", firstname="Ifeanyi",
                lastname="Onyenweaku",
                email="rowlandifeanyi17@gmail.com")
@@ -31,19 +35,9 @@ account = Account(username="jeff01",
                     password="17JEFF1992")
 account.owner = jeff
 account.save()
+"""
 
-print
-print "LIST OBJECTS"
-print 70 * "-"
-print
 
-accounts = Account.objects()
-
-for account in accounts:
-    print account.owner.firstname, ":", account
-
-print
-print 70 * "-"
 
 names=["Juan", "Benjamin", "Santiago", "Thiago", "Lucas", "Joaquin", "Santino", "Lautaro",
         "Ian", "Mateo", "Daniel", "Dylan/Dyllan", "Kevin/Keven", "Miguel", "Davi", "Arthur",
@@ -74,14 +68,55 @@ for name in names:
 
 print len(names)
 
+first_name = "faminly"
+last_name = "abc"
+
+num1 = random.randint(0,4)
+num2 = random.randint(0,4)
+
+class generate_random_user():
+    
+    #first_name = 
+    last_name = names[num2]
+    print "heyyyyyy  "+ first_name +" "+ last_name
+
+
+
+    def generate_user(self):
+        user = User(title="Mr.", 
+                     firstname=names[num1],
+                     lastname=last_name,
+                     email=firstname+lastname+"@gmail.com").save()
+                     
+        account = Account(username=firstname+lastname,
+                  email=firstname+lastname+"@gmail.com",
+                  password="17ROW1992")
+        account.owner = user
+        account.save()
+
+        print
+        print "LIST OBJECTS"
+        print 70 * "-"
+        print
+
+        accounts = Account.objects()
+
+        for account in accounts:
+            print account.owner.firstname, ":", account
+
+c = generate_random_user()
+c.generate_user()
+
+print
+print 70 * "-"
 
 
 def print_contacts(columns):
-    pass
+    pass 
 
 print_contacts(["username", "phone", "email"])
 
-print_summary()
+#print_summary()
 
 """how many users from bloomington
    how many from chicago
