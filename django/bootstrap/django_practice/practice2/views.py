@@ -23,6 +23,8 @@ def index(request):
 			result = result + "</td>"
 
 		result = result + "</tr>" + "\n"
+
+
 	print 70*"D"
 	print result
 	print 70*"D"
