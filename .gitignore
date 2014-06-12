@@ -1,16 +1,10 @@
-<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
 *.sqlite3
-=======
 *.py[cod]
->>>>>>> 1cba0c85621efa61499076f20e47a8f60a67fae3
 
 # C extensions
 *.so
-
-<<<<<<< HEAD
 # Distribution / packaging
 .Python
 env/
@@ -42,7 +36,7 @@ coverage.xml
 
 # Translations
 *.mo
-=======
+
 # Packages
 *.egg
 *.egg-info
@@ -70,14 +64,11 @@ nosetests.xml
 # Translations
 *.mo
 *.pot
->>>>>>> 1cba0c85621efa61499076f20e47a8f60a67fae3
-
 # Mr Developer
 .mr.developer.cfg
 .project
 .pydevproject
 
-<<<<<<< HEAD
 # Rope
 .ropeproject
 
@@ -87,7 +78,7 @@ nosetests.xml
 
 # Sphinx documentation
 docs/_build/
-=======
+
 # Complexity
 output/*.html
 output/*/index.html
@@ -100,5 +91,5 @@ docs/_build
 
 # Django
 local_settings.py
->>>>>>> 1cba0c85621efa61499076f20e47a8f60a67fae3
+
 
