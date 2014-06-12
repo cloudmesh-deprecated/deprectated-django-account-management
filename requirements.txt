@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 pbr
 d2to1
 sphinx_bootstrap_theme
 sphinxcontrib_autorun
-=======
 Django>=1.4
 Sphinx
 sphinx_rtd_theme
->>>>>>> 1cba0c85621efa61499076f20e47a8f60a67fae3
 django-bootstrap3

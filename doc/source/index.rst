@@ -8,7 +8,7 @@ Cloudmesh Django
 
    deployment
    git
-   install-django
+   django
    form
 
 
