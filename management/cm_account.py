@@ -9,10 +9,10 @@ Arguments:
 
 Description
     cm-account user list --format table
-        lists the accounts in the given format. The format can be a table, jason
+        lists the accounts in the given format. The format can be a table, json
 
     cm-account user clear
-        deleates all accounts
+        deletes all accounts
 
     cm-account user add --file FILENAME --format=json
         adds the users that are defined in the file to the user database
@@ -32,9 +32,30 @@ Description
 
     ...
 
-    NOW DEFINE SOMETHING SIMILAR FOR PROJECT
+    WILL ADD MORE AS TIME GOES!
 
     cm-account project list --format=table
+        lists the projects in the given format. The format can be a table, json
+        
+    cm-account project clear
+        deletes all projects
+        
+    cm-account project add --file FILENAME --format=json
+        adds the project that are defined in the file to the user database
+        
+    cm-account project delete PROJECTNAME
+        deletees the project
+        
+    cm-account project activate PROJECTNAME
+        activates the project
+    
+    cm-account project deactivate PROJECTNAME
+        deactivates the project
+        
+    cm-account project update --filename=FILENAME --format=json
+        updates the project information of all projects defined in the filename that
+        contans the project data in the given format. format can be json or csv 
+
         ....
 
     Put in a project request in the futureGrid portal to see the attributes form it
