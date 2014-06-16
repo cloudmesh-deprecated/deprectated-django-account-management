@@ -1,7 +1,19 @@
+"""
+Usage: test.py --p=N 
+
+Arguments:
+    TEXT  Message to be printed
+
+Options:
+    --p=N  number of times users will be generated
+    --caps  convert the text to upper case
+"""
+
 from management import User
 from management import Account
 from management import Contact
 from user_dict import names
+from docopt import docopt
 import random
 
 
@@ -44,7 +56,7 @@ def generate_user():
     print first_name + last_name
 
 def print_summary(): 
-    generate_user()     
+    #generate_user()     
     print "\nLIST OBJECTS"
     print 70 * "-"
     print
@@ -77,7 +89,22 @@ def delete_user():
 
 print_contacts(["username", "phone", "email"])
 
-print_summary()
+#print_summary()
+
+if __name__ == '__main__':
+    print "This is an example use of docopt"
+    
+    try:
+        arguments = docopt(__doc__)
+        
+        p = int(arguments['--p'])
+        
+        for i in range(p):
+            print_summary()
+            
+    except DocoptExit as e:
+        print e.message
+
 
 """how many users from bloomington
    how many from chicago
