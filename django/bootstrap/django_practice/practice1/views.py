@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django_tables2   import RequestConfig
 from practice1.models  import Person
-from practice1.tables  import PersonTable
+#from practice1.tables  import PersonTable
 #from django.http import HttpResponse
 
 
