@@ -1,6 +1,5 @@
 from management import User
 from management import Account
-from management import Contact
 from user_dict import names
 import random
 
@@ -10,6 +9,8 @@ from mongoengine import *
 # https://code.google.com/p/prettytable/source/browse/trunk/README
 
 connect ('user')#, port=27777)
+
+"This class generates random users"
 
 class generate_random_user():
     
@@ -40,6 +41,12 @@ class generate_random_user():
                   password="17ROW1992")
         account.owner = user
         account.save()
+        
+        
+    def delete_all_users(self):
+        accounts = Account.objects()
+        for account in Account.objects:
+            account.delete()
 
     def print_users(self):
         self.generate_user()

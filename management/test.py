@@ -11,7 +11,6 @@ Options:
 
 from management import User
 from management import Account
-from management import Contact
 from user_dict import names
 from docopt import docopt
 import random
@@ -76,8 +75,8 @@ def print_contacts(columns):
 
 def delete_user():
     accounts = Account.objects()
-    del accounts
-    accounts = None
+    #del accounts
+    #accounts = None
     for account in Account.objects:
         print "deleted***************************"
         account.delete()
