@@ -22,6 +22,8 @@ class Person(models.Model):
                                 null =True,
                                 blank = True,
                                 verbose_name="full name")
+
+
 	
 
 
