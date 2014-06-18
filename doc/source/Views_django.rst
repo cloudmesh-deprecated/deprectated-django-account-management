@@ -16,5 +16,5 @@ Now go to your individual project and configure your urls.py file::
 	url(r'^exampleapp/$', 'exampleapp.views.index', name = 'index'),
 	
 Now do a ``python manage.py syncdb`` and then do a ``python manage.py runserver``
-and you should be able to type in ``/SignUp`` behind the local Host address and 
+and you should be able to type in ``/exampleapp`` behind the local Host address and 
 receive the message above. 
