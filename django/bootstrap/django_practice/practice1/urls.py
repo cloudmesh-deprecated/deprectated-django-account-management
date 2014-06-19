@@ -4,5 +4,5 @@ from practice1 import models
 
 urlpatterns = patterns('',
 	#url (r'^$', views.index, name='index'),
-	url (r'^$', models.SignUp, name='signup')
+	url (r'^$', models.SignUp, name='=SignUp')
 )

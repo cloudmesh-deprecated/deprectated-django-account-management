@@ -13,15 +13,15 @@ class SignUp(models.Model):
 	email = models.EmailField()
 	#timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 	
-	#def __unicode__(self):
-		#return smart_unicode(self.email)
+	def __unicode__(self):
+		return smart_unicode(self.email)
 
 
-'''class Person(models.Model):
-	name = models.CharField(max_length =120, 
-                                null =True,
-                                blank = True,
-                                verbose_name="full name")'''
+#class Person(models.Model):
+	#name = models.CharField(max_length =120, 
+                                #null =True,
+                                #blank = True,
+                                #verbose_name="full name")
 
 
 	
