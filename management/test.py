@@ -1,12 +1,16 @@
 """
-Usage: test.py --p=N 
+Usage: 
+    test.py --del=N
+    test.py --gen=N
+    test.py print
 
 Arguments:
     TEXT  Message to be printed
 
 Options:
-    --p=N  number of times users will be generated
-    --caps  convert the text to upper case
+    --del=N  	number of users to be deleted
+    --gen=N 	number of users to be created
+    print	prints all users
 """
 
 from management import User
@@ -23,6 +27,8 @@ from mongoengine import *
 
 connect ('user')#, port=27777)
     
+x = 0
+
 first_name = "abc"
 last_name = "abc"
     
@@ -31,31 +37,34 @@ def generate_firstname():
     return names[num1]
 
 def generate_lastname():
-    num2 = random.randint(0,4) 
+    num2 = random.randint(0,4)
     return names[num2]
-    
-def get_names():
-    first_name = generate_firstname()
-    last_name = generate_lastname()
     
 
 def generate_user():
-    get_names()
-    user = User(title="Mr.", 
-                firstname = first_name,
-                lastname= last_name,
-                email= first_name+ last_name+"@gmail.com").save()
+    for i in range(p):
+    	first_name = generate_firstname()
+    	last_name = generate_lastname()
+    	print
+    	print last_name
+    	print "I am here"
+    	print 
+    	print
+    	user = User(title="Mr.", 
+    	    	    firstname = first_name,
+    	    	    lastname= last_name,
+    	    	    email= first_name+ last_name+"@gmail.com").save()
                      
-    account = Account(username= first_name + last_name,
-                      email= first_name + last_name+"@gmail.com",
-                      password="17ROW1992")
-    account.owner = user
-    account.id
-    account.save()
-    print first_name + last_name
+    	account = Account(username= first_name + last_name,
+                      	email= first_name + last_name+"@gmail.com",
+                      	password="17ROW1992")
+        account.owner = user
+        account.id
+        account.save()
+    
+    print_summary()
 
-def print_summary(): 
-    #generate_user()     
+def print_summary():      
     print "\nLIST OBJECTS"
     print 70 * "-"
     print
@@ -68,22 +77,23 @@ def print_summary():
 
     print "\n" + 70 * "-"
     
-    delete_user()
 
 def print_contacts(columns):
     pass 
 
 def delete_user():
     accounts = Account.objects()
+    i = 0
+    print i,p
     #del accounts
     #accounts = None
     for account in Account.objects:
-        print "deleted***************************"
-        account.delete()
-        print "deleted***************************"
+    	i = i + 1
+        if i < p:
+        	account.delete()
     
-    #for account in accounts:
-        #print account.owner.firstname, ":", account
+    for account in accounts:
+        print account.owner.firstname, ":", account
         
 
 print_contacts(["username", "phone", "email"])
@@ -93,16 +103,18 @@ print_contacts(["username", "phone", "email"])
 if __name__ == '__main__':
     print "This is an example use of docopt"
     
-    try:
-        arguments = docopt(__doc__)
+    #try:
+    arguments = docopt(__doc__)
         
-        p = int(arguments['--p'])
-        
-        for i in range(p):
-            print_summary()
+    if (arguments["--del"]):    
+    	p = int(arguments['--del'])
+        delete_user()
+    elif(arguments["--gen"]):    
+    	p = int(arguments['--gen'])
+        generate_user()
             
-    except DocoptExit as e:
-        print e.message
+    #except DocoptExit as e:
+     #   print e.message
 
 
 """how many users from bloomington
