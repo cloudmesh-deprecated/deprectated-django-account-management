@@ -7,14 +7,15 @@ In order to write a view in Django do the following::
 	
 In views.py in your app, write your view::
 	
+	from django.shortcuts import render
 	from django.http import HttpResponse
 	def index(request):
 		return HttpResponse("You got it!")
 		
 Now go to your individual project and configure your urls.py file::
 	
-	url(r'^exampleapp/$', 'exampleapp.views.index', name = 'index'),
+	url(r'^index/', 'exampleapp.views.index', name = 'index'),
 	
 Now do a ``python manage.py syncdb`` and then do a ``python manage.py runserver``
-and you should be able to type in ``/exampleapp`` behind the local Host address and 
+and you should be able to type in ``/index`` behind the local Host address and 
 receive the message above. 

@@ -11,5 +11,5 @@ urlpatterns = patterns('',
     
     url(r'^practice1/', include ('practice1.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^practice1/$', 'practice1.views.index', name = 'index'),
+    url(r'^index/', 'practice1.views.index' , name = 'index'),
 )

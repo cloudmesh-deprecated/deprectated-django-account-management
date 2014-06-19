@@ -1,4 +1,4 @@
-#from django.shortcuts import render
+from django.shortcuts import render
 #from django_tables2   import RequestConfig
 #from practice1.models  import Person
 #import django_tables2 as tables
