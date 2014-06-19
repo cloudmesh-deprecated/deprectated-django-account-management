@@ -2,7 +2,9 @@
 Usage: 
     test.py --del=N
     test.py --gen=N
-    test.py --find=N
+    test.py find [all]
+    		 [--user=name]
+    		 [--city=user_city]
 
 Arguments:
     TEXT  Message to be printed
@@ -119,9 +121,12 @@ if __name__ == '__main__':
     elif(arguments["--gen"]):    
     	p = int(arguments['--gen'])
         generate_user()
-    elif(arguments["--find"]):
-    	user = arguments['--find']
-    	find_user(user)
+    elif(arguments["find"]):
+    	if(arguments["all"]):
+    		print_summary()
+    	elif(arguments["--user"]):
+    		user = arguments['--user']
+    		find_user(user)
             
     #except DocoptExit as e:
      #   print e.message
