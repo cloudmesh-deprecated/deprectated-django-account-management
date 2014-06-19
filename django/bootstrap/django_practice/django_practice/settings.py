@@ -101,6 +101,6 @@ STATIC_URL = '/static/'
 
 #Template location
 TEMPLATE_DIRS = (
-	os.path.join(os.path.dirname(BASE_DIR), "static", "templates"),
+	'/home/jeff01/github/management/django/bootstrap/django_practice/templates',
 	
 	)
