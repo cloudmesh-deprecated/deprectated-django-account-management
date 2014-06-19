@@ -2,7 +2,7 @@
 Usage: 
     test.py --del=N
     test.py --gen=N
-    test.py print
+    test.py --find=N
 
 Arguments:
     TEXT  Message to be printed
@@ -10,7 +10,7 @@ Arguments:
 Options:
     --del=N  	number of users to be deleted
     --gen=N 	number of users to be created
-    print	prints all users
+    find	prints all users
 """
 
 from management import User
@@ -95,6 +95,13 @@ def delete_user():
     for account in accounts:
         print account.owner.firstname, ":", account
         
+def find_user(name):
+    accounts = Account.objects()
+    
+    for account in Account.objects:
+    	if account.owner.firstname == name:
+    		print account.owner.firstname, ":", account
+        
 
 print_contacts(["username", "phone", "email"])
 
@@ -112,6 +119,9 @@ if __name__ == '__main__':
     elif(arguments["--gen"]):    
     	p = int(arguments['--gen'])
         generate_user()
+    elif(arguments["--find"]):
+    	user = arguments['--find']
+    	find_user(user)
             
     #except DocoptExit as e:
      #   print e.message
