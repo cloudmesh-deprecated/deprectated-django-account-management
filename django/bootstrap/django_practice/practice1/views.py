@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response, RequestContext
 #from django_tables2   import RequestConfig
 #from practice1.models  import Person
 #import django_tables2 as tables
@@ -6,14 +6,34 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 
-
 # Create your views here.
 
 def index(request):
 
-	#result = str("hello world") 
+	html = """<!DOCTYPE html>
 
-	return HttpResponse("hello world")
+<html>
+	<head>
+	</head>
+	
+	<body>
+		<table style="width:300px">
+		<tr>
+			<td> Jeff</td>
+			<td> Ridgeway</td>
+			<td> 19 </td>
+		</tr>
+		<tr>
+			<td> Marian </td>
+			<td> Ridgeway </td>
+			<td> 50 </td>
+		</tr>
+		</table>
+	</body>
+</html>"""
+	#result = str(index.html) 
+
+	return HttpResponse(html)
 
 #def example1(request):
 
