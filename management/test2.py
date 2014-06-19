@@ -21,7 +21,7 @@ class generate_random_user():
     city = "abc"
     country = "abc"
     
-    num = random.randint(0,4)
+    num = random.randint(0,3)
     
     def generate_random(self):
         self.phone = phone[self.num]
