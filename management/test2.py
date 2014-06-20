@@ -8,7 +8,7 @@ from mongoengine import *
 # https://code.google.com/p/prettytable/
 # https://code.google.com/p/prettytable/source/browse/trunk/README
 
-connect ('user')#, port=27777)
+connect ('user', port=27777)
 
 "This class generates random users"
 
@@ -21,7 +21,7 @@ class generate_random_user():
     city = "abc"
     country = "abc"
     
-    num = random.randint(0,4)
+    num = random.randint(0,3)
     
     def generate_random(self):
         self.phone = phone[self.num]
