@@ -104,6 +104,11 @@ def delete_account(name):
     		account.delete()
         
 def find_user(name):
+    print
+    Account.objects(firstname = name).count()
+    print count
+    print
+    print
     for account in Account.objects:
     	if account.owner.firstname == name:
     		print account.owner.firstname, ":", account
