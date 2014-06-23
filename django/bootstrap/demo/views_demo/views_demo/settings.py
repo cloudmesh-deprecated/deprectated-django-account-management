@@ -1,5 +1,5 @@
 """
-Django settings for django_practice project.
+Django settings for views_demo project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'j6ncr*+z%y(hmk^rlw%y_@b=!n-*rc!mbqg&q%_cjgj8f-rkym'
+SECRET_KEY = 'dt^t3p2z+ive@=byxuy4g4m$mo4^b3wqy9y%456x4jdy1pp8=v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,11 +37,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'practice1',
-    'practice2',
-    #'django_tables2',
-    #'bootstrap3',
-    
 )
 
 MIDDLEWARE_CLASSES = (
@@ -53,9 +48,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'django_practice.urls'
+ROOT_URLCONF = 'views_demo.urls'
 
-WSGI_APPLICATION = 'django_practice.wsgi.application'
+WSGI_APPLICATION = 'views_demo.wsgi.application'
 
 
 # Database
@@ -63,12 +58,17 @@ WSGI_APPLICATION = 'django_practice.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django_mongodb_engine',
-	'ENGINE':'django.db.backends.sqlite3',
-        #'NAME': 'my_database',
-	'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+
+TEMPLATE_LOADERS = (
+	'django.template.loaders.filesystem.Loader',
+	'django.template.loaders.app_directories.Loader',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -83,41 +83,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-TEMPLATE_LOADERS = (
-	'django.template.loaders.filesystem.Loader',
-	'django.template.loaders.app_directories.Loader',
-       #'django.contrib.staticfiles.finders.DefaultStorageFinder', 
-)
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-		
-	'django.contrib.auth.context_processors.auth',
-	'django.core.context_processors.debug',
-	'django.core.context_processors.i18n',
-	'django.core.context_processors.media',
-	'django.core.context_processors.static',
-	'django.core.context_processors.tz', 
-	'django.core.context_processors.request',
-	'django.contrib.messages.context_processors.messages',
-
-)
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-
-STATICFILES_DIRS = (
-	'/home/jeff01/github/management/django/bootstrap/django_practice/static/',
-	'/home/jeff01/Desktop/bootstrap',
-	'/home/jeff01/Desktop/jquery',
-)
-
 STATIC_URL = '/static/'
 
-
-#Template location
 TEMPLATE_DIRS = (
-	'/home/jeff01/github/management/django/bootstrap/django_practice/templates',
-	
-	)
+	'/home/jeff01/github/management/django/bootstrap/demo/views_demo/views_demo/templates',
+)

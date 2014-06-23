@@ -3,7 +3,19 @@ from django.utils.encoding import smart_unicode
 
 # Create your models here.
 
-class SignUp(models.Model):
+
+class Book(models.Model):
+	author =models.CharField(max_length = 20)
+	title = models.CharField(max_length = 40)
+	publication_year = models.IntegerField()
+
+
+
+
+
+
+
+'''class SignUp(models.Model):
 	first_name = models.CharField(max_length=120, 
 				      null =True, 
                                       blank=True)
@@ -14,6 +26,6 @@ class SignUp(models.Model):
 	timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 	
 	def __unicode__(self):
-		return smart_unicode(self.email)
+		return smart_unicode(self.email)'''
 
 
