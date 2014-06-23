@@ -1,9 +1,10 @@
 from django.shortcuts import render, render_to_response, RequestContext
 from django.http import HttpResponse
+from django.db import models
 
 
 def display(request):
-	return render(request, 'template.html' {'obj': models.Book.objects.all()})
+	return render(request, 'practice2/template/template.html', {'obj': models.Book.objects.all()})
 
 
 

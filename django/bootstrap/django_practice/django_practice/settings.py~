@@ -37,7 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'practice1',
+    #'practice1',
+    'practice2',
     #'django_tables2',
     #'bootstrap3',
     
@@ -62,9 +63,9 @@ WSGI_APPLICATION = 'django_practice.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django_mongodb_engine',
+        'ENGINE': 'django.db.backends.sqlite3',
 	#'django.db.backends.sqlite3',
-        'NAME': 'my_database',
+        'NAME': 'os.path.join(BASE_DIR, 'db.sqlite3')',
 	#os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
