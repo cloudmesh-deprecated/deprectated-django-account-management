@@ -47,10 +47,10 @@ class generate_random_user():
     
     def generate_random(self):
     	num = random.randint(0,3)
-        self.phone = phone[self.num]
-        self.inst = institution[self.num]
-        self.city = city[self.num]
-        self.country = country[self.num]
+        self.phone = phone[num]
+        self.inst = institution[num]
+        self.city = city[num]
+        self.country = country[num]
         print self.city + self.country + self.inst + self.phone
     
     def generate_firstname(self):
@@ -110,7 +110,7 @@ class generate_random_user():
 
     def delete_account(self, name):
         for account in Account.objects:
-    	    if account.owner.firstname == self.name:
+    	    if account.owner.firstname == name:
     		account.delete()
 
     def find_user(self, name):
