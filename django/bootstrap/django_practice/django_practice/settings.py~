@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'django_admin_bootstrapped.boostrap3',
     'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -107,6 +108,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 
 STATICFILES_DIRS = (
+	'/home/jeff01/github/management/django/bootstrap/django_practice/static/',
 	'/home/jeff01/Desktop/bootstrap',
 	'/home/jeff01/Desktop/jquery',
 )
