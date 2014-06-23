@@ -1,6 +1,6 @@
 from django.template.loader import get_template
 from django.template import Context
-from django.shortcuts import render #, render_to_response, RequestContext
+from django.shortcuts import render, render_to_response, RequestContext
 #from django_tables2   import RequestConfig
 #from practice1.models  import Person
 #import django_tables2 as tables

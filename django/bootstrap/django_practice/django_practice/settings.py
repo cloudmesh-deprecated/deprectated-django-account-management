@@ -107,6 +107,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 
 STATICFILES_DIRS = (
+	'/home/jeff01/github/management/django/bootstrap/django_practice/static/',
 	'/home/jeff01/Desktop/bootstrap',
 	'/home/jeff01/Desktop/jquery',
 )
