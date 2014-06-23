@@ -1,6 +1,30 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response, RequestContext
 from django.http import HttpResponse
-from mongoengine import *
+
+
+def display(request):
+	return render(request, 'template.html' {'obj': models.Book.objects.all()})
+
+
+
+
+'''def display(request):
+	return render_to_response('template.tmpl', {'obj': models.Book.objects.all()})'''
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''from mongoengine import *
 from reservation.model import reservation_connect
 from reservation.model import Reservation
 from reservation.plot import timeline_plot
@@ -30,7 +54,7 @@ def index(request):
 	print 70*"D"
 
 	result = "</table>"
-	return HttpResponse(result)
+	return HttpResponse(result)'''
 
 
 
