@@ -130,7 +130,7 @@ if __name__ == '__main__':
     		for i in range(p):
     			generate_user()
     elif (arguments["del"]):                                      
-    	if(arguments["all"]):
+    	if(arguments["all"]): 
     		delete_all()
     	elif(arguments["--user"]):
     		user = arguments['--user']
