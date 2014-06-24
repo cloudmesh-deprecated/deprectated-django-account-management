@@ -8,7 +8,7 @@ README
 =================================
 
 The purpose of this setup is to have a django-bootstrapped theme up and 
-running if documentation `Link text https://github.com/cloudmesh/management/tree/master/doc/source`
+running if documentation `Link text https://github.com/cloudmesh/management/blob/master/doc/source/django.rst`
 is followed correctly
 
 Do the following as well (while in .../simple/simple)::
