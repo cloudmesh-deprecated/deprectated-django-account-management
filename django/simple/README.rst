@@ -16,5 +16,5 @@ Do the following as well (while in .../simple/simple)::
 	python manage.py syncdb
 	python manage.py runserver
 	
-Then type ` Link text http://127.0.0.1.8000/admin` and you should see your 
+Then type `Link text http://127.0.0.1.8000/admin` and you should see your 
 bootstrapped theme admin site!
