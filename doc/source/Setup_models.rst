@@ -46,20 +46,12 @@ Now go into your django project and do the following::
 	$ texteditor settings.py 
 	.. Add newly created app to INSTALLED_APPS
 	INSTALLED_APPS = (
-	'django_admin_bootstrapped',
 	.....
 	.....
 	'exampleapp',
 	)
 	
-Below the ``STATIC_URL = '/static/'`` add the following::
+
 	
-	#Template location
-	TEMPLATE_DIRS = (
-		os.path.join(os.path.dirname(BASE_DIR), "static", "templates"),
-	
-	)
-	
-Now in your do a ``pip install django-admin-bootstrapped`` in the terminal and 
-then a ``python manage.py syncdb`` and ``python manage.py runserver`` and you 
+Now do a ``python manage.py syncdb`` and ``python manage.py runserver`` and you 
 should see your django-bootstrapped theme with model working!
