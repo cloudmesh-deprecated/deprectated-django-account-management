@@ -1,15 +1,12 @@
 Installing Django
 ======================================================================
 
-????? Install SQLite on Ubuntu Machine (if you haven't already) Go to
-www.sqlite.org/download.html and download the sqlite-shell-linux
-Extract download to your respective directory
+..
+	????? Install SQLite on Ubuntu Machine (if you haven't already) Go to
+	www.sqlite.org/download.html and download the sqlite-shell-linux
+	Extract download to your respective directory
 
 .. warning::
-
-   WHY IS THIS NEEDED, ????? IS this right???
-
-
 
 To install django you simply call::       
 
@@ -19,30 +16,9 @@ To stat a new django web site you can use the following commands::
        
 	$ django-admin.py startproject example_site 
         $ cd example_site
+        $ python manage.py syncdb
         
-???? this seems not right as the syncdb should be first ???? but not sure ????::
-
-        $ python manage.py runserver
-
-in browser do 
-
-http://127.0.0.1:8000/
-
-If you get the following prompt::
-	
-	It worked! Congratulations on your first Django-powered page.
-
-	Of course, you haven't actually done any work yet. Next, start your first app by running python manage.py startapp [appname].
-	You're seeing this message because you have DEBUG = True in your Django settings file and you haven't configured any URLs. Get to work!
-
-Then you have successfully accessed the database. 
-
-To sync the database, you have to execute::
-
-	Ctrl C
-	$ python manage.py syncdb
-
-This will give you an ask you for some user information similar to::
+    This will give you an ask you for some user information similar to::
 
   python manage.py syncdb
   Creating tables ...
@@ -74,14 +50,23 @@ This will give you an ask you for some user information similar to::
   username you like. Please chose a responsible password
 
 
-Next you will need to run the server again::
+Next you will need to run the server::    
+        
+        
+        $ python manage.py runserver
 
-	$ python manage.py runserver
-	
-in the browser do again
+in browser do 
 
 http://127.0.0.1:8000/
 
+If you get the following prompt::
+	
+	It worked! Congratulations on your first Django-powered page.
+
+	Of course, you haven't actually done any work yet. Next, start your first app by running python manage.py startapp [appname].
+	You're seeing this message because you have DEBUG = True in your Django settings file and you haven't configured any URLs. Get to work!
+
+Then you have successfully accessed the database. 
 
 To browse if the server is running on your web browser, enter this url and then login::
 
