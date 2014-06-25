@@ -45,6 +45,9 @@ class generate_random_user():
     country = "abc"
     p = 10
     
+    def add_user(self):
+    	pass
+    
     def generate_random(self):
     	num = random.randint(0,3)
         self.phone = phone[num]

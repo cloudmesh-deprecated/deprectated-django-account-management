@@ -12,6 +12,7 @@ class User(Document):
         
 class Account(Document):
     owner = ReferenceField(User)
+    #projects = StringField() 
     username = StringField()
     email = StringField()
     password = StringField()
