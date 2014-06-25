@@ -41,10 +41,11 @@ In this file, copy and paste the html from your desired template from the
 2) After clicking on both of these links - right-click on the page of the code 
 and choose ``save as`` and save files to css folder in static directory 
 
-..
-	Repeat Steps 1 & 2 with the link at the bottom of the source code (Below
-	``<!-- Placed at the end of the document so the pages load faster -->``)
-	and save in js folder in static directory 
+Repeat Steps 1 & 2 with the link at the bottom of the source code (Below
+``<!-- Placed at the end of the document so the pages load faster -->``)
+and save in js folder in static directory. 
+
+
 	
 Now go back to the ``base.html`` file and create the section ``{% block content %}``
 & ``{% endblock %}`` (for syntax go to www.djangobook.com/en/2.0/chapter04.html)
