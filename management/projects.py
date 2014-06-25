@@ -7,6 +7,38 @@ from management1 import Account
 #    ***Would need a list to get its information 
 #    ***from as defined on the futuregrid page 
 
+    
+class project_information(Document):
+    orientation = StringField() 		#***
+    primary_discipline = StringField()		#***
+    abstract = StringField()
+    intellectual_merit = StringField()
+    broader_impact = StringField()
+    software_contribution = StringField()	#Yes/No
+    documentation_contribution = StringField()	#Yes/No
+    support_Software = StringField()		#Yes/No
+    
+    def __str__(self):
+        return "{0} {1} {2} {3} {4} {5} {6} {7}".format(self.orientation, self.primary_discipline,
+        						self.abstract, self.intellectual_merit,
+        						self.broader_impact, self.software_contribution,
+        						self.documentation_contribution, self.support_Software)
+    
+class resource_requirement(Document):    
+    hardware_resources = ListField(StringField())
+    provision_type = ListField(StringField())  
+    base_environment = ListField(StringField())
+    server = ListField(StringField())
+    comment = StringField()
+    use_of_fg = StringField()
+    scale_of_use = StringField()
+    
+    def __str__(self):
+        return "{0} {1} {2} {3} {4} {5} {6}".format(self.hardware_resources, self.provision_type,
+        					    self.base_environment, self.server,
+        					    self.comment, self.use_of_fg,
+        					    self.scale_of_use)
+
 class project(Document):
     information = ReferenceField(project_information)
     requirements = ReferenceField(resource_requirement)
@@ -46,34 +78,3 @@ class project(Document):
     def __str__(self):
         u = self.to_json()
         return str(u)
-    
-class project_information(Document):
-    orientation = StringField() 		#***
-    primary_discipline = StringField()		#***
-    abstract = StringField()
-    intellectual_merit = StringField()
-    broader_impact = StringField()
-    software_contribution = StringField()	#Yes/No
-    documentation_contribution = StringField()	#Yes/No
-    support_Software = StringField()		#Yes/No
-    
-    def __str__(self):
-        return "{0} {1} {2} {3} {4} {5} {6} {7}".format(self.orientation, self.primary_discipline,
-        						self.abstract, self.intellectual_merit,
-        						self.broader_impact, self.software_contribution,
-        						self.documentation_contribution, self.support_Software)
-    
-class resource_requirement(Document):    
-    hardware_resources = ListField(StringField())
-    provision_type = ListField(StringField())  
-    base_environment = ListField(StringField())
-    server = ListField(StringField())
-    comment = StringField()
-    use_of_fg = StringField()
-    scale_of_use = StringField()
-    
-    def __str__(self):
-        return "{0} {1} {2} {3} {4} {5} {6}".format(self.hardware_resources, self.provision_type,
-        					    self.base_environment, self.server,
-        					    self.comment, self.use_of_fg,
-        					    self.scale_of_use)
