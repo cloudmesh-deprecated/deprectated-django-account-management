@@ -32,4 +32,4 @@ then you should be connected.
 
 *If you want the bootstrapped theme, do a ``pip install django-admin-bootstrapped``
 and add `` 'django_admin_bootstrapped', `` before the ``django.contrib.admin``
-app in the``INSTALLED _APPS`` list.
+app in the ``INSTALLED _APPS`` list.
