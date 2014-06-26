@@ -31,5 +31,5 @@ Then run a ``python manage.py syncdb`` and a ``python manage.py runserver`` and
 then you should be connected. 
 
 *If you want the bootstrapped theme, do a ``pip install django-admin-bootstrapped``
-and add `` 'django_admin_bootstrapped', `` before the ``django.contrib.admin``
+and add ``'django_admin_bootstrapped',`` before the ``django.contrib.admin``
 app in the ``INSTALLED _APPS`` list.
