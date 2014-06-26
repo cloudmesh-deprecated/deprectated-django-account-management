@@ -1,21 +1,32 @@
 """
 Usage: 
-    test2.py gen  [rand]
+    test2.py -h
+    test2.py gen [rand]
     		 [--num=N]
-    test2.py del	 [all]
+    test2.py --add=N 
+    test2.py del [all]
     		 [--num=N]
     		 [--user=name]    		 
-    test2.py find [all]
+    test2.py find[all]
     		 [--user=name]
     		 [--city=user_city]
 
 Arguments:
-    TEXT  Message to be printed
+    del		 deletes users
+    gen		 generates users
+    find	 finds and prints out user information
 
 Options:
-    --del=N  	number of users to be deleted
-    --gen=N 	number of users to be created
-    find	prints all users
+    -h	         : show this help message
+    rand	 : for generating random users
+    --all  	 : performs a particular function to all the users
+    --add=ARG    : adds users to the database in this fashion= 
+    		   "first name"/"last name"/"username"/"email".
+    		   Note that the backslash "/" must seperate these
+    		   arguments.
+    --num=ARG 	 : performs an operation to a number of users
+    --user=ARG   : performs an operation on specific users
+    --city=ARG 	 : prints all users
 """
 
 # https://code.google.com/p/prettytable/
@@ -37,6 +48,7 @@ class generate_random_user():
     
     accounts = Account.objects()
     
+    user_info = []
     first_name = "abc"
     last_name = "abc"
     phone = "abc"
@@ -44,9 +56,6 @@ class generate_random_user():
     city = "abc"
     country = "abc"
     p = 10
-    
-    def add_user(self):
-    	pass
     
     def generate_random(self):
     	num = random.randint(0,3)
@@ -67,6 +76,30 @@ class generate_random_user():
     def get_names(self):
         self.first_name = self.generate_firstname()
         self.last_name = self.generate_lastname()
+
+    def add_user(self):
+    	self.generate_random()
+        user = User(title="Mr.",
+        	firstname = self.user_info[0],
+        	lastname= self.user_info[1],
+        	email= self.user_info[3]
+                     ).save()
+                     
+        account = Account(username=self.user_info[2],
+                  email=self.user_info[3],
+                  password="17ROW1992",
+                  phone = self.phone,
+                  department = "School of Informatics and Computing",
+                  institution = self.inst,
+                  adviser_contact = "Bloomington, Indiana",
+                  institute_address = self.city,
+                  institute_country = self.country,
+                  url = "www.google.com",
+                  citizenship = self.country,
+                  bio = "I am a rising junior",
+                  signup_code = "23ey")
+        account.owner = user
+        account.save()
 
     def generate_user(self):
         self.generate_random()
@@ -156,6 +189,10 @@ if __name__ == '__main__':
     		c.p = int(arguments['--num'])
     		for i in range(c.p):
     			c.generate_user()
+    elif(arguments["--add"]):
+    	info = arguments['--add']
+    	c.user_info = info.split('/')
+     	c.add_user()
     elif (arguments["del"]):                                      
     	if(arguments["all"]):
     		c.delete_all()
