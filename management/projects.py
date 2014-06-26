@@ -1,6 +1,6 @@
 from mongoengine import *
-from management1 import User
-from management1 import Account
+from management import User
+from management import Account
 
 #    mongod --noauth --dbpath . --port 27777
 
@@ -39,7 +39,7 @@ class resource_requirement(Document):
         					    self.comment, self.use_of_fg,
         					    self.scale_of_use)
 
-class project(Document):
+class Project(Document):
     information = ReferenceField(project_information)
     requirements = ReferenceField(resource_requirement)
     project_title = StringField()
@@ -58,12 +58,12 @@ class project(Document):
     other = StringField()
     
     def to_json(self):
-        u = {"information":self.information, 
+        u = {"project_title":self.project_title,
+             "information":self.information, 
              "requirements":self.requirements,
-             "project_title":self.project_title, 
              "category":self.category, 
              "keywords":self.keywords, 
-             "lead":self.lead, 
+             "lead":self.lead.username, 
              "manager":self.manager, 
              "contact":self.contact,
              "members":self.members, 

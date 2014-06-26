@@ -80,7 +80,6 @@ class generate_random_user():
         self.last_name = self.generate_lastname()
 
     def add_user(self):
-    	self.generate_random()
         user = User(title="Mr.",
         	firstname = self.user_info[0],
         	lastname= self.user_info[1],
@@ -195,9 +194,10 @@ if __name__ == '__main__':
     	if(arguments["--line"]):
     		info = arguments['--line']
     		c.user_info = info.split('/')
-    		z = input('Enter city: ')
-    		print z
-    		c.city = str(c.city)
+    		c.city = raw_input('City: ')
+    		c.phone = raw_input('Phone number: ')
+    		c.inst = raw_input('Institution: ')
+    		c.country = raw_input('Country: ')
     	elif(arguments["--file"]):
     		user_file = arguments["--file"]
     		with open(user_file, 'r') as f:
