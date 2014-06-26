@@ -193,8 +193,11 @@ if __name__ == '__main__':
     			c.generate_user()
     elif(arguments["add"]):
     	if(arguments["--line"]):
-    		info = arguments['--add']
+    		info = arguments['--line']
     		c.user_info = info.split('/')
+    		z = input('Enter city: ')
+    		print z
+    		c.city = str(c.city)
     	elif(arguments["--file"]):
     		user_file = arguments["--file"]
     		with open(user_file, 'r') as f:
