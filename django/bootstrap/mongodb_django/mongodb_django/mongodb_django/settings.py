@@ -1,5 +1,5 @@
 """
-Django settings for simple project.
+Django settings for mongodb_django project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'tb!jj)xh@hl6%!di+okt2@nv#5s#fq$1#2#+cxxg6qvo6og5%u'
+SECRET_KEY = 'vcfjp%$1t44$wdszs$224q!cs7x#2c3^t@)h)319(8=cwoq(=f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,9 +48,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'simple.urls'
+ROOT_URLCONF = 'mongodb_django.urls'
 
-WSGI_APPLICATION = 'simple.wsgi.application'
+WSGI_APPLICATION = 'mongodb_django.wsgi.application'
 
 
 # Database
@@ -57,8 +58,8 @@ WSGI_APPLICATION = 'simple.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django_mongodb_engine',
+        'NAME': 'my_database',
     }
 }
 
