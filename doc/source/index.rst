@@ -6,10 +6,10 @@ Cloudmesh Django
 .. toctree::
    :maxdepth: -1
 
-   deployment
-   git
-   django
-   form
+deployment
+git
+django
+form
 
 
 
