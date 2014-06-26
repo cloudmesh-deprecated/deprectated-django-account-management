@@ -7,12 +7,12 @@ class User(Document):
     firstname = StringField()
     lastname = StringField()
     email = StringField()
-    
     def __str__(self):
         return "{0} {1} {2} {3}".format(self.title,self.firstname, self.lastname, self.email)
         
 class Account(Document):
     owner = ReferenceField(User)
+    #projects = StringField() 
     username = StringField()
     email = StringField()
     password = StringField()
@@ -42,26 +42,31 @@ class Account(Document):
             "bio",
             "signup_code"
     ]
+    
+    def to_json(self):
+        u = {"owner":self.owner,
+            "username":self.username,
+            "email":self.email,
+            "phone":self.phone,
+            "department":self.department,
+            "institution":self.institution,
+            "adviser_contact":self.adviser_contact,
+            "institute_address":self.institute_address,
+            "institute_country":self.institute_country,
+            "url":self.url,
+            "citizenship":self.citizenship,
+            "bio":self.bio,
+            "signup_code":self.signup_code}
+        return u
 
     
     def __str__(self):
-        return "{0} {1} {3} {4} {5}".format(self.owner,
-                                            self.username,
-                                            self.email,
-                                            self.phone,
-                                            self.department,
-                                            self.institution,
-                                            self.adviser_contact,
-                                            self.institute_address,
-                                            self.institute_country,
-                                            self.url,
-                                            self.citizenship,
-                                            self.bio,
-                                            self.signup_code)
+        u = self.to_json()
+        return str(u)
+        
 
 #class Contact(Document):
     
-
 
 
 

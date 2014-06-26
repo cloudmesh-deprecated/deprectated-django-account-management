@@ -3,7 +3,8 @@ Usage:
     test2.py -h
     test2.py gen [rand]
     		 [--num=N]
-    test2.py --add=N 
+    test2.py add [--file=N]
+    		 [--line=N]
     test2.py del [all]
     		 [--num=N]
     		 [--user=name]    		 
@@ -32,12 +33,13 @@ Options:
 # https://code.google.com/p/prettytable/
 # https://code.google.com/p/prettytable/source/browse/trunk/README
 
-from management1 import User
-from management1 import Account
+from management import User
+from management import Account
 from user_dict import *
 from docopt import docopt
 from mongoengine import *
 import random
+import yaml
 
 connect ('user', port=27777)
 
@@ -189,10 +191,16 @@ if __name__ == '__main__':
     		c.p = int(arguments['--num'])
     		for i in range(c.p):
     			c.generate_user()
-    elif(arguments["--add"]):
-    	info = arguments['--add']
-    	c.user_info = info.split('/')
-     	c.add_user()
+    elif(arguments["add"]):
+    	if(arguments["--line"]):
+    		info = arguments['--add']
+    		c.user_info = info.split('/')
+    	elif(arguments["--file"]):
+    		user_file = arguments["--file"]
+    		with open(user_file, 'r') as f:
+    			doc = yaml.load(f)
+    		c.user_info = doc['user']
+    	c.add_user()
     elif (arguments["del"]):                                      
     	if(arguments["all"]):
     		c.delete_all()
