@@ -14,7 +14,7 @@ Cloudmesh Django
 For deployment of django please visit this documentation
 https://github.com/cloudmesh/management/blob/master/doc/source/deployment.rst
 
-For doing a git pul, plese visit 
+For doing a git pull, plese visit 
 https://github.com/cloudmesh/management/blob/master/doc/source/git.rst
 
 For installing django, please visit 
