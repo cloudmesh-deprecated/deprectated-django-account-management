@@ -1,5 +1,6 @@
 from django.shortcuts import render
 #from django.db import models
+from .models import Person
 # Create your views here.
 
 #def index(request):
