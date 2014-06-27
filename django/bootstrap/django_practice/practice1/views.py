@@ -1,19 +1,19 @@
-from django.template.loader import get_template
-from django.template import Context
-from django.shortcuts import render, render_to_response, RequestContext
+#from django.template.loader import get_template
+#from django.template import Context
+from django.shortcuts import render #, render_to_response, RequestContext
 #from django_tables2   import RequestConfig
 #from practice1.models  import Person
 #import django_tables2 as tables
 #from practice1.tables  import PersonTable
-from django.http import HttpResponse
-import datetime
+#from django.http import HttpResponse
+#import datetime
 
 
-def current_datetime(request):
-	now = datetime.datetime.now()
-	t = get_template('practicetemplate.html')
-	html = t.render(Context({'current_date':now}))
-	return HttpResponse(html)
+#def current_datetime(request):
+	#now = datetime.datetime.now()
+	#t = get_template('practicetemplate.html')
+	#html = t.render(Context({'current_date':now}))
+	#return HttpResponse(html)
 
 
 
@@ -91,11 +91,11 @@ def current_datetime(request):
 
 
 
-#def people(request):
+def people(request):
 	#table = PersonTable(Person.objects.all())
     	#RequestConfig(request).configure(table)
    	#return render(request, 'people.html', {'table': table})
-	#return render(request, "people.html", {"people": Person.objects.all()})
+	return render(request, "people.html", {"people": Person.objects.all()})
 
 	
 
