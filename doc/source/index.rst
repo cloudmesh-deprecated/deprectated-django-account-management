@@ -6,7 +6,7 @@ Cloudmesh Django
 .. toctree::
    :maxdepth: -1
 
-   deployment.rst
+   deployment
    git pull
    django
    form
@@ -14,8 +14,8 @@ Cloudmesh Django
    model
    template
 
-For deployment of django please visit this documentation
-https://github.com/cloudmesh/management/blob/master/doc/source/deployment.rst
+The setup for Django
+
 
 For doing a git pull, plese visit 
 https://github.com/cloudmesh/management/blob/master/doc/source/git.rst
