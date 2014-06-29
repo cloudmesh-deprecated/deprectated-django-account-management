@@ -32,20 +32,21 @@ class user_project():
     	user_name = raw_input("User name: ")
     	for account in Account.objects:
     	    if account.username == user_name:
-    	    	self.title = raw_input("Project title: ")
-    	    	self.contact = raw_input("Project contact: ")
-    	    	self.results = raw_input("Results: ")
-    	    	self.nsf_Aggreement = raw_input("NSF Aggreement (Yes or No): ")
-    	    	self.slide_collection_aggreement = raw_input("Slide Collection Aggreement (Yes or No): ")
-    	    	self.other = raw_input("Other: ")
-    	    	project = Project(project_title = self.title,
-    	    		         lead = account, manager = account, 
-    	    		         contact = self.contact, results = self.results,
-    	    		         nsf_Aggreement = self.nsf_Aggreement,
-    	    		         slide_collection_aggreement = self.slide_collection_aggreement,
-    	    		         other = self.other )
-    	    	project.save()
-    	    	print project.project_title
+    	    	user_account = account
+	self.title = raw_input("Project title: ")
+    	self.contact = raw_input("Project contact: ")
+    	self.results = raw_input("Results: ")
+    	self.nsf_Aggreement = raw_input("NSF Aggreement (Yes or No): ")
+    	self.slide_collection_aggreement = raw_input("Slide Collection Aggreement (Yes or No): ")
+    	self.other = raw_input("Other: ")
+    	project = Project(project_title = self.title,
+    	    		  lead = user_account, manager = user_account, 
+    	    		  contact = self.contact, results = self.results,
+    	    		  nsf_Aggreement = self.nsf_Aggreement,
+    	    		  slide_collection_aggreement = self.slide_collection_aggreement,
+    	    		  other = self.other )
+    	project.save()
+    	print project.project_title
     	    	
     	    	
     	    	#account.project = self.title refernce and list field
@@ -68,6 +69,6 @@ class user_project():
 
 c = user_project()
 
-#c.add_project()
+c.add_project()
 c.list_project()
 #c.del_project()

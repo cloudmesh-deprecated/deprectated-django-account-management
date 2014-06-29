@@ -55,15 +55,15 @@ def generate_user():
     print "I am here"
     print 
     print
-    user = User(title="Mr.", 
+    '''user = User(title="Mr.", 
        	        firstname = first_name,
    	        lastname= last_name,
-    	        email= first_name+ last_name+"@gmail.com").save()
+    	        email= first_name+ last_name+"@gmail.com").save()'''
                      
     account = Account(username= first_name + last_name,
                       email= first_name + last_name+"@gmail.com",
                       password="17ROW1992")
-    account.owner = user
+    #account.owner = user
     account.id
     account.save()
     
@@ -75,7 +75,7 @@ def print_summary():
     print
     
     for account in accounts:
-        print account.owner.firstname, ":", account
+        print account.username, ":", account
         print account.id
 
     print "\n" + 70 * "-"
