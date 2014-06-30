@@ -1,31 +1,9 @@
-.. list-table:: Weather forecast
-   :header-rows: 1
-   :widths: 7 7 7 7 60
-   :stub-columns: 1
-
-   *  -  Day
-      -  Min Temp
-      -  Max Temp
-      -
-      -  Summary
-   *  -  Monday
-      -  11C
-      -  22C
-      -  .. image:: _static/sunny.svg
-            :width: 30
-
-      -  A clear day with lots of sunshine.
-         However, the strong breeze will bring
-         down the temperatures.
-   *  -  Tuesday
-   ........
-
 Account information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: Account information
    :header-rows: 1
-   :widths: 10 10 10 70
+   :widths: 15 15 15 50
 
    * - Attribute
      - Label
@@ -50,20 +28,24 @@ Account information
        and will only be used if you wish to receive a new
        password or wish to receive certain news or
        notifications by e-mail.
-   * - password
+   * - password1
      - Password
      - yes
      - Provide a password for the new account in both fields.
        Force password change on first-time login If this box
        is checked, the user will be forced to change their
        password on their first login.   
+   * - password2
+     - Password
+     - yes
+     - Provide a password which is the same as password1
    
 Contact
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: Contact
    :header-rows: 1
-   :widths: 10 10 10 70
+   :widths: 15 15 15 50
 
    * - Attribute
      - Label
@@ -112,9 +94,13 @@ Contact
        or Company.  Examples are Indiana University, Argonne
        National Laboratory, Google, Open Science Grid. Please
        do not use abbreviations.
+   * - iamge
+     - Image
+     - no
+     - Portrait in a reasonable size. Resize the image upon upload.
    * - adviser_contact
      - Adviser's Contact Information
-     - no
+     - yes if student
      - For students, please put your adviser's contact
        information, which includes full name, department,
        phone number, email, URL, address, etc., otherwise
@@ -141,7 +127,7 @@ Contact
        be shown publicly.
    * - Bio
      - bio
-     - no
+     - yes
      - A short bio about yourself.
    * - Sign up code
      - signup_code
@@ -156,7 +142,7 @@ Project
 
 .. list-table:: Project
    :header-rows: 1
-   :widths: 10 10 10 70
+   :widths: 15 15 15 50
 
    * - Attribute
      - Label
@@ -168,18 +154,13 @@ Project
      - Enter project title.
    * - category
      - Project Categories
-     - no
+     - yes
      - Enter project categories.
    * - keywords
      - Project Keywords
      - yes
      - Provide some useful keywords related to the project, 
        separated by comma (", ").
-   * - contact
-     - Project Contact
-     - no
-     - If the info in this section need to be updated, 
-       you're recommended to do that in your profile page.
    * - keywords
      - Project Lead
      - yes
@@ -191,6 +172,12 @@ Project
      - The person that initiates the project and is responsible 
        for its execution as well as the completion of reporting 
        results to FG.
+   * - institutional_role		
+     - Institutional Role
+     - yes	
+     - Select the institutional role that best identifies you
+       in your organization. The content of this field is
+       kept private and will not be shown publicly.
    * - manager
      - Project Manager
      - yes
@@ -200,7 +187,7 @@ Project
        results.
    * - contact
      - Project Contact
-     - no
+     - yes
      - Please include here your primary contact address for 
        the project. This could be different from the Project 
        Lead and Manager. Please use this field only if the 
@@ -220,14 +207,18 @@ Project
      - no
      - These are users that were part of the project but have 
        since left.
-   * - nsf_grant_number
-     - NSF Grant Number
+   * - grant_orgnization
+     - Grant Organization
      - no
-     - NSF Grant Number associated with your experiment, if any.
-   * - nsf_grant_url
-     - NSF Grant URL
+     - Organization of the sponsor. Examples, NSF, DOE, DoD, NIH, ...
+   * - grant_number
+     - Grant Number
      - no
-     - URL to the NSF Grant Abstract on the NSF web site 
+     - Grant Number associated with your experiment, if any.
+   * - grant_url
+     - Grant URL
+     - no
+     - URL to the Grant Abstract on the Grant sponsering web site 
        associated with your experiment, if any.
    * - results
      - Results
@@ -245,14 +236,15 @@ Project
      - Slide Collection Agreement
      - yes
      - Click on "Yes" or "No" depending if you agree that you will
-       provide FutureGrid with Electronic copies of slides from talks 
-       that reference your work done with FutureGrid or which mention 
-       FutureGrid (.pdfs or other 'not easily reusable' format o.k.; 
-       we will ask you for your permission to post slides publicly and 
+       provide FutureGrid with Electronic copies of slides from talks
+       that reference your work done with FutureGrid or which mention
+       FutureGrid (.pdfs or other 'not easily reusable' format o.k.;
+       we will ask you for your permission to post slides publicly and
        will not post them publicly without your permission).
    * - other
      - Other comments
      - no
+<<<<<<< HEAD
      - If you have additional comments that did not fit in any of the 
        above fields, please add them here.
    * - project_join_buton
@@ -271,13 +263,25 @@ Project
      - Indicate whether you would like to be notified via email when a 
        user requests to join the project.
 
+=======
+     - If you have additional comments that did not fit in any of the above fields, please add them here.
+   
+ = StringField()
+     = StringField()
+     = StringField()
+     = StringField() 		#Yes/No
+     = StringField()	#Yes/No
+     = StringField()
+       
+       
+>>>>>>> cd4c97ddf5cc0d4c88e5712d0a42dc3f95f40593
        
 Project Information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: Project Information
    :header-rows: 1
-   :widths: 10 10 10 70
+   :widths: 15 15 15 50
 
    * - Attribute
      - Label
@@ -340,7 +344,7 @@ Resource Requirements
 
 .. list-table:: Resource Requirements
    :header-rows: 1
-   :widths: 10 10 10 70
+   :widths: 15 15 15 50
 
    * - Attribute
      - Label
@@ -354,26 +358,26 @@ Resource Requirements
    * - provision_type
      - Provisioning Type
      - yes
-     - Check one of the options. The first option is: The ability 
-       to provision VMs across FutureGrid, log in to provisioned VMs 
-       as a privileged or unprivileged user. The second option is: The 
-       ability to log into provisioned VMs (by providing credentials, 
-       e.g. ssh key) as a privileged or unprivileged user. The third 
-       option is: The ability to log into provisioned bare metal nodes 
-       as an unprivileged user. The fourth option is: The ability to 
-       provision and log into VMs, but only on a restricted FutureGrid 
-       outreach sandbox. (Select this if you are attending a class or 
+     - Check one of the options. The first option is: The ability to
+       provision VMs across FutureGrid, log in to provisioned VMs as a
+       privileged or unprivileged user. The second option is: The
+       ability to log into provisioned VMs (by providing credentials,
+       e.g. ssh key) as a privileged or unprivileged user. The third
+       option is: The ability to log into provisioned bare metal nodes
+       as an unprivileged user. The fourth option is: The ability to
+       provision and log into VMs, but only on a restricted FutureGrid
+       outreach sandbox. (Select this if you are attending a class or
        outreach event). All these and much more.
    * - base_environment
      - Base Environments
      - yes
-     - Check hardware High Performance Computing Environment, Eucalyptus,
-       Nimbus, OpenStack, OpenNebula or Other choices.
+     - Check hardware High Performance Computing Environment,
+       Eucalyptus, Nimbus, OpenStack, OpenNebula or Other choices.
    * - services
      - Base Environments
      - no
-     - Check Genesis II, gLite, Hadoop, MapReduce, Twister, Unicore 6, 
-       OpenNebula or Other choices. 
+     - Check Genesis II, gLite, Hadoop, MapReduce, Twister, Unicore 6,
+       OpenNebula or Other choices.
    * - comment
      - Comment
      - no
@@ -386,18 +390,10 @@ Resource Requirements
    * - scale_of_use
      - Scale of use
      - yes
-     - Briefly describe the scale of resources you expect to need 
-       (e.g. "every system you have for a week for a class"; "a few VMs 
-       for an experiment"; "I want to run a set of comparisons on entire 
-       systems and for each I'll need about ____ days to do that").
+     - Briefly describe the scale of resources you expect to need
+       (e.g. "every system you have for a week for a class"; "a few
+       VMs for an experiment"; "I want to run a set of comparisons on
+       entire systems and for each I'll need about ____ days to do
+       that").
                        
     
-==================================================================
-		
-		
-		
-Institutional Role: *
-
-		Select the institutional role that best identifies you
-		in your organization. The content of this field is
-		kept private and will not be shown publicly.
