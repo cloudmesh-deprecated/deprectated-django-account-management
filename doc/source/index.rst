@@ -9,7 +9,7 @@ Git
    git
 
 ######################################################################
-FIXME
+Python Preparation 
 ######################################################################
 
 .. toctree::
@@ -28,10 +28,13 @@ Cloudmesh Django
 
    django/django
    django/examples
+   django/bootstrap
    django/models
-   django/mongodb
-   django/templates
    django/views
+   django/templates
+   django/mongodb
+   django/tables
+   
 
 
 

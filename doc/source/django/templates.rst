@@ -1,5 +1,10 @@
-Loading a Template in Django
-===========================================
+Example: Template 
+===================================================================
+
+Description
+----------------------------------------------------------------------
+This example demonstrates how to setup a template in django with a 
+bootstrapped theme
 
 Create an app ``python manage.py startapp exampleapp_name``
 
@@ -14,10 +19,20 @@ Then, In project do the following::
 	texteditor settings.py
 	
 In the ``settings.py`` file go to ``TEMPLATE_DIRS ()``, ``TEMPLATE_LOADERS ()``,
-& ``STATICFILES_DIRS ()`` functions and write the path to the templates 
-folder you just created and add these parameters to ``TEMPLATE_LOADERS ()`` &
-``STATICFILES_DIRS ()``::
+``STATIC_ROOT``, ``TEMPLATE_CONTEXT_PROCESSORS``, & ``STATICFILES_DIRS ()`` 
+functions and write the path to the templates folder you just created 
+and add these parameters to ``TEMPLATE_LOADERS ()`` & ``STATICFILES_DIRS ()``::
 	
+	TEMPLATE_CONTEXT_PROCESSORS = (
+		'django.contrib.auth.context_processors.auth',
+		'django.core.context_processors.debug',
+		'django.core.context_processors.i18n',
+		'django.core.context_processors.media',
+		'django.core.context_processors.static',
+		'django.core.context_processors.tz',
+		'django.contrib.messages.context_processors.messages',
+	)
+	..........
 	TEMPLATE_LOADERS = (
 		'django.template.loaders.filesystem.Loader',
 		'django.template.loaders.app_directories.Loader',
@@ -26,10 +41,12 @@ folder you just created and add these parameters to ``TEMPLATE_LOADERS ()`` &
 	TEMPLATE_DIRS = (
 		'/home/django/examplesite/templates',
 	)
-	
+	..........
 	STATICFILES_DIRS = (
 		'/home/django/examplesite/static',
 	)
+	..........
+	STATIC_ROOT = '/home/django/example/'
 	
 Now go to your newly created Template directory and create a file named ``base.html``.
 In this file, copy and paste the html from your desired template from the 
@@ -79,6 +96,46 @@ Now go into your project's ``urls.py`` file and do the following::
 	
 Then finally do a ``python manage.py collectstatic`` and type yes to the prompt
 and then run ``python manage.py runserver``. 
-	
 
+Ready Made Example (used css and js files from django-admin-bootstrapped)
+----------------------------------------------------------------------
+	
+A ready made example for you is contained in the directory
+``management/django/templates1``. Please cd into the directory.
+
+In this directory you will also find a Makefile that you can use to
+execute the above steps. To start the server, you can say::
+
+  make start
+
+To view the web pages, say::
+
+  make view
+.. note::
+	After clicking on http://127.0.0.1.8000/, go to http://127.0.0.1.8000/admin
+	then type ../index in the URL
+
+In case you need to recreate the server please say::
+
+  make create
+
+To cleanup you say::
+
+  make clean
+
+To stop the server please say::
+
+  make stop
+
+The steps are implicitly included in the makefile::
+
+  ..include:: ../management/django/templates1/Makefile
+  
+  
+Tips
+----------------------------------------------------------------
+.. note::
+	Because this is not a django template, the steps are a bit different
+	in the description but do not differ much. Instead of adding static 
+	to the ``link ref`` you just take it away so that it's ``css`` or ``js``.
 

@@ -2,37 +2,37 @@
 Example: Simple
 ======================================================================
 
-Desription
+Description
 ----------------------------------------------------------------------
 
 This example demonstrates how to setup a very elementary Django
 application.
 
 
-To do this frm scratch you have to execute the following comands::
+To do this from scratch you have to execute the following commands::
 
      export PROJECT=simple
      mkdir $PROJECT
      django-admin.py startproject $PROJECT
      cd $PROJECT
      python manage.py syncdb
-     pyton manage.py runserver
+     python manage.py runserver
 
 To view the server open your web browser at::
 
-     http://127.0.0.1:8000/
+     http://127.0.0.1:8000/admin
 
 
 Ready made example
 ----------------------------------------------------------------------
 
-A ready made example for you is contained in the ddirectory
-???. Please cd into the directory ...
+A ready made example for you is contained in the directory
+``management/django/simple``. Please cd into the directory.
 
-In that directory you will also find a Makefile that you can use to
+In this directory you will also find a Makefile that you can use to
 execute the above steps. To start the server, you can say::
 
-  make server
+  make start
 
 To view the web pages, say::
 
@@ -52,65 +52,8 @@ To stop the server please say::
 
 The steps are implicitly included in the makefile::
 
-  ..include:: ../../????/Makefile
+  ..include:: ../management/django/simple/Makefile
 
-
-Example: Bootstrap
-======================================================================
-
-Desription
-----------------------------------------------------------------------
-
-This example demonstrates how to setup a very elementary Django
-application.
-
-
-To do this frm scratch you have to execute the following comands::
-
-     export PROJECT=bootstrap
-     mkdir $PROJECT
-     django-admin.py startproject $PROJECT
-     cd $PROJECT
-     python manage.py syncdb
-     pyton manage.py runserver
-
-To view the server open your web browser at::
-
-     http://127.0.0.1:8000/
-
-
-Ready made example
-----------------------------------------------------------------------
-
-A ready made example for you is contained in the ddirectory
-???. Please cd into the directory ...
-
-In that directory you will also find a Makefile that you can use to
-execute the above steps. To start the server, you can say::
-
-  make start
-
-To view the web pages, say from the same directory in another
-terminal, or simply paste the web link that is printed by the server
-into your web browser::
-
-  make view
-
-In case you need to recreate the server please say::
-
-  make create
-
-To cleanup you say::
-
-  make clean
-
-To stop the server please say::
-
-  make stop
-
-The steps are implicitly included in the makefile::
-
-  ..include:: ../../????/Makefile
 
 Tips
 ----------------------------------------------------------------------
