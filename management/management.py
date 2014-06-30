@@ -1,5 +1,6 @@
 from mongoengine import *
 from datetime import datetime
+import hashlib, uuid
 #    mongod --noauth --dbpath . --port 27777
 
 port=27777
@@ -7,6 +8,12 @@ port=27777
 def IMPLEMENT():
     print "IMPLEMENT ME"
 
+def generate_password_hash(password)
+    # maybe using passlib instead if available in pypi https://code.google.com/p/passlib/
+    salt = uuid.uuid4().hex
+    hashed_password = hashlib.sha512(password + salt).hexdigest()
+    return hashed_password
+    
 class User(Document):
     """This class is sued to represent a user"""
     title = StringField("")
