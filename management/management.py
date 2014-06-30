@@ -2,14 +2,52 @@ from mongoengine import *
 
 #    mongod --noauth --dbpath . --port 27777
 
+port=27777
+
 class User(Document):
+    """This class is sued to represent a user"""
     title = StringField()
     firstname = StringField()
     lastname = StringField()
     email = StringField()
+    active = BooleanField()
+    #password = ???
+
+    def to_json(self):
+        """prints the user as a json object"""
+        return {}
+
     def __str__(self):
         return "{0} {1} {2} {3}".format(self.title,self.firstname, self.lastname, self.email)
-        
+
+class Users(Object):
+
+    def __init__(self):
+        db = connect('user', port=port)
+        users = User.Objects()
+    
+    def add(self):
+        """adds the specified user to mongodb"""
+        if self.verify():
+            print "IMPLEMENT ME"
+        else:
+            print "ERROR: a user with this the e-mail already exists"
+            
+    def verify(self):
+        """verifies if the user can be added. Checks if the e-mail is unique. Returns true."""
+        print "IMPLEMENT ME"
+        return false
+
+    def get(self, email):
+        """find the user with the given email and return its json object"""
+        print "IMPLEMENT ME"
+
+    def find(self, query):
+        """returns the users based on the give query"""
+        print "implement me"
+        # return the json object
+    
+                    
 class Account(Document):
     owner = ReferenceField(User)
     #projects = StringField() 
