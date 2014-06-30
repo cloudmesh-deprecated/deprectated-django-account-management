@@ -244,6 +244,26 @@ Project
    * - other
      - Other comments
      - no
+<<<<<<< HEAD
+     - If you have additional comments that did not fit in any of the 
+       above fields, please add them here.
+   * - project_join_buton
+     - Allow project join button
+     - yes
+     - This allows or disallows users, depending on the option chosen, 
+       to request to join this project through the portal or disallows 
+       users. Hence, the project lead would manage project membership 
+       his/herself.
+       Public projects will have a "Join" link on the project page. 
+       Users will be able to request to be added to the project through 
+       this link.
+   * - join_notification
+     - Join notification
+     - yes
+     - Indicate whether you would like to be notified via email when a 
+       user requests to join the project.
+
+=======
      - If you have additional comments that did not fit in any of the above fields, please add them here.
    
  = StringField()
@@ -254,6 +274,7 @@ Project
      = StringField()
        
        
+>>>>>>> cd4c97ddf5cc0d4c88e5712d0a42dc3f95f40593
        
 Project Information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
