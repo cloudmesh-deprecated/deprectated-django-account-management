@@ -154,18 +154,13 @@ Project
      - Enter project title.
    * - category
      - Project Categories
-     - no
+     - yes
      - Enter project categories.
    * - keywords
      - Project Keywords
      - yes
      - Provide some useful keywords related to the project, 
        separated by comma (", ").
-   * - contact
-     - Project Contact
-     - no
-     - If the info in this section need to be updated, 
-       you're recommended to do that in your profile page.
    * - keywords
      - Project Lead
      - yes
@@ -192,7 +187,7 @@ Project
        results.
    * - contact
      - Project Contact
-     - no
+     - yes
      - Please include here your primary contact address for 
        the project. This could be different from the Project 
        Lead and Manager. Please use this field only if the 
@@ -212,14 +207,18 @@ Project
      - no
      - These are users that were part of the project but have 
        since left.
-   * - nsf_grant_number
-     - NSF Grant Number
+   * - grant_orgnization
+     - Grant Organization
      - no
-     - NSF Grant Number associated with your experiment, if any.
-   * - nsf_grant_url
-     - NSF Grant URL
+     - Organization of the sponsor. Examples, NSF, DOE, DoD, NIH, ...
+   * - grant_number
+     - Grant Number
      - no
-     - URL to the NSF Grant Abstract on the NSF web site 
+     - Grant Number associated with your experiment, if any.
+   * - grant_url
+     - Grant URL
+     - no
+     - URL to the Grant Abstract on the Grant sponsering web site 
        associated with your experiment, if any.
    * - results
      - Results
@@ -240,13 +239,21 @@ Project
        provide FutureGrid with Electronic copies of slides from talks 
        that reference your work done with FutureGrid or which mention 
        FutureGrid (.pdfs or other 'not easily reusable' format o.k.; 
-       we will ask you for your permission to post slides publicly and 
+       we will ask you for your permission to post slides publicly and
        will not post them publicly without your permission).
    * - other
      - Other comments
      - no
      - If you have additional comments that did not fit in any of the above fields, please add them here.
-
+   
+ = StringField()
+     = StringField()
+     = StringField()
+     = StringField() 		#Yes/No
+     = StringField()	#Yes/No
+     = StringField()
+       
+       
        
 Project Information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
