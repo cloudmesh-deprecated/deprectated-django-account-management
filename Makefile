@@ -9,6 +9,10 @@ MANUALDIR=`pwd`
 all:
 	make -f Makefile sphinx
 
+mongo:
+	mongod --noauth --dbpath . --port 27777
+
+
 setup:
 	make -f Makefile setupbuild_ubuntu
 

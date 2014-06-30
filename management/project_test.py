@@ -33,7 +33,7 @@ class user_project():
     	for account in Account.objects:
     	    if account.username == user_name:
     	    	user_account = account
-	self.title = raw_input("Project title: ")
+        self.title = raw_input("Project title: ")
     	self.contact = raw_input("Project contact: ")
     	self.results = raw_input("Results: ")
     	self.nsf_Aggreement = raw_input("NSF Aggreement (Yes or No): ")
@@ -50,10 +50,13 @@ class user_project():
     	    	
     	    	
     	    	#account.project = self.title refernce and list field
+
     def generate_random(self):
     	pass
+
     def generate_project(self):
         pass
+
     def list_project(self):
     	project = Project.objects()
     	for project in Project.objects():
