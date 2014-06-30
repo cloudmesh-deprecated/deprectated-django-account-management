@@ -254,15 +254,7 @@ Project
      - Other comments
      - no
      - If you have additional comments that did not fit in any of the above fields, please add them here.
-   
- = StringField()
-     = StringField()
-     = StringField()
-     = StringField() 		#Yes/No
-     = StringField()	#Yes/No
-     = StringField()
-       
-       
+
        
 Project Information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
