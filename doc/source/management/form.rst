@@ -3,7 +3,7 @@ Account information
 
 .. list-table:: Account information
    :header-rows: 1
-   :widths: 10 10 10 70
+   :widths: 15 15 15 50
 
    * - Attribute
      - Label
@@ -45,7 +45,7 @@ Contact
 
 .. list-table:: Contact
    :header-rows: 1
-   :widths: 10 10 10 70
+   :widths: 15 15 15 50
 
    * - Attribute
      - Label
@@ -142,7 +142,7 @@ Project
 
 .. list-table:: Project
    :header-rows: 1
-   :widths: 10 10 10 70
+   :widths: 15 15 15 50
 
    * - Attribute
      - Label
@@ -236,9 +236,9 @@ Project
      - Slide Collection Agreement
      - yes
      - Click on "Yes" or "No" depending if you agree that you will
-       provide FutureGrid with Electronic copies of slides from talks 
-       that reference your work done with FutureGrid or which mention 
-       FutureGrid (.pdfs or other 'not easily reusable' format o.k.; 
+       provide FutureGrid with Electronic copies of slides from talks
+       that reference your work done with FutureGrid or which mention
+       FutureGrid (.pdfs or other 'not easily reusable' format o.k.;
        we will ask you for your permission to post slides publicly and
        will not post them publicly without your permission).
    * - other
@@ -260,7 +260,7 @@ Project Information
 
 .. list-table:: Project Information
    :header-rows: 1
-   :widths: 10 10 10 70
+   :widths: 15 15 15 50
 
    * - Attribute
      - Label
@@ -323,7 +323,7 @@ Resource Requirements
 
 .. list-table:: Resource Requirements
    :header-rows: 1
-   :widths: 10 10 10 70
+   :widths: 15 15 15 50
 
    * - Attribute
      - Label
@@ -337,26 +337,26 @@ Resource Requirements
    * - provision_type
      - Provisioning Type
      - yes
-     - Check one of the options. The first option is: The ability 
-       to provision VMs across FutureGrid, log in to provisioned VMs 
-       as a privileged or unprivileged user. The second option is: The 
-       ability to log into provisioned VMs (by providing credentials, 
-       e.g. ssh key) as a privileged or unprivileged user. The third 
-       option is: The ability to log into provisioned bare metal nodes 
-       as an unprivileged user. The fourth option is: The ability to 
-       provision and log into VMs, but only on a restricted FutureGrid 
-       outreach sandbox. (Select this if you are attending a class or 
+     - Check one of the options. The first option is: The ability to
+       provision VMs across FutureGrid, log in to provisioned VMs as a
+       privileged or unprivileged user. The second option is: The
+       ability to log into provisioned VMs (by providing credentials,
+       e.g. ssh key) as a privileged or unprivileged user. The third
+       option is: The ability to log into provisioned bare metal nodes
+       as an unprivileged user. The fourth option is: The ability to
+       provision and log into VMs, but only on a restricted FutureGrid
+       outreach sandbox. (Select this if you are attending a class or
        outreach event). All these and much more.
    * - base_environment
      - Base Environments
      - yes
-     - Check hardware High Performance Computing Environment, Eucalyptus,
-       Nimbus, OpenStack, OpenNebula or Other choices.
+     - Check hardware High Performance Computing Environment,
+       Eucalyptus, Nimbus, OpenStack, OpenNebula or Other choices.
    * - services
      - Base Environments
      - no
-     - Check Genesis II, gLite, Hadoop, MapReduce, Twister, Unicore 6, 
-       OpenNebula or Other choices. 
+     - Check Genesis II, gLite, Hadoop, MapReduce, Twister, Unicore 6,
+       OpenNebula or Other choices.
    * - comment
      - Comment
      - no
@@ -369,9 +369,10 @@ Resource Requirements
    * - scale_of_use
      - Scale of use
      - yes
-     - Briefly describe the scale of resources you expect to need 
-       (e.g. "every system you have for a week for a class"; "a few VMs 
-       for an experiment"; "I want to run a set of comparisons on entire 
-       systems and for each I'll need about ____ days to do that").
+     - Briefly describe the scale of resources you expect to need
+       (e.g. "every system you have for a week for a class"; "a few
+       VMs for an experiment"; "I want to run a set of comparisons on
+       entire systems and for each I'll need about ____ days to do
+       that").
                        
     
