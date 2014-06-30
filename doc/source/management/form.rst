@@ -1,25 +1,3 @@
-.. list-table:: Weather forecast
-   :header-rows: 1
-   :widths: 7 7 7 7 60
-   :stub-columns: 1
-
-   *  -  Day
-      -  Min Temp
-      -  Max Temp
-      -
-      -  Summary
-   *  -  Monday
-      -  11C
-      -  22C
-      -  .. image:: _static/sunny.svg
-            :width: 30
-
-      -  A clear day with lots of sunshine.
-         However, the strong breeze will bring
-         down the temperatures.
-   *  -  Tuesday
-   ........
-
 Account information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -50,13 +28,17 @@ Account information
        and will only be used if you wish to receive a new
        password or wish to receive certain news or
        notifications by e-mail.
-   * - password
+   * - password1
      - Password
      - yes
      - Provide a password for the new account in both fields.
        Force password change on first-time login If this box
        is checked, the user will be forced to change their
        password on their first login.   
+   * - password2
+     - Password
+     - yes
+     - Provide a password which is the same as password1
    
 Contact
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -112,9 +94,13 @@ Contact
        or Company.  Examples are Indiana University, Argonne
        National Laboratory, Google, Open Science Grid. Please
        do not use abbreviations.
+   * - iamge
+     - Image
+     - no
+     - Portrait in a reasonable size. Resize the image upon upload.
    * - adviser_contact
      - Adviser's Contact Information
-     - no
+     - yes if student
      - For students, please put your adviser's contact
        information, which includes full name, department,
        phone number, email, URL, address, etc., otherwise
@@ -141,7 +127,7 @@ Contact
        be shown publicly.
    * - Bio
      - bio
-     - no
+     - yes
      - A short bio about yourself.
    * - Sign up code
      - signup_code
@@ -191,14 +177,9 @@ Project
      - The person that initiates the project and is responsible 
        for its execution as well as the completion of reporting 
        results to FG.
-   
-
-==================================================================
-		
-		
-		
-Institutional Role: *
-
-		Select the institutional role that best identifies you
-		in your organization. The content of this field is
-		kept private and will not be shown publicly.
+   * - institutional_role		
+     - Institutional Role
+     - yes	
+     - Select the institutional role that best identifies you
+       in your organization. The content of this field is
+       kept private and will not be shown publicly.
