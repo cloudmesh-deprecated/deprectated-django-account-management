@@ -56,6 +56,9 @@ class Project(Document):
     nsf_Aggreement = StringField() 		#Yes/No
     slide_collection_aggreement = StringField()	#Yes/No
     other = StringField()
+    project_join_buton = StringField()	#Yes/No
+    join_notification = StringField()	#Yes/No
+    
     
     def to_json(self):
         u = {"project_title":self.project_title,
@@ -73,7 +76,9 @@ class Project(Document):
              "results":self.results,
              "nsf_Aggreement":self.nsf_Aggreement, 
              "slide_collection_aggreement":self.slide_collection_aggreement,
-             "other":self.other}
+             "other":self.other,
+             "project_join_buton":self.project_join_buton,
+             "join_notification":self.join_notification}
              
     def __str__(self):
         u = self.to_json()
