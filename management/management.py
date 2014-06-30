@@ -16,6 +16,8 @@ def generate_password_hash(password)
     
 class User(Document):
     """This class is sued to represent a user"""
+    username = StringField()
+    
     title = StringField("")
     firstname = StringField()
     lastname = StringField()
@@ -23,6 +25,22 @@ class User(Document):
     active = BooleanField()
     password = StringField()
     userid = UUIDField()
+    owner = ReferenceField(User)
+    #projects = StringField() 
+
+    phone = StringField()
+    department = StringField()
+    institution = StringField()
+    institute_address = StringField()
+    institute_country = StringField()
+
+    adviser_contact = StringField()
+    # advisor = pointer to another user
+    
+    url = StringField()
+    citizenship = StringField()
+    bio = StringField()
+
     date_modified = DateTimeField(default=datetime.now)
 
     def activate (self):
@@ -30,7 +48,7 @@ class User(Document):
 
     def deactivate (self):
         activate = False
-            
+
     def set_password(self, password):
         #self.password_hash = generate_password_hash(password)
         pass
@@ -50,7 +68,19 @@ class User(Document):
             "password" : self.password,
             "userid" : self.userid,
             "date_modified" : self.date_modified,
-            }
+            #"username":self.username,
+            #"phone":self.phone,
+            #"department":self.department,
+            #"institution":self.institution,
+            #"adviser_contact":self.adviser_contact,
+            #"institute_address":self.institute_address,
+            #"institute_country":self.institute_country,
+            #"url":self.url,
+            #"citizenship":self.citizenship,
+            #"bio":self.bio,
+            #"signup_code":self.signup_code}
+
+        }
 
     def __str__(self):
         return "{0} {1} {2} {3}".format(self.title,self.firstname, self.lastname, self.email)
@@ -60,7 +90,15 @@ class Users(object):
     def __init__(self):
         db = connect('user', port=port)
         users = User.objects()
-    
+
+    def set_username(self, proposal):
+        """sets the username to the proposed username. if this name is taken, a
+
+        number is added and checked if this new name is tacken, the first name
+        with added number is used as a username
+        """
+        IMPLEMENT()
+        
     def add(self, user):
         """adds the specified user to mongodb"""
         if self.verify(user):
@@ -89,64 +127,6 @@ class Users(object):
         """removes all elements form the mongo db that are users"""
         IMPLEMENT()
 
-class Account(Document):
-    owner = ReferenceField(User)
-    #projects = StringField() 
-    username = StringField()
-    email = StringField()
-    password = StringField()
-    phone = StringField()
-    department = StringField()
-    institution = StringField()
-    adviser_contact = StringField()
-    institute_address = StringField()
-    institute_country = StringField()
-    url = StringField()
-    citizenship = StringField()
-    bio = StringField()
-    signup_code = StringField()
-    
-    _order = [
-            "owner",
-            "username",
-            "email",
-            "phone",
-            "department",
-            "institution",
-            "adviser_contact",
-            "institute_address",
-            "institute_country",
-            "url",
-            "citizenship",
-            "bio",
-            "signup_code"
-    ]
-    
-    def to_json(self):
-        u = {"owner":self.owner,
-            "username":self.username,
-            "email":self.email,
-            "phone":self.phone,
-            "department":self.department,
-            "institution":self.institution,
-            "adviser_contact":self.adviser_contact,
-            "institute_address":self.institute_address,
-            "institute_country":self.institute_country,
-            "url":self.url,
-            "citizenship":self.citizenship,
-            "bio":self.bio,
-            "signup_code":self.signup_code}
-        return u
-
-    
-    def __str__(self):
-        u = self.to_json()
-        return str(u)
-        
-
-#class Contact(Document):
-    
-
 
 def main():
 
@@ -160,12 +140,11 @@ def main():
         email = "laszewski@gmail.com",
         active = True,
         password = "none"
+        # add the other fields
     )
     users.add(gregor)
 
     print users.find("laszewski@gmail.com")
-    
-    
 
 
 if __name__ == "__main__":
