@@ -18,7 +18,7 @@ To stat a new django web site you can use the following commands::
         $ cd example_site
         $ python manage.py syncdb
         
-    This will give you an ask you for some user information similar to::
+This will give you an ask you for some user information similar to::
 
   python manage.py syncdb
   Creating tables ...
