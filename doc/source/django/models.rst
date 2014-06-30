@@ -1,5 +1,12 @@
-Setup Models using Bootstrapped Theme Django
-======================================================
+Examples: Models
+=========================================================================
+
+Description
+---------------------------------------------------------------------------
+.. note::
+
+	This example demonstrates how to setup a model using the Django 
+	bootstrapped theme. 
 
 First, cd into your project in the terminal and type the following::
 	
@@ -46,12 +53,52 @@ Now go into your django project and do the following::
 	$ texteditor settings.py 
 	.. Add newly created app to INSTALLED_APPS
 	INSTALLED_APPS = (
+	'django_admin_bootstrapped',
 	.....
 	.....
 	'exampleapp',
 	)
 	
-
+	
 	
 Now do a ``python manage.py syncdb`` and ``python manage.py runserver`` and you 
 should see your django-bootstrapped theme with model working!
+
+
+Ready made example
+-----------------------------------------------------------------------------
+
+A ready made example for you is contained in the directory
+``management/django/models``. Please cd into the directory.
+
+In this directory you will find a Makefile that you can use to execute the 
+above steps. To start the server you can say:: 
+
+	make start
+
+To view the web pages, say::
+
+	make view
+.. note::
+	After clicking on http://127.0.0.1.8000/, go to http://127.0.0.1.8000/admin
+	then type ../index in the URL. 
+
+In case you need to recreate the server please say::
+
+	make create
+
+To cleanup you say::
+
+	make clean
+
+To stop the server please say::
+
+	make stop
+
+The steps are implicitly included in the makefile::
+
+  ..include:: ../management/django/models/Makefile
+
+
+	
+

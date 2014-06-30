@@ -1,4 +1,4 @@
-Preparing Machine for Django
+Python Preparation 
 ======================================
 
 First you need to install python if you not already have it installed::
