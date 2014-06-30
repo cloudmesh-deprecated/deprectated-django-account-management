@@ -1,53 +1,87 @@
 from mongoengine import *
-
+from datetime import datetime
 #    mongod --noauth --dbpath . --port 27777
 
 port=27777
 
+def IMPLEMENT():
+    print "IMPLEMENT ME"
+
 class User(Document):
     """This class is sued to represent a user"""
-    title = StringField()
+    title = StringField("")
     firstname = StringField()
     lastname = StringField()
-    email = StringField()
+    email = EmailField()
     active = BooleanField()
-    #password = ???
+    password = StringField()
+    userid = UUIDField()
+    date_modified = DateTimeField(default=datetime.now)
 
+    def activate (self):
+        activate = True
+
+    def deactivate (self):
+        activate = False
+            
+    def set_password(self, password):
+        #self.password_hash = generate_password_hash(password)
+        pass
+        
+    def check_password(self, password):
+        #return check_password_hash(self.password_hash, password)
+        pass
+        
     def to_json(self):
         """prints the user as a json object"""
-        return {}
+        return {
+            "title" : self.title,
+            "firstname" : self.firstname,
+            "lastname" :  self.lastname,
+            "email" : self.email,
+            "active" : self.active,
+            "password" : self.password,
+            "userid" : self.userid,
+            "date_modified" : self.date_modified,
+            }
 
     def __str__(self):
         return "{0} {1} {2} {3}".format(self.title,self.firstname, self.lastname, self.email)
 
-class Users(Object):
+class Users(object):
 
     def __init__(self):
         db = connect('user', port=port)
-        users = User.Objects()
+        users = User.objects()
     
-    def add(self):
+    def add(self, user):
         """adds the specified user to mongodb"""
-        if self.verify():
-            print "IMPLEMENT ME"
+        if self.verify(user):
+            user.save()
         else:
-            print "ERROR: a user with this the e-mail already exists"
+            print "ERROR: a user with the e-mail `{0}` already exists".format(user.email)
             
-    def verify(self):
+    def verify(self, user):
         """verifies if the user can be added. Checks if the e-mail is unique. Returns true."""
-        print "IMPLEMENT ME"
-        return false
+        _user = User.objects(email=user.email)
+        return _user.count == 0
 
     def get(self, email):
         """find the user with the given email and return its json object"""
-        print "IMPLEMENT ME"
+        IMPLEMENT()
 
-    def find(self, query):
+    def find(self, email):
         """returns the users based on the give query"""
-        print "implement me"
-        # return the json object
-    
-                    
+        found = User.objects(email=email)
+        if found.count() > 0:
+            return found[0].to_json()
+        else:
+            return None
+
+    def clean(self):
+        """removes all elements form the mongo db that are users"""
+        IMPLEMENT()
+
 class Account(Document):
     owner = ReferenceField(User)
     #projects = StringField() 
@@ -107,7 +141,25 @@ class Account(Document):
     
 
 
+def main():
+
+    users = Users()
+    users.clean()
+    
+    gregor = User(
+        title = "",
+        firstname = "Gregor",
+        lastname = "von Laszewski",
+        email = "laszewski@gmail.com",
+        active = True,
+        password = "none"
+    )
+    users.add(gregor)
+
+    print users.find("laszewski@gmail.com")
+    
+    
 
 
-
-
+if __name__ == "__main__":
+    main()
