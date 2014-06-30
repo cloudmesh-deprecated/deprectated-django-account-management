@@ -32,4 +32,5 @@ urlpatterns = patterns('',
     url(r'^form_with_files$', FormWithFilesView.as_view(), name='form_with_files'),
     url(r'^pagination$', PaginationView.as_view(), name='pagination'),
     url(r'^misc$', MiscView.as_view(), name='misc'),
+    url(r'^jeff$', JeffView.as_view(), name='jeff'),
 )
