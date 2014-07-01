@@ -28,9 +28,10 @@ In order to get you ``SITE_ID``	in your project do a::
 	>>> from django.contrib.sites.models import Site
 	>>> Site().save()
 	
-Then::
+Then do a::
+	
 	Site.objects.all()[0].id
-	              u'your_number_here'
+	u'your_number_here'
 	
 Now go into your project's ``settings.py`` file and go to the ``DATABASES ()``
 & ``SITE_ID`` function and add the following::
