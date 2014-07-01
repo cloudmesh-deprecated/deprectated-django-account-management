@@ -61,11 +61,11 @@ class User(Document):
         return True
 
         
-    def user_activate (self):
-        self.activate = True
+    def activate (self):
+        self.active = True
 
-    def user_deactivate (self):
-        activate = False
+    def deactivate (self):
+        active = False
 
     def set_password(self, password):
         #self.password_hash = generate_password_hash(password)
@@ -106,6 +106,7 @@ class User(Document):
          
         try:
             d['url']=self.url
+            d['adviser_contact']=self.adviser_contact
         except:
             pass
         return d
@@ -128,6 +129,10 @@ class Users(object):
         number is added and checked if this new name is tacken, the first name
         with added number is used as a username
         """
+        num = 0
+        _username = User.objects(username=proposal) "Need to confirm something with him"
+        if _username.count() > 0:
+            
         IMPLEMENT()
         
     def add(self, user):
@@ -148,13 +153,16 @@ class Users(object):
         """find the user with the given email and return its json object"""
         IMPLEMENT()
 
-    def find(self, email):
+    def find(self, email=None):
         """returns the users based on the give query"""
-        found = User.objects(email=email)
-        if found.count() > 0:
-            return found[0].to_json()
-        else:
-            return None
+        if email == None:
+            found = User.objects()
+    	else:
+            found = User.objects(email=email)
+            if found.count() > 0:
+                return found[0].to_json()
+            else:
+                return None
 
     def clear(self):
         """removes all elements form the mongo db that are users"""
@@ -165,7 +173,7 @@ class Users(object):
 def main():
 
     users = Users()
-    #users.clear()
+    users.clear()
     
     gregor = User(
         title = "",
