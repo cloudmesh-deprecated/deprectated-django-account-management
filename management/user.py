@@ -9,28 +9,64 @@ def IMPLEMENT():
     print "IMPLEMENT ME"
 
 def generate_password_hash(password)
-    # maybe using passlib instead if available in pypi https://code.google.com/p/passlib/
+    # maybe using passlib https://pypi.python.org/pypi/passlibx
     salt = uuid.uuid4().hex
     hashed_password = hashlib.sha512(password + salt).hexdigest()
     return hashed_password
     
 class User(Document):
     """This class is sued to represent a user"""
-    title = StringField("")
-    firstname = StringField()
-    lastname = StringField()
-    email = EmailField()
-    active = BooleanField()
-    password = StringField()
-    userid = UUIDField()
-    date_modified = DateTimeField(default=datetime.now)
 
+    #
+    # User Information
+    #
+    username = StringField()
+    
+    title = StringField("")
+    firstname = StringField(required=True)
+    lastname = StringField(required=True)
+    email = EmailField(required=True)
+    url = StringField()
+    citizenship = StringField(required=True)
+    bio = StringField(required=True)
+    password = StringField(required=True)
+    userid = UUIDField()
+    active = BooleanField() # and data of now is less date deactivate
+    phone = StringField(required=True)
+
+    #owner = ReferenceField(User)
+    #projects = StringField() 
+    #
+    # Affiliation
+    #
+    institution = StringField(required=True)
+    department = StringField(required=True)
+    address = StringField(required=True)
+    country = StringField(required=True)
+    adviser_contact = StringField()
+    # advisor = pointer to another user
+    
+
+    date_modified = DateTimeField(default=datetime.now)
+    date_created = DateTimeField(default=datetime.now)
+    date_approved = None 
+    date_deactivate = None # put date created + 6 month
+
+    def is_active(self):
+        
+        #if self.active and date_deactivate > datetime.now
+        #   retrun True
+        #else
+        #   return false   
+        return True
+
+        
     def activate (self):
         activate = True
 
     def deactivate (self):
         activate = False
-            
+
     def set_password(self, password):
         #self.password_hash = generate_password_hash(password)
         pass
@@ -50,7 +86,19 @@ class User(Document):
             "password" : self.password,
             "userid" : self.userid,
             "date_modified" : self.date_modified,
-            }
+            #"username":self.username,
+            #"phone":self.phone,
+            #"department":self.department,
+            #"institution":self.institution,
+            #"adviser_contact":self.adviser_contact,
+            #"institute_address":self.institute_address,
+            #"institute_country":self.institute_country,
+            #"url":self.url,
+            #"citizenship":self.citizenship,
+            #"bio":self.bio,
+            #"signup_code":self.signup_code}
+
+        }
 
     def __str__(self):
         return "{0} {1} {2} {3}".format(self.title,self.firstname, self.lastname, self.email)
@@ -59,8 +107,19 @@ class Users(object):
 
     def __init__(self):
         db = connect('user', port=port)
-        users = User.objects()
+        self.users = User.objects()
+
+    def objects(self)
+        return self.users
     
+    def set_username(self, proposal):
+        """sets the username to the proposed username. if this name is taken, a
+
+        number is added and checked if this new name is tacken, the first name
+        with added number is used as a username
+        """
+        IMPLEMENT()
+        
     def add(self, user):
         """adds the specified user to mongodb"""
         if self.verify(user):
@@ -85,67 +144,9 @@ class Users(object):
         else:
             return None
 
-    def clean(self):
+    def clear(self):
         """removes all elements form the mongo db that are users"""
         IMPLEMENT()
-
-class Account(Document):
-    owner = ReferenceField(User)
-    #projects = StringField() 
-    username = StringField()
-    email = StringField()
-    password = StringField()
-    phone = StringField()
-    department = StringField()
-    institution = StringField()
-    adviser_contact = StringField()
-    institute_address = StringField()
-    institute_country = StringField()
-    url = StringField()
-    citizenship = StringField()
-    bio = StringField()
-    signup_code = StringField()
-    
-    _order = [
-            "owner",
-            "username",
-            "email",
-            "phone",
-            "department",
-            "institution",
-            "adviser_contact",
-            "institute_address",
-            "institute_country",
-            "url",
-            "citizenship",
-            "bio",
-            "signup_code"
-    ]
-    
-    def to_json(self):
-        u = {"owner":self.owner,
-            "username":self.username,
-            "email":self.email,
-            "phone":self.phone,
-            "department":self.department,
-            "institution":self.institution,
-            "adviser_contact":self.adviser_contact,
-            "institute_address":self.institute_address,
-            "institute_country":self.institute_country,
-            "url":self.url,
-            "citizenship":self.citizenship,
-            "bio":self.bio,
-            "signup_code":self.signup_code}
-        return u
-
-    
-    def __str__(self):
-        u = self.to_json()
-        return str(u)
-        
-
-#class Contact(Document):
-    
 
 
 def main():
@@ -160,12 +161,11 @@ def main():
         email = "laszewski@gmail.com",
         active = True,
         password = "none"
+        # add the other fields
     )
     users.add(gregor)
 
     print users.find("laszewski@gmail.com")
-    
-    
 
 
 if __name__ == "__main__":
