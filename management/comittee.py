@@ -2,7 +2,7 @@ from mongoengine import *
 from datetime import datetime
 
 port=27777
-db_name = 'committee'
+db_name = 'project'
 
 def IMPLEMENT():
     print "IMPLEMENT ME"
@@ -12,32 +12,33 @@ STATUS = ('pending', 'approved', 'completed', 'denied')
 class Committee(Document):
 
     # status = StringField(choices=STATUS)
+    project = ReferenceField(project)
     
     def __str__(self):
         IMPLEMENT()
 
-    def set_review(self,project, user, msg):
+    def set_review(self, project, user, msg):
         IMPLEMENT()
 
-    def add_reviewer(self,project, user):
+    def add_reviewer(self, project, user):
         IMPLEMENT()
 
-    def delete_reviewer(self,project, user):
+    def delete_reviewer(self, project, user):
         IMPLEMENT()
 
-    def add_default(self,user):
+    def add_default(self, user):
         IMPLEMENT()
 
-    def add_default(self,user):
+    def add_default(self, user):
         IMPLEMENT()
 
-    def notify_reviewers(self,project, msg):
+    def notify_reviewers(self, project, msg):
         IMPLEMENT()
 
-    def notify_all_reviewers(self,msg):
+    def notify_all_reviewers(self, msg):
         IMPLEMENT()
 
-    def enable(self,bool)
+    def enable(self, bool)
         """enables or disables reviews, useful for maintenance"""
         IMPLEMENT()
 
@@ -53,7 +54,7 @@ class Committee(Document):
     def completed_projects(self):
         return self.get_by_status("completed")                        
 
-    def get_by_status(self, status):
+    def get_by_status(self,  status):
         if status in STATUS:
             IMPLEMENT()
         else:
