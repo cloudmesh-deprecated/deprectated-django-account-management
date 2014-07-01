@@ -61,10 +61,10 @@ class User(Document):
         return True
 
         
-    def activate (self):
+    def user_activate (self):
         self.activate = True
 
-    def deactivate (self):
+    def user_deactivate (self):
         activate = False
 
     def set_password(self, password):
@@ -87,16 +87,19 @@ class User(Document):
             "password" : self.password,
             "userid" : self.userid,
             "date_modified" : self.date_modified,
+            
+            "phone":self.phone,
+            "department":self.department,
+            "institution":self.institution,
+            
+            "address":self.address,
+            "country":self.country,
+           
+            "citizenship":self.citizenship,
+            "bio":self.bio,
             #"username":self.username,
-            #"phone":self.phone,
-            #"department":self.department,
-            #"institution":self.institution,
             #"adviser_contact":self.adviser_contact,
-            #"institute_address":self.institute_address,
-            #"institute_country":self.institute_country,
-            #"url":self.url,
-            #"citizenship":self.citizenship,
-            #"bio":self.bio,
+             #"url":self.url,
             #"signup_code":self.signup_code}
 
         }
@@ -116,7 +119,7 @@ class Users(object):
         db = connect('user', port=port)
         self.users = User.objects()
 
-    def objects(self)
+    def objects(self):
         return self.users
     
     def set_username(self, proposal):
@@ -137,7 +140,9 @@ class Users(object):
     def verify(self, user):
         """verifies if the user can be added. Checks if the e-mail is unique. Returns true."""
         _user = User.objects(email=user.email)
-        return _user.count == 0
+        print type(_user)
+        print _user.count() == 0
+        return _user.count() == 0
 
     def get(self, email):
         """find the user with the given email and return its json object"""
@@ -153,13 +158,14 @@ class Users(object):
 
     def clear(self):
         """removes all elements form the mongo db that are users"""
-        IMPLEMENT()
+        for user in User.objects:
+            user.delete()
 
 
 def main():
 
     users = Users()
-    users.clean()
+    #users.clear()
     
     gregor = User(
         title = "",
@@ -167,7 +173,16 @@ def main():
         lastname = "von Laszewski",
         email = "laszewski@gmail.com",
         active = True,
-        password = "none"
+        password = "none",
+        phone = "6625768900",
+        department = "School of Informatics and Computing",
+        institution = "Indiana University",
+        address = "Bloomington",
+        country = "USA",
+        citizenship = "Germany",
+        bio = "I work at Indiana University Bloomington"  
+                
+        
         # add the other fields
     )
     users.add(gregor)
