@@ -27,15 +27,15 @@ CLUSTERS = ('india',
             'bravo',
             'echo',
             'delta',
-            'other')
+            'other', 'None')
 
 SERVICES = ('eucalyptus',
             'openstack',
             'mpi',
             'hadoop',
-            'map/reduce',
+            'mapreduce',
             'docker',
-            'other')
+            'other', 'None')
 
 SOFTWARE = ('other')
 
@@ -44,46 +44,46 @@ PROVISIONING = ('vm',
                 'container',
                 'iaas',
                 'paas',
-                'other')
+                'other', 'None')
 
 GRANT_ORG = ('NSF',
              'DOE',
              'DoD',
              'NIH',
-             'other')
+             'other', 'None')
     
 class Project(Document):
 
     # -------------------------------------------------------------------
     # Project Information
     # -------------------------------------------------------------------
-    title  = StringFiled()
-    abstract    = StringFiled()
-    intellectual_merit  = StringFiled()
-    broader_impact  = StringFiled()
-    use_of_fg  = StringFiled()
-    scale_of_use  = StringFiled()
-    categories =  ListField(StringField(choices=CATEGORY))
+    title  = StringFiled(required=True)
+    abstract    = StringFiled(required=True) 
+    intellectual_merit  = StringFiled(required=True)
+    broader_impact  = StringFiled(required=True)
+    use_of_fg  = StringFiled(required=True)
+    scale_of_use  = StringFiled(required=True)
+    categories =  ListField(StringField(choices=CATEGORY), required=True)
     # example search in a list field
     # Project.objects(categories__contains='education')
-    keywords  = ListField(StringFiled())
-    primary_discipline =  StringField(choices=DISCIPLINE)
-    orientation  = StringFiled()
-    contact  = StringFiled()
-    url = URLField()
+    keywords  = ListField(StringFiled(), required=True)
+    primary_discipline =  StringField(choices=DISCIPLINE, required=True)
+    orientation  = StringFiled(required=True)
+    contact  = StringFiled(required=True)
+    url = URLField(required=True)
     comment = StringFiled()
-    active = BooleanField()
+    active = BooleanField(required=True)
 
-    status =  StringField(choices=STATUS)
+    status =  StringField(choices=STATUS,required=True)
     # maybe we do not need active as this may be covered in status
    
     # -------------------------------------------------------------------
     # Member Fields
     # -------------------------------------------------------------------
-    lead = ReferenceField(User)
-    lead_institutional_role =  StringField(choices=INSTITUTE_ROLE)
+    lead = ReferenceField(User, required=True)
+    lead_institutional_role =  StringField(choices=INSTITUTE_ROLE, required=True)
     managers = ListField(ReferenceField(User))
-    members = ListField(ReferenceField(User))
+    members = ListField(ReferenceField(User), required=True)
     alumnis = ListField(ReferenceField(User))
 
     # active_members = lead u managers u members - alumnis
@@ -125,10 +125,10 @@ class Project(Document):
     # -------------------------------------------------------------------
     # Resources
     # -------------------------------------------------------------------
-    resources_services = ListField(StringField(choices=SERVICES))
-    resources_software = ListField(StringField(choices=SOFTWARE))
-    resources_clusters = ListField(StringField(choices=CLUSTERS))
-    resources_provision == ListField(StringField(choices=PROVISIONING))
+    resources_services = ListField(StringField(choices=SERVICES), required=True)
+    resources_software = ListField(StringField(choices=SOFTWARE), required=True)
+    resources_clusters = ListField(StringField(choices=CLUSTERS), required=True)
+    resources_provision == ListField(StringField(choices=PROVISIONING), required=True)
 
     # BUG how can we add also arbitray info in case of other, mabe ommit choices
 
