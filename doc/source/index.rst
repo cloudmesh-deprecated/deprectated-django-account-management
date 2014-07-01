@@ -34,6 +34,7 @@ Cloudmesh Django
    django/templates
    django/mongodb
    django/tables
+   django/mongo2
    
 
 
