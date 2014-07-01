@@ -1,7 +1,7 @@
-Account information
+User Object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Account information
+.. list-table:: User Object
    :header-rows: 1
    :widths: 15 15 15 50
 
@@ -28,29 +28,12 @@ Account information
        and will only be used if you wish to receive a new
        password or wish to receive certain news or
        notifications by e-mail.
-   * - password1
+   * - password
      - Password
      - yes
-     - Provide a password for the new account in both fields.
-       Force password change on first-time login If this box
-       is checked, the user will be forced to change their
-       password on their first login.   
-   * - password2
-     - Password
-     - yes
-     - Provide a password which is the same as password1
-   
-Contact
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table:: Contact
-   :header-rows: 1
-   :widths: 15 15 15 50
-
-   * - Attribute
-     - Label
-     - Required
-     - Description
+     - Provide a password for the account. Force password change on
+       first-time login If this box is checked, the user will be
+       forced to change their password on their first login.
    * - title
      - Title
      - no
@@ -94,7 +77,7 @@ Contact
        or Company.  Examples are Indiana University, Argonne
        National Laboratory, Google, Open Science Grid. Please
        do not use abbreviations.
-   * - iamge
+   * - image
      - Image
      - no
      - Portrait in a reasonable size. Resize the image upon upload.
@@ -244,7 +227,6 @@ Project
    * - other
      - Other comments
      - no
-<<<<<<< HEAD
      - If you have additional comments that did not fit in any of the 
        above fields, please add them here.
    * - project_join_buton
@@ -262,24 +244,14 @@ Project
      - yes
      - Indicate whether you would like to be notified via email when a 
        user requests to join the project.
-
-=======
-     - If you have additional comments that did not fit in any of the above fields, please add them here.
+     - If you have additional comments that did not fit in any of the
+       above fields, please add them here.
    
- = StringField()
-     = StringField()
-     = StringField()
-     = StringField() 		#Yes/No
-     = StringField()	#Yes/No
-     = StringField()
        
-       
->>>>>>> cd4c97ddf5cc0d4c88e5712d0a42dc3f95f40593
-       
-Project Information
+Project Object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. list-table:: Project Information
+.. list-table:: Project Object
    :header-rows: 1
    :widths: 15 15 15 50
 
@@ -287,11 +259,6 @@ Project Information
      - Label
      - Required
      - Description
-   * - orientation
-     - Project Orientation
-     - yes
-     - Enter project orientation, which could either research, 
-       education, industry or government.
    * - orientation
      - Project Orientation
      - yes
@@ -336,20 +303,6 @@ Project Information
      - yes
      - Click "Yes" or "No", for your response will determine if Will 
        you be able to provide support for the software you develop.
-
-       
-
-Resource Requirements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table:: Resource Requirements
-   :header-rows: 1
-   :widths: 15 15 15 50
-
-   * - Attribute
-     - Label
-     - Required
-     - Description
    * - hardware_resources
      - Hardware Resources
      - yes
@@ -395,5 +348,5 @@ Resource Requirements
        VMs for an experiment"; "I want to run a set of comparisons on
        entire systems and for each I'll need about ____ days to do
        that").
-                       
+                           
     
