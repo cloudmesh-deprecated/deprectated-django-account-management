@@ -7,6 +7,8 @@ db_name = 'project'
 def IMPLEMENT():
     print "IMPLEMENT ME"
 
+STATUS = ('pending', 'approved', 'completed', 'denied')
+
 CATEGORY = ('other')
 
 DISCIPLINE = ('other')
@@ -69,6 +71,9 @@ class Project(Document):
    url = URLField()
    comment = StringFiled()
    active = BooleanField()
+
+   status =  StringField(choices=STATUS)
+   # maybe we do not need active as this may be covered in status
    
    # -------------------------------------------------------------------
    # Member Fields
