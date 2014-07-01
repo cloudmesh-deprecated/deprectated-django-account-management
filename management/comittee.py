@@ -26,10 +26,19 @@ class Committee(Document):
     def delete_reviewer(self, project, user):
         IMPLEMENT()
 
-    def add_default(self, user):
+    def add_default_reviewer(self, user):
         IMPLEMENT()
 
-    def add_default(self, user):
+    def delete_default_reviewer(self, user):
+        IMPLEMENT()
+
+    def notify_project_management(self, project, msg):
+        IMPLEMENT()
+                
+    def notify_project_members(self, project, msg):
+        IMPLEMENT()
+
+    def notify_project_alumni(self, project, msg):
         IMPLEMENT()
 
     def notify_reviewers(self, project, msg):
