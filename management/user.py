@@ -89,8 +89,11 @@ class Users(object):
 
     def __init__(self):
         db = connect('user', port=port)
-        users = User.objects()
+        self.users = User.objects()
 
+    def objects(self)
+        return self.users
+    
     def set_username(self, proposal):
         """sets the username to the proposed username. if this name is taken, a
 
@@ -123,7 +126,7 @@ class Users(object):
         else:
             return None
 
-    def clean(self):
+    def clear(self):
         """removes all elements form the mongo db that are users"""
         IMPLEMENT()
 

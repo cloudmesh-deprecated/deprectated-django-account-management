@@ -106,7 +106,7 @@ clean:
 	rm -rf build dist *.egg-info *~ #*
 	cd doc; make clean
 	rm -rf *.egg-info
-	rm -f user.* local.*
+	rm -f user.* local.* mongod.lock
 
 #############################################################################
 # SETUP SPHINX BUILD ENVIRONMENT
