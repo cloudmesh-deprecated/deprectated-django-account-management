@@ -9,12 +9,13 @@ create:
 	cd $(PROJECT); django-admin.py startproject $(PROJECT)
 
 start:
-	python manage.py syncdb
+	python manage.py runserver
 
 stop:
 	killall python
 
 view:
-	python manage.py runserver
-	open http://127.0.0.1:8000/admin
+	open http://127.0.0.1:8000/index
 
+clean:
+	rm *.sqlite3
