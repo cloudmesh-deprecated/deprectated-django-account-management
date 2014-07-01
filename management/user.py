@@ -16,33 +16,51 @@ def generate_password_hash(password)
     
 class User(Document):
     """This class is sued to represent a user"""
+
+    #
+    # User Information
+    #
     username = StringField()
     
     title = StringField("")
-    firstname = StringField()
-    lastname = StringField()
-    email = EmailField()
-    active = BooleanField()
-    password = StringField()
+    firstname = StringField(required=True)
+    lastname = StringField(required=True)
+    email = EmailField(required=True)
+    url = StringField()
+    citizenship = StringField(required=True)
+    bio = StringField(required=True)
+    password = StringField(required=True)
     userid = UUIDField()
-    owner = ReferenceField(User)
+    active = BooleanField() # and data of now is less date deactivate
+    phone = StringField(required=True)
+
+    #owner = ReferenceField(User)
     #projects = StringField() 
-
-    phone = StringField()
-    department = StringField()
-    institution = StringField()
-    institute_address = StringField()
-    institute_country = StringField()
-
+    #
+    # Affiliation
+    #
+    institution = StringField(required=True)
+    department = StringField(required=True)
+    address = StringField(required=True)
+    country = StringField(required=True)
     adviser_contact = StringField()
     # advisor = pointer to another user
     
-    url = StringField()
-    citizenship = StringField()
-    bio = StringField()
 
     date_modified = DateTimeField(default=datetime.now)
+    date_created = DateTimeField(default=datetime.now)
+    date_approved = None 
+    date_deactivate = None # put date created + 6 month
 
+    def is_active(self):
+        
+        #if self.active and date_deactivate > datetime.now
+        #   retrun True
+        #else
+        #   return false   
+        return True
+
+        
     def activate (self):
         activate = True
 
