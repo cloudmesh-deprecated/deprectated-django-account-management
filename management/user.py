@@ -53,7 +53,7 @@ class User(Document):
     date_deactivate = None # put date created + 6 month
 
     def is_active(self):
-        
+        # find if user is in active project
         #if self.active and date_deactivate > datetime.now
         #   retrun True
         #else
