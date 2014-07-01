@@ -64,6 +64,8 @@ class Project(Document):
     use_of_fg  = StringFiled()
     scale_of_use  = StringFiled()
     categories =  ListField(StringField(choices=CATEGORY))
+    # example search in a list field
+    # Project.objects(categories__contains='education')
     keywords  = ListField(StringFiled())
     primary_discipline =  StringField(choices=DISCIPLINE)
     orientation  = StringFiled()
