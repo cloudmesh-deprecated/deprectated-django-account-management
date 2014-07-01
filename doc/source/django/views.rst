@@ -70,8 +70,8 @@ Tips:
 If you don't want to display the plain view and 
 want the bootstrapped theme (further explained in Templates example), uncomment 
 ``return render(request, 'views_html',)`` and comment out 
-``return HttpResponse ("You got it!")`` in the ``views.py`` file in
-``views_app`` and uncomment ``STATIC_ROOT`` in the ``settings.py`` file
+``return HttpResponse ("You got it!")`` in the ``views.py`` file. In the 
+``views_app``, uncomment ``STATIC_ROOT`` in the ``settings.py`` file
 in ``../views/views``. Then run::
 	
 	make start

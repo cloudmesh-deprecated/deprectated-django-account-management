@@ -7,12 +7,12 @@ port=27777
 
 def IMPLEMENT():
     print "IMPLEMENT ME"
-
+'''
 def generate_password_hash(password)
-    # maybe using passlib https://pypi.python.org/pypi/passlibx
+    # maybe using passlib https://pypi.python.org/pypi/passlib
     salt = uuid.uuid4().hex
     hashed_password = hashlib.sha512(password + salt).hexdigest()
-    return hashed_password
+    return hashed_password'''
     
 class User(Document):
     """This class is sued to represent a user"""
@@ -62,7 +62,7 @@ class User(Document):
 
         
     def activate (self):
-        activate = True
+        self.activate = True
 
     def deactivate (self):
         activate = False
@@ -77,7 +77,8 @@ class User(Document):
         
     def to_json(self):
         """prints the user as a json object"""
-        return {
+        
+        d ={
             "title" : self.title,
             "firstname" : self.firstname,
             "lastname" :  self.lastname,
@@ -99,7 +100,13 @@ class User(Document):
             #"signup_code":self.signup_code}
 
         }
-
+         
+        try:
+            d['url']=self.url
+        except:
+            pass
+        return d
+    
     def __str__(self):
         return "{0} {1} {2} {3}".format(self.title,self.firstname, self.lastname, self.email)
 
