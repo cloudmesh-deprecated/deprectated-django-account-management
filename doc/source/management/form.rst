@@ -1,5 +1,5 @@
 User Object
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------------------------------------------
 
 .. list-table:: User Object
    :header-rows: 1
@@ -120,8 +120,8 @@ User Object
        in this box.
         
 
-Project
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Project Object
+----------------------------------------------------------------------
 
 .. list-table:: Project
    :header-rows: 1
@@ -141,11 +141,6 @@ Project
      - Enter project categories.
    * - keywords
      - Project Keywords
-     - yes
-     - Provide some useful keywords related to the project, 
-       separated by comma (", ").
-   * - keywords
-     - Project Lead
      - yes
      - Provide some useful keywords related to the project, 
        separated by comma (", ").
@@ -232,33 +227,17 @@ Project
    * - project_join_buton
      - Allow project join button
      - yes
-     - This allows or disallows users, depending on the option chosen, 
-       to request to join this project through the portal or disallows 
-       users. Hence, the project lead would manage project membership 
-       his/herself.
-       Public projects will have a "Join" link on the project page. 
-       Users will be able to request to be added to the project through 
-       this link.
+     - This allows or disallows users, depending on the option chosen,
+       to request to join this project through the portal or disallows
+       users. Hence, the project lead would manage project membership
+       his/herself.  Public projects will have a "Join" link on the
+       project page.  Users will be able to request to be added to the
+       project through this link.
    * - join_notification
      - Join notification
      - yes
-     - Indicate whether you would like to be notified via email when a 
+     - Indicate whether you would like to be notified via email when a
        user requests to join the project.
-     - If you have additional comments that did not fit in any of the
-       above fields, please add them here.
-   
-       
-Project Object
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table:: Project Object
-   :header-rows: 1
-   :widths: 15 15 15 50
-
-   * - Attribute
-     - Label
-     - Required
-     - Description
    * - orientation
      - Project Orientation
      - yes
