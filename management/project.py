@@ -132,9 +132,25 @@ class Project(Document):
 
     # BUG how can we add also arbitray info in case of other, mabe ommit choices
 
+     def to_json(self):
+         """prints the project as a json object"""
+         
+         d ={
+             "title":self.title,
+             "abstract":self.abstract,
+             "intellectual_merit":self.intellectual_merit,    
+             "broader_impact":self.broader_impact,
+             "use_of_fg":self.use_of_fg,
+             "scale_of_use":self.scale_of_use,
+             "categories":self.categories,
+             "keywords":self.keywords,
+            }
+             
+             
 
      def __str__(self):
-         IMPLEMENT()
+         d = self.to_json()
+         return str(d)
 
 class Projects(object):
 
