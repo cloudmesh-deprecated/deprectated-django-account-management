@@ -215,7 +215,7 @@ def main():
     print gregor.username
     print gregor.date_created
     print gregor.date_deactivate
-    #print gregor.is_active()
+    print gregor.is_active()
     print
 
 
