@@ -20,7 +20,7 @@ class User(Document):
     #
     # User Information
     #
-    username = StringField()
+    username = StringField(required=True)
     
     title = StringField("")
     firstname = StringField(required=True)
@@ -84,7 +84,7 @@ class User(Document):
             "lastname" :  self.lastname,
             "email" : self.email,
             "active" : self.active,
-            "password" : self.password,
+            #"password" : self.password,
             "userid" : self.userid,
             "date_modified" : self.date_modified,
             
@@ -97,7 +97,7 @@ class User(Document):
            
             "citizenship":self.citizenship,
             "bio":self.bio,
-            #"username":self.username,
+            "username":self.username,
             #"adviser_contact":self.adviser_contact,
              #"url":self.url,
             #"signup_code":self.signup_code}
@@ -129,11 +129,15 @@ class Users(object):
         number is added and checked if this new name is tacken, the first name
         with added number is used as a username
         """
-        num = 0
-        _username = User.objects(username=proposal) "Need to confirm something with him"
-        if _username.count() > 0:
-            
-        IMPLEMENT()
+        num = 1
+        same = True
+        while (same == True):
+            _username = User.objects(username=proposal)
+            if _username.count() > 0:
+                proposal = proposal + str(num)
+                num = num + 1
+            else:
+                return proposal
         
     def add(self, user):
         """adds the specified user to mongodb"""
@@ -145,18 +149,14 @@ class Users(object):
     def verify(self, user):
         """verifies if the user can be added. Checks if the e-mail is unique. Returns true."""
         _user = User.objects(email=user.email)
-        print type(_user)
         print _user.count() == 0
         return _user.count() == 0
-
-    def get(self, email):
-        """find the user with the given email and return its json object"""
-        IMPLEMENT()
 
     def find(self, email=None):
         """returns the users based on the give query"""
         if email == None:
             found = User.objects()
+            return found
     	else:
             found = User.objects(email=email)
             if found.count() > 0:
@@ -193,9 +193,41 @@ def main():
         
         # add the other fields
     )
+    gregor.username = "gregvon"
+    gregor.username = users.set_username(gregor.username)
+    print    
+    print gregor.username
+    print
     users.add(gregor)
 
     print users.find("laszewski@gmail.com")
+    
+    ifeanyi = User(
+        title = "",
+        firstname = "Ifeanyi",
+        lastname = "Onyenweaku",
+        email = "rowlandifeanyi17@gmail.com",
+        active = True,
+        password = "none",
+        phone = "6625768900",
+        department = "School of Informatics and Computing",
+        institution = "Indiana University",
+        address = "Bloomington",
+        country = "USA",
+        citizenship = "Nigeria",
+        bio = "I research at Indiana University Bloomington"  
+                
+        
+        # add the other fields
+    )
+    ifeanyi.username = "gregvon"
+    ifeanyi.username = users.set_username(ifeanyi.username)
+    print    
+    print ifeanyi.username
+    print
+    users.add(ifeanyi)
+
+    print users.find("rowlandifeanyi17@gmail.com")
 
 
 if __name__ == "__main__":
