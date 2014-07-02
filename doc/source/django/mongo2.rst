@@ -5,10 +5,9 @@ Description: Installing MongoDB 2.6
 --------------------------------------------------------------------------
 
 This is an example of how to use mongodb as a backend.  
+
 .. note::
 	This example can also be seen at http://petrkout.com/linux/installing-mongodb-2-6-and-setting-up-root-user-login/
-	& 
-	http://petrkout.com/programming/setting-up-django-with-mongodb/
 	
 1. Install MongoDB public GPG key::
 	
