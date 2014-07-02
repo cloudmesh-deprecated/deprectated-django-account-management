@@ -1,10 +1,24 @@
 from fabric.api import run, local
+import sys
+
+
+if sys.platform == 'darwin':
+    browser = "open"
+else:
+    browser = "firefox"    
+
 
 def auth():
     USERNAME = raw_input("Username: ")
     PASSWORD = raw_input("Password: ")
     return (USERNAME, PASSWORD)
 
+def view():
+    local("{browser} http://127.0.0.1:8000/".format(browser=browser))
+    
+def doc():
+    local("{browser} http://127.0.0.1:8000/docs".format(browser=browser))
+    
 def banner(msg):
     print 70 * "#"
     print msg
