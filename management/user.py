@@ -1,5 +1,5 @@
 from mongoengine import *
-from datetime import datetime
+import datetime, time
 import hashlib, uuid
 #    mongod --noauth --dbpath . --port 27777
 
@@ -47,25 +47,33 @@ class User(Document):
     # advisor = pointer to another user
     
 
-    date_modified = DateTimeField(default=datetime.now)
-    date_created = DateTimeField(default=datetime.now)
+    date_modified = DateTimeField(default=datetime.datetime.now)
+    date_created = DateTimeField(default=datetime.datetime.now)
     date_approved = None 
-    date_deactivate = None # put date created + 6 month
+    date_deactivate = None
 
     def is_active(self):
-        # find if user is in active project
-        #if self.active and date_deactivate > datetime.now
-        #   retrun True
-        #else
-        #   return false   
-        return True
-
+        # find if user is in active project  
+        d2 = datetime.datetime.now #Has an error to correct...
+        d3 = self.date_deactivate
+        if self.active == True:
+            if d3 > d2:
+                return True
+            else:
+            	return False
+        else:
+            return False
         
-    def activate (self):
+    def activate(self):
         self.active = True
 
-    def deactivate (self):
+    def deactivate(self):
         active = False
+
+    def set_date_deactivate(self): 
+    	d_a = datetime.datetime.now() + datetime.timedelta(weeks=24) 
+    	self.date_deactivate = d_a  
+    	return self.date_deactivate
 
     def set_password(self, password):
         #self.password_hash = generate_password_hash(password)
@@ -110,6 +118,7 @@ class User(Document):
         except:
             pass
         return d
+   
     
     def __str__(self):
         return "{0} {1} {2} {3}".format(self.title,self.firstname, self.lastname, self.email)
@@ -138,9 +147,10 @@ class Users(object):
                 num = num + 1
             else:
                 return proposal
-        
+                
     def add(self, user):
         """adds the specified user to mongodb"""
+        user.set_date_deactivate()
         if self.verify(user):
             user.save()
         else:
@@ -148,7 +158,7 @@ class Users(object):
             
     def verify(self, user):
         """verifies if the user can be added. Checks if the e-mail is unique. Returns true."""
-        _user = User.objects(email=user.email)
+	_user = User.objects(email=user.email)
         print _user.count() == 0
         return _user.count() == 0
 
@@ -195,12 +205,17 @@ def main():
     )
     gregor.username = "gregvon"
     gregor.username = users.set_username(gregor.username)
+    users.add(gregor)
+    
     print    
     print gregor.username
+    print gregor.date_created
+    print gregor.date_deactivate
+    gregor.is_active()
     print
-    users.add(gregor)
 
-    print users.find("laszewski@gmail.com")
+
+    #print users.find("laszewski@gmail.com")
     
     ifeanyi = User(
         title = "",
@@ -227,7 +242,7 @@ def main():
     print
     users.add(ifeanyi)
 
-    print users.find("rowlandifeanyi17@gmail.com")
+    #print users.find("rowlandifeanyi17@gmail.com")
 
 
 if __name__ == "__main__":
