@@ -33,9 +33,8 @@ class User(Document):
     userid = UUIDField()
     active = BooleanField() # and data of now is less date deactivate
     phone = StringField(required=True)
-
-    #owner = ReferenceField(User)
-    #projects = StringField() 
+    
+    projects = StringField() 
     #
     # Affiliation
     #
@@ -53,11 +52,10 @@ class User(Document):
     date_deactivate = None
 
     def is_active(self):
-        # find if user is in active project  
-        d2 = datetime.datetime.now #Has an error to correct...
-        d3 = self.date_deactivate
+        """find if user is in active project"""
+        d1 = datetime.datetime.now()
         if self.active == True:
-            if d3 > d2:
+            if d1 > self.date_deactivate:
                 return True
             else:
             	return False
@@ -68,7 +66,12 @@ class User(Document):
         self.active = True
 
     def deactivate(self):
-        active = False
+        check = is_active(self)
+        if check == False:
+            force_deactivate()
+            
+    def force_deactivate(self):
+    	active = False
 
     def set_date_deactivate(self): 
     	d_a = datetime.datetime.now() + datetime.timedelta(weeks=24) 
@@ -134,7 +137,6 @@ class Users(object):
     
     def set_username(self, proposal):
         """sets the username to the proposed username. if this name is taken, a
-
         number is added and checked if this new name is tacken, the first name
         with added number is used as a username
         """
@@ -149,7 +151,9 @@ class Users(object):
                 return proposal
                 
     def add(self, user):
-        """adds the specified user to mongodb"""
+        """adds the specified user to mongodb, as well as activates the users' account
+        as well as set's the deactivation date"""
+        user.is_active()
         user.set_date_deactivate()
         if self.verify(user):
             user.save()
@@ -211,7 +215,7 @@ def main():
     print gregor.username
     print gregor.date_created
     print gregor.date_deactivate
-    gregor.is_active()
+    #print gregor.is_active()
     print
 
 

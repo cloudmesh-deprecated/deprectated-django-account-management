@@ -1,5 +1,8 @@
 from mongoengine import *
 from datetime import datetime
+import hashlib, uuid
+from management import User, Users
+
 
 port=27777
 db_name = 'project'
@@ -73,6 +76,7 @@ class Project(Document):
     url = URLField(required=True)
     comment = StringFiled()
     active = BooleanField(required=True)
+    projectid = UUIDField()
 
     status =  StringField(choices=STATUS,required=True)
     # maybe we do not need active as this may be covered in status
@@ -144,6 +148,18 @@ class Project(Document):
              "scale_of_use":self.scale_of_use,
              "categories":self.categories,
              "keywords":self.keywords,
+             "primary_discipline":self.primary_discipline,
+             "orientation":self.orientation,
+             "contact":self.contact,
+             "url":self.url,
+             "active":self.active,
+             "status":self.status,
+             "lead":self.lead,
+             "members":self.members,
+             "resources_services":self.resources_services,
+             "resources_software":self.resources_software,
+             "resources_clusters":self.resources_clusters,
+             "resources_provision":self.resources_provision
             }
              
              
@@ -157,22 +173,43 @@ class Projects(object):
     def __init__(self):
         self.db = connect(db_name, port=port)
         self.projects = Project.objects()
+        db = connect('user', port=port)
+        self.users = User.objects()
     
     def __str__(self):
         IMPLEMENT()
 
     def objects(self)
         return self.projects
+     
+    def verify_user(self, user)
+        _username = User.objects(username=user.username)
+        if _username == True:
+            return True
+        else:
+            return "This user has not registered"
             
     def find_by_id(self, id):
-        IMPLEMENT()
+        found = User.objects(projectid=id)
+        if found.count() > 0:
+            return found[0].to_json()
+        else:
+            return None
+        #User ID or project ID
 
     def find_by_category(self, category):
+    	found = User.objects(categories=category)
+        if found.count() > 0:
+            return found[0].to_json()
+        else:
+            return None
         IMPLEMENT()
 
     def find_by_keyword(self, keyword):
         IMPLEMENT()
 
     def clear(self):
-        IMPLEMENT()
+        """removes all projects from the database"""
+        for project in Project.objects:
+            project.delete()
         
