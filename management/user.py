@@ -49,7 +49,7 @@ class User(Document):
     date_modified = DateTimeField(default=datetime.datetime.now)
     date_created = DateTimeField(default=datetime.datetime.now)
     date_approved = None 
-    date_deactivate = None
+    date_deactivate = DateTimeField()
 
     def is_active(self):
         """find if user is in active project"""
@@ -62,7 +62,7 @@ class User(Document):
         else:
             return False
         
-    def activate(self):
+    def activate(self):                                
         self.active = True
 
     def deactivate(self):
@@ -74,8 +74,7 @@ class User(Document):
     	active = False
 
     def set_date_deactivate(self): 
-    	d_a = datetime.datetime.now() + datetime.timedelta(weeks=24) 
-    	self.date_deactivate = d_a  
+    	self.date_deactivate = datetime.datetime.now() + datetime.timedelta(weeks=24) 
     	return self.date_deactivate
 
     def set_password(self, password):
@@ -153,8 +152,8 @@ class Users(object):
     def add(self, user):
         """adds the specified user to mongodb, as well as activates the users' account
         as well as set's the deactivation date"""
-        user.is_active()
         user.set_date_deactivate()
+        user.is_active()
         if self.verify(user):
             user.save()
         else:
@@ -215,7 +214,6 @@ def main():
     print gregor.username
     print gregor.date_created
     print gregor.date_deactivate
-    print gregor.is_active()
     print
 
 
