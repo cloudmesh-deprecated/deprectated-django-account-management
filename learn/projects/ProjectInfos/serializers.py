@@ -4,18 +4,14 @@ from ProjectInfos.models import ProjectInfo
 
 
 class ProjectInfoSerializer(serializers.Serializer):
-	class Meta:
-		model = ProjectInfo
-		fields = ('project_title', 'project_id', 'pi', 'code')
-		
-    #project_title = serializers.CharField(required=False,
-                                  #max_length=200)
-    #project_id = serializers.CharField(required=False,
-                                  #max_length=200)
-   #pi = serializers.CharField(required=False,
-                                  #max_length=200)
-    #code = serializers.CharField(widget=widgets.Textarea,
-                                 #max_length=100000)
+	project_title = serializers.CharField(required=False,
+                                  max_length=200)
+        project_id = serializers.CharField(required=False,
+                                  max_length=200)
+        pi = serializers.CharField(required=False,
+                                  max_length=200)
+        code = serializers.CharField(widget=widgets.Textarea,
+                                 max_length=100000)
 
 def restore_object(self, attrs, instance=None):
         """
