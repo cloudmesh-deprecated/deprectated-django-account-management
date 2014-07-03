@@ -1,7 +1,7 @@
 from mongoengine import *
 from datetime import datetime
 import hashlib, uuid
-from management import User, Users
+from user import User, Users
 
 
 port=27777
@@ -12,7 +12,7 @@ def IMPLEMENT():
 
 STATUS = ('pending', 'approved', 'completed', 'denied')
 
-CATEGORY = ('other')
+CATEGORY = ('Database', 'FutureGrid', 'other')
 
 DISCIPLINE = ('other')
 # see https://ncsesdata.nsf.gov/nsf/srs/webcasp/data/gradstud.htm
@@ -60,21 +60,21 @@ class Project(Document):
     # -------------------------------------------------------------------
     # Project Information
     # -------------------------------------------------------------------
-    title  = StringFiled(required=True)
-    abstract    = StringFiled(required=True) 
-    intellectual_merit  = StringFiled(required=True)
-    broader_impact  = StringFiled(required=True)
-    use_of_fg  = StringFiled(required=True)
-    scale_of_use  = StringFiled(required=True)
+    title  = StringField(required=True)
+    abstract    = StringField(required=True) 
+    intellectual_merit  = StringField(required=True)
+    broader_impact  = StringField(required=True)
+    use_of_fg  = StringField(required=True)
+    scale_of_use  = StringField(required=True)
     categories =  ListField(StringField(choices=CATEGORY), required=True)
     # example search in a list field
     # Project.objects(categories__contains='education')
-    keywords  = ListField(StringFiled(), required=True)
+    keywords  = ListField(StringField(), required=True)
     primary_discipline =  StringField(choices=DISCIPLINE, required=True)
-    orientation  = StringFiled(required=True)
-    contact  = StringFiled(required=True)
+    orientation  = StringField(required=True)
+    contact  = StringField(required=True)
     url = URLField(required=True)
-    comment = StringFiled()
+    comment = StringField()
     active = BooleanField(required=True)
     projectid = UUIDField()
 
@@ -97,7 +97,7 @@ class Project(Document):
     # Grant Information
     # -------------------------------------------------------------------
     grant_orgnization =  StringField(choices=GRANT_ORG)
-    grant_id = StringFiled()
+    grant_id = StringField()
     grant_url = URLField()
 
 
@@ -132,14 +132,14 @@ class Project(Document):
     resources_services = ListField(StringField(choices=SERVICES), required=True)
     resources_software = ListField(StringField(choices=SOFTWARE), required=True)
     resources_clusters = ListField(StringField(choices=CLUSTERS), required=True)
-    resources_provision == ListField(StringField(choices=PROVISIONING), required=True)
+    resources_provision = ListField(StringField(choices=PROVISIONING), required=True)
 
     # BUG how can we add also arbitray info in case of other, mabe ommit choices
 
-     def to_json(self):
-         """prints the project as a json object"""
+    def to_json(self):
+        """prints the project as a json object"""
          
-         d ={
+        d ={
              "title":self.title,
              "abstract":self.abstract,
              "intellectual_merit":self.intellectual_merit,    
@@ -164,9 +164,9 @@ class Project(Document):
              
              
 
-     def __str__(self):
-         d = self.to_json()
-         return str(d)
+    def __str__(self):
+        d = self.to_json()
+        return str(d)
 
 class Projects(object):
 
@@ -179,18 +179,25 @@ class Projects(object):
     def __str__(self):
         IMPLEMENT()
 
-    def objects(self)
+    def objects(self):
         return self.projects
+    
+    def add_project(self, project):
+    	_verify = self.verify_user(project.lead, project)
+    	if _verify == True:
+    	    project.save()
+    	else:
+            print "ERROR: The user `{0}` has not registered with FutureGrid".format(project.lead)
      
-    def verify_user(self, user)
+    def verify_user(self, user, project):
         _username = User.objects(username=user.username)
         if _username == True:
             return True
         else:
-            return "This user has not registered"
+            return False
             
     def find_by_id(self, id):
-        found = User.objects(projectid=id)
+        found = Project.objects(projectid=id)
         if found.count() > 0:
             return found[0].to_json()
         else:
@@ -198,8 +205,9 @@ class Projects(object):
         #User ID or project ID
 
     def find_by_category(self, category):
-    	found = User.objects(categories=category)
+    	found = User.objects(categories_in=category)
         if found.count() > 0:
+            print "yay"
             return found[0].to_json()
         else:
             return None
@@ -212,4 +220,43 @@ class Projects(object):
         """removes all projects from the database"""
         for project in Project.objects:
             project.delete()
-        
+    
+
+def main():
+    
+    users = Users()
+    projects = Projects()
+    projects.clear()
+    
+    django = Project(
+    	    title = "Django Project",
+    	    abstract = "This is my abstract",
+            intellectual_merit = "All about the merit thingy",    
+            broader_impact = "Everything is broad according ...",
+            use_of_fg = "Fg is about to use it",
+            scale_of_use = "Would be used to implement djandgo",
+            categories = ["Database", "FuturGrid"],
+            keywords = ["mongodb", "django", "mongoengine", "sqllite"],
+            primary_discipline = ["other"],  
+            orientation = "Lot's of all make",
+            contact = "Bloomington",
+            url = "www.futuregrid.org",
+            active = True,
+            status = "pending",
+            lead = "gregor",
+            members = "gregor",
+            resources_services = "eucalyptus", #','openstack'],
+            resources_software = "other",
+            resources_clusters = "india",
+            resources_provision = "paas",
+          ) 
+    projects.add(django)
+    
+    print "Hereeeeeeeee"
+    print projects.find_by_category("Database")
+             
+
+
+if __name__ == "__main__":
+    main()
+             
