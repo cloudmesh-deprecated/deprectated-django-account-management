@@ -85,10 +85,11 @@ class Project(Document):
     # -------------------------------------------------------------------
     # Member Fields
     # -------------------------------------------------------------------
-    lead = StringField( required=True)
+    username = StringField()
+    lead = ReferenceField(User, required=True)
     #lead_institutional_role =  StringField(choices=INSTITUTE_ROLE, required=True)
     managers = ListField(StringField())
-    #members = ListField(ReferenceField(User), required=True)
+    members = ListField(ReferenceField(User), required=True)
     alumnis = ListField(StringField())
 
     # active_members = lead u managers u members - alumnis
@@ -156,13 +157,13 @@ class Project(Document):
              "active":self.active,
              "status":self.status,
              "lead":self.lead,
-             #"members":self.members,
+             "members":self.members,
              "resources_services":self.resources_services,
              "resources_software":self.resources_software,
              "resources_clusters":self.resources_clusters,
              "resources_provision":self.resources_provision
             }
-             
+        return d     
              
 
     def __str__(self):
@@ -174,10 +175,9 @@ class Projects(object):
     def __init__(self):
         db = connect(db_name, port=port)
         self.projects = Project.objects()
-        #db = connect('user', port=port)
-        #self.users = User.objects()
-       
-        meta = {"db_alias": "Project-db"}
+        db = connect('user', port=port)
+        self.users = User.objects()
+
     
     def __str__(self):
         IMPLEMENT()
@@ -186,22 +186,27 @@ class Projects(object):
         return self.projects
     
     def add_project(self, project):
-    	#_verify = self.verify_user(project.lead, project)
-    	#if _verify == True:
-    	with switch_db(project, 'User-db') as project:
-            print "I am in"
-    	    project.save()
-    	print project
-    	#else:
-            #print "ERROR: The user `{0}` has not registered with FutureGrid".format(project.lead)
-     
-    def verify_user(self, user, project):
-    	print "dumb"
-        _username = User.objects(username=user.username)
-        if _username == True:
-            return True
-        else:
-            return False
+    	_verify = self.verify_user(project.username, project)
+    	if _verify == True:
+    	    project.save()   	
+    	else:
+            print "ERROR: The user `{0}` has not registered with FutureGrid".format(project.lead)
+    
+    def add_member(self, user_name, project):
+	for user in User.objects:
+    	    if user.username == user_name:
+    	    	project.members = [user]
+    	    else:
+    	    	return "ERROR: Not a registered user of Futuregrid"
+    
+    def verify_user(self, user_name, project):
+        for user in User.objects:
+    	    if user.username == user_name:
+    	    	project.lead = user
+    	    	project.members = [user]
+    	    	return True
+    	    else:
+                return False
             
     def find_by_id(self, id):
         found = Project.objects(projectid=id)
@@ -213,13 +218,12 @@ class Projects(object):
 
     def find_by_category(self, category):
     	found = Project.objects(categories=category)
-    	print Project.objects(categories=category)
         if found.count() > 0:
-            print "yay"
+            print "="*70
+            print
             return found[0].to_json()
         else:
-            return None
-        
+            return None   
 
     def find_by_keyword(self, keyword):
         found = Project.objects(keyword=keyword)
@@ -236,12 +240,9 @@ class Projects(object):
 
 def main():
     
-    #users = Users()
+    users = Users()
     projects = Projects()
     projects.clear()
-    
-    #print users.find("rowlandifeanyi17@gmail.com")
-    #print "Hereeeeeeeee"
     
     django = Project(
     	    title = "Django Project",
@@ -258,8 +259,7 @@ def main():
             url = 'https://www.facebook.com/',
             active = True,
             status = "pending",
-            lead = "ifeanyi",
-            #members = ['gregor'],
+            username = "gregvon",
             resources_services = ['hadoop','openstack'],
             resources_software = ['other'],
             resources_clusters = ['india'],
@@ -267,7 +267,7 @@ def main():
           )
     print django.abstract
     projects.add_project(django)
-    
+    print "-"*80
     print projects.find_by_category('FutureGrid')
              
 
