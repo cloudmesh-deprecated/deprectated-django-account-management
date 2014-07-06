@@ -1,4 +1,5 @@
 from mongoengine import *
+from mongoengine.context_managers import switch_db
 from datetime import datetime
 import hashlib, uuid
 from user import User, Users
@@ -84,11 +85,12 @@ class Project(Document):
     # -------------------------------------------------------------------
     # Member Fields
     # -------------------------------------------------------------------
+    username = StringField()
     lead = ReferenceField(User, required=True)
-    lead_institutional_role =  StringField(choices=INSTITUTE_ROLE, required=True)
-    managers = ListField(ReferenceField(User))
+    #lead_institutional_role =  StringField(choices=INSTITUTE_ROLE, required=True)
+    managers = ListField(StringField())
     members = ListField(ReferenceField(User), required=True)
-    alumnis = ListField(ReferenceField(User))
+    alumnis = ListField(StringField())
 
     # active_members = lead u managers u members - alumnis
     # if not active : active_members = None
@@ -133,7 +135,7 @@ class Project(Document):
     resources_software = ListField(StringField(choices=SOFTWARE), required=True)
     resources_clusters = ListField(StringField(choices=CLUSTERS), required=True)
     resources_provision = ListField(StringField(choices=PROVISIONING), required=True)
-
+    
     # BUG how can we add also arbitray info in case of other, mabe ommit choices
 
     def to_json(self):
@@ -161,7 +163,7 @@ class Project(Document):
              "resources_clusters":self.resources_clusters,
              "resources_provision":self.resources_provision
             }
-             
+        return d     
              
 
     def __str__(self):
@@ -171,10 +173,11 @@ class Project(Document):
 class Projects(object):
 
     def __init__(self):
-        self.db = connect(db_name, port=port)
+        db = connect(db_name, port=port)
         self.projects = Project.objects()
         db = connect('user', port=port)
         self.users = User.objects()
+
     
     def __str__(self):
         IMPLEMENT()
@@ -183,18 +186,27 @@ class Projects(object):
         return self.projects
     
     def add_project(self, project):
-    	_verify = self.verify_user(project.lead, project)
+    	_verify = self.verify_user(project.username, project)
     	if _verify == True:
-    	    project.save()
+    	    project.save()   	
     	else:
             print "ERROR: The user `{0}` has not registered with FutureGrid".format(project.lead)
-     
-    def verify_user(self, user, project):
-        _username = User.objects(username=user.username)
-        if _username == True:
-            return True
-        else:
-            return False
+    
+    def add_member(self, user_name, project):
+	for user in User.objects:
+    	    if user.username == user_name:
+    	    	project.members = [user]
+    	    else:
+    	    	return "ERROR: Not a registered user of Futuregrid"
+    
+    def verify_user(self, user_name, project):
+        for user in User.objects:
+    	    if user.username == user_name:
+    	    	project.lead = user
+    	    	project.members = [user]
+    	    	return True
+    	    else:
+                return False
             
     def find_by_id(self, id):
         found = Project.objects(projectid=id)
@@ -205,16 +217,20 @@ class Projects(object):
         #User ID or project ID
 
     def find_by_category(self, category):
-    	found = User.objects(categories_in=category)
+    	found = Project.objects(categories=category)
         if found.count() > 0:
-            print "yay"
+            print "="*70
+            print
+            return found[0].to_json()
+        else:
+            return None   
+
+    def find_by_keyword(self, keyword):
+        found = Project.objects(keyword=keyword)
+        if found.count() > 0:
             return found[0].to_json()
         else:
             return None
-        IMPLEMENT()
-
-    def find_by_keyword(self, keyword):
-        IMPLEMENT()
 
     def clear(self):
         """removes all projects from the database"""
@@ -235,25 +251,24 @@ def main():
             broader_impact = "Everything is broad according ...",
             use_of_fg = "Fg is about to use it",
             scale_of_use = "Would be used to implement djandgo",
-            categories = ["Database", "FuturGrid"],
-            keywords = ["mongodb", "django", "mongoengine", "sqllite"],
-            primary_discipline = ["other"],  
+            categories = ['FutureGrid'],
+            keywords = ['sqllite'],
+            primary_discipline = "other",  
             orientation = "Lot's of all make",
             contact = "Bloomington",
-            url = "www.futuregrid.org",
+            url = 'https://www.facebook.com/',
             active = True,
             status = "pending",
-            lead = "gregor",
-            members = "gregor",
-            resources_services = "eucalyptus", #','openstack'],
-            resources_software = "other",
-            resources_clusters = "india",
-            resources_provision = "paas",
-          ) 
-    projects.add(django)
-    
-    print "Hereeeeeeeee"
-    print projects.find_by_category("Database")
+            username = "gregvon",
+            resources_services = ['hadoop','openstack'],
+            resources_software = ['other'],
+            resources_clusters = ['india'],
+            resources_provision = ['paas']
+          )
+    print django.abstract
+    projects.add_project(django)
+    print "-"*80
+    print projects.find_by_category('FutureGrid')
              
 
 

@@ -130,6 +130,8 @@ class Users(object):
     def __init__(self):
         db = connect('user', port=port)
         self.users = User.objects()
+        
+        meta = {"db_alias": "default"}
 
     def objects(self):
         return self.users
@@ -152,6 +154,7 @@ class Users(object):
     def add(self, user):
         """adds the specified user to mongodb, as well as activates the users' account
         as well as set's the deactivation date"""
+        user.username = self.set_username(user.username)
         user.set_date_deactivate()
         user.is_active()
         if self.verify(user):
@@ -193,6 +196,7 @@ def main():
         firstname = "Gregor",
         lastname = "von Laszewski",
         email = "laszewski@gmail.com",
+        username = "gregvon",
         active = True,
         password = "none",
         phone = "6625768900",
@@ -201,17 +205,10 @@ def main():
         address = "Bloomington",
         country = "USA",
         citizenship = "Germany",
-        bio = "I work at Indiana University Bloomington"  
-                
-        
-        # add the other fields
+        bio = "I work at Indiana University Bloomington",
     )
-    gregor.username = "gregvon"
-    gregor.username = users.set_username(gregor.username)
     users.add(gregor)
-    
-    print    
-    print gregor.username
+    print "Gregor username: ", gregor.username
     print gregor.date_created
     print gregor.date_deactivate
     print
@@ -224,6 +221,7 @@ def main():
         firstname = "Ifeanyi",
         lastname = "Onyenweaku",
         email = "rowlandifeanyi17@gmail.com",
+        username = "gregvon",
         active = True,
         password = "none",
         phone = "6625768900",
@@ -237,14 +235,36 @@ def main():
         
         # add the other fields
     )
-    ifeanyi.username = "gregvon"
-    ifeanyi.username = users.set_username(ifeanyi.username)
-    print    
-    print ifeanyi.username
-    print
     users.add(ifeanyi)
+    print    
+    print "ifeanyi username: ", ifeanyi.username
+    print
 
     #print users.find("rowlandifeanyi17@gmail.com")
+    
+    fugang = User(
+        title = "",
+        firstname = "Fungang",
+        lastname = "Nelson",
+        email = "nelsonfug@gmail.com",
+        username = "gregvon",
+        active = True,
+        password = "none",
+        phone = "6627865400",
+        department = "School of Informatics and Computing",
+        institution = "Indiana University",
+        address = "Bloomington",
+        country = "USA",
+        citizenship = "China",
+        bio = "I work at Indiana University Bloomington"  
+                
+        
+        # add the other fields
+    )
+    users.add(fugang)
+    print    
+    print "Fugang username: ", fugang.username
+    print
 
 
 if __name__ == "__main__":
