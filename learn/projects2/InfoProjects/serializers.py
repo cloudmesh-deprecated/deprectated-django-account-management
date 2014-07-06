@@ -1,9 +1,9 @@
 from django.forms import widgets
 from rest_framework import serializers
-from ProjectInfos.models import ProjectInfo
+from InfoProjects.models import InfoProject
 
 
-class ProjectInfoSerializer(serializers.Serializer):
+class InfoProjectSerializer(serializers.Serializer):
 	project_title = serializers.CharField(required=False,
                                   max_length=200)
         project_id = serializers.CharField(required=False,
@@ -12,6 +12,8 @@ class ProjectInfoSerializer(serializers.Serializer):
                                   max_length=200)
         project_description= serializers.CharField(widget=widgets.Textarea,
                                  max_length=100000)
+        #code = serializers.CharField(widget=widgets.Textarea,
+                                 #max_length=100000)
 
 def restore_object(self, attrs, instance=None):
         """
@@ -27,7 +29,8 @@ def restore_object(self, attrs, instance=None):
             instance.project_id = attrs.get('project_id', instance.project_id)
             instance.project_pi = attrs.get('project_pi', instance.project_pi)
             instance.project_description = attrs.get('project_description',instance.project_description)
+            #instance.code = attrs.get('code', instance.code)
             return instance
 
         # Create new instance
-        return ProjectInfo(**attrs)
+        return InfoProject(**attrs)

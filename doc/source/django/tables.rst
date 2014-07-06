@@ -11,6 +11,8 @@ backend
 	Follow previous tutorials in order to have a bootstrapped theme
 	table
 	
+In your ``settings.py`` file in your Django Project, do a ``pip install django-tables2`` and then add ``'django_tables2'`` to your ``INSTALLED_APPS`` function.  Finally add ``'django.core.context_processors.request'`` to ``TEMPLATE_CONTEXT_PROCESSORS``. 
+	
 In your ``templates`` directory, make your desired html file and let it have
 this format at the top::
 	
