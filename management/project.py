@@ -89,7 +89,7 @@ class Project(Document):
     lead = ReferenceField(User, required=True)
     #lead_institutional_role =  StringField(choices=INSTITUTE_ROLE, required=True)
     managers = ListField(StringField())
-    members = ListField(ReferenceField(User), required=True)
+    members = ListField(ReferenceField(User), default=[], required=True)
     alumnis = ListField(StringField())
 
     # active_members = lead u managers u members - alumnis
@@ -193,17 +193,20 @@ class Projects(object):
             print "ERROR: The user `{0}` has not registered with FutureGrid".format(project.lead)
     
     def add_member(self, user_name, project):
-	for user in User.objects:
+    	for user in User.objects:
     	    if user.username == user_name:
-    	    	project.members = [user]
+    	    	project.members.append(user)
     	    else:
-    	    	return "ERROR: Not a registered user of Futuregrid"
+                print "ERROR: The user `{0}` has not registered with FutureGrid".format(user_name)
+    
+    def find_all_members(self, project):
+    	return project.members
     
     def verify_user(self, user_name, project):
         for user in User.objects:
     	    if user.username == user_name:
     	    	project.lead = user
-    	    	project.members = [user]
+    	    	project.members.append(user)
     	    	return True
     	    else:
                 return False
@@ -267,8 +270,16 @@ def main():
           )
     print django.abstract
     projects.add_project(django)
+    
+    projects.add_member("gregvon1", django)
+    print django.members, "yes this is it"
+    
     print "-"*80
     print projects.find_by_category('FutureGrid')
+    
+    
+    use = User.objects(username = "gregvon1")
+    print use
              
 
 

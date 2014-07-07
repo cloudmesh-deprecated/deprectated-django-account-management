@@ -120,7 +120,6 @@ class User(Document):
         except:
             pass
         return d
-   
     
     def __str__(self):
         return "{0} {1} {2} {3}".format(self.title,self.firstname, self.lastname, self.email)
@@ -179,6 +178,8 @@ class Users(object):
                 return found[0].to_json()
             else:
                 return None
+    def find_user(self, username):
+    	return User.objects(username = username)
 
     def clear(self):
         """removes all elements form the mongo db that are users"""
@@ -263,8 +264,9 @@ def main():
     )
     users.add(fugang)
     print    
-    print "Fugang username: ", fugang.username
+    print "Fugang username: "#, fugang.username
     print
+    print users.find_user("gregvon12")
 
 
 if __name__ == "__main__":
