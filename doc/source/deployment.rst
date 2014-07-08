@@ -30,5 +30,15 @@ Please activate it with::
 
   source ~/ENV/bin/activate
 
+.. note::
+	If errors come while installing the distribute_setup.py, go to pypi.python.org and download the most recent distribute package. 
+	In this case, it would be https://pypi.python.org/pypi/distribute/0.6.49 
+	. Then do a ``cd distribute-0.6.49`` and then ``python distribute_setup.py`` 
+	
+	Also to make sure you have universe type the following command in the 
+	terminal
+	
+	``sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu$(lsb_release -sc) universe"``
+	
 
 
