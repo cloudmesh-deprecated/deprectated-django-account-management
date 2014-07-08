@@ -44,6 +44,14 @@ INSTALLED_APPS = (
     
 )
 
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+	'rest_framework.renderers.YAMLRenderer',
+	'rest_framework.renderers.BrowsableAPIRenderer',
+    )
+}
+
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -67,7 +75,7 @@ DATABASES = {
         'NAME': 'tmp.db',
     }
 }
-
+ 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
