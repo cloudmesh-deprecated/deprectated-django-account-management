@@ -39,7 +39,7 @@ class InfoProject_list(APIView):
     def get(self, request, format=None):
         infoprojects = InfoProject.objects.all()
         serializer = InfoProjectSerializer(infoprojects, many=True)
-        return Response(serializer.data, template_name='template_example.html' ) 
+        return Response({'project':serializer.data}, template_name='template_example.html' ) 
 
     def post(self, request, format='.html'):
         serializer = InfoProjectSerializer(data=request.DATA)
