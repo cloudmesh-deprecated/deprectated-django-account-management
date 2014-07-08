@@ -1,8 +1,13 @@
 from mongoengine import *
 from datetime import datetime
+from project import Project, Projects
+from user import User, Users
 
 port=27777
 db_name = 'project'
+
+users = Users()
+projects = Projects()
 
 def IMPLEMENT():
     print "IMPLEMENT ME"
@@ -10,23 +15,35 @@ def IMPLEMENT():
 STATUS = ('pending', 'approved', 'completed', 'denied')
     
 class Committee(Document):
-
     # status = StringField(choices=STATUS)
-    project = ReferenceField(project)
+    project = ReferenceField(Project)
+    reviewers = ListField(ReferenceField(User))
+    default_reviewer = ReferenceField(User)
     
     def __str__(self):
-        IMPLEMENT()
+        return "{0} {1} {2} {3}".format(self.project,self.default_reviewer)
+
+    def get_default_reviewer(self, user_name):
+    	default_reviewer = users.find_user(user_name)
+    	self.reviewers.append(default_reviewer)
+    	return self.project.reviewers
 
     def set_review(self, project, user, msg):
+    	"""by set_review, do you mean to state whether
+    	approved or not and what type of message am I meant to 
+    	pass into this function"""
         IMPLEMENT()
 
     def add_reviewer(self, project, user):
+    	self.project.reviewers.append(user)
         IMPLEMENT()
 
     def delete_reviewer(self, project, user):
+    	self.project.reviewers.delete(user)
         IMPLEMENT()
 
     def add_default_reviewer(self, user):
+    	self.project.reviewers.append(user)
         IMPLEMENT()
 
     def delete_default_reviewer(self, user):
@@ -47,11 +64,11 @@ class Committee(Document):
     def notify_all_reviewers(self, msg):
         IMPLEMENT()
 
-    def enable(self, bool)
+    def enable(self, bool):
         """enables or disables reviews, useful for maintenance"""
         IMPLEMENT()
 
-    def pending_projects(self)
+    def pending_projects(self):
         return self.get_by_status("pending")
 
     def approved_projects(self):
@@ -70,4 +87,22 @@ class Committee(Document):
             print "ERROR: wrong status", status
             return None
             
-                
+def main():
+
+    users = Users()
+    projects = Projects()
+    committee = Committee()
+    
+    c = Committee()
+    
+    c.get_default_reviewer("gregvon12")
+    
+    
+    
+    
+    
+    
+
+
+if __name__ == "__main__":
+    main()               
