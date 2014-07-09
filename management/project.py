@@ -186,6 +186,7 @@ class Projects(object):
         return self.projects
     
     def add_project(self, project):
+    	"""adds a project to the database but only after it has been verified"""
     	_verify = self.verify_user(project.username, project)
     	if _verify == True:
     	    project.save()   	
@@ -193,6 +194,7 @@ class Projects(object):
             print "ERROR: The user `{0}` has not registered with FutureGrid".format(project.lead)
     
     def add_member(self, user_name, project):
+    	"""adds members to a particular project"""
     	for user in User.objects:
     	    if user.username == user_name:
     	    	project.members.append(user)
@@ -200,9 +202,12 @@ class Projects(object):
                 print "ERROR: The user `{0}` has not registered with FutureGrid".format(user_name)
     
     def find_all_members(self, project):
+    	"""returns all the members of a particular project"""
     	return project.members
     
     def verify_user(self, user_name, project):
+    	"""Verifies that a user has been registered or stored in the 
+    	database before adding the user to the members and project lead"""
         for user in User.objects:
     	    if user.username == user_name:
     	    	project.lead = user
@@ -212,6 +217,7 @@ class Projects(object):
                 return False
             
     def find_by_id(self, id):
+    	"""Finds a project by the given id"""
         found = Project.objects(projectid=id)
         if found.count() > 0:
             return found[0].to_json()
@@ -220,6 +226,7 @@ class Projects(object):
         #User ID or project ID
 
     def find_by_category(self, category):
+    	"""Finds and returns all project in that category"""
     	found = Project.objects(categories=category)
         if found.count() > 0:
             print "="*70
@@ -229,7 +236,16 @@ class Projects(object):
             return None   
 
     def find_by_keyword(self, keyword):
+    	"""Finds and returns all projects with the entered keyword"""
         found = Project.objects(keyword=keyword)
+        if found.count() > 0:
+            return found[0].to_json()
+        else:
+            return None
+            
+    def find_by_title(self, title):
+    	"""Finds a project by its title"""
+    	found = Project.objects(title = title)
         if found.count() > 0:
             return found[0].to_json()
         else:
