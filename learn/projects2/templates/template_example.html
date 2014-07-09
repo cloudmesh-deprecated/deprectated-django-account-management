@@ -11,10 +11,11 @@
 	<th>project_description</th>
     </tr>
     <tr>
-       {% for attribute, p in project.iteritems() %}
-            <th> {{ attribute }} </th>
-	    <th> {{ p }} </th>
+       {% for attribute in project %}
+            <th> {{ project }} </th>
        {% endfor %}
      </tr>
     </table>
 {% endblock %}
+
+ 

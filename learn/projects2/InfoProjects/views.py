@@ -2,7 +2,7 @@
 #from django.http import HttpResponse
 from django.http import Http404
 #from django.views.decorators.csrf import csrf_exempt
-from rest_framework.renderers import TemplateHTMLRenderer, JSONRenderer, YAMLRenderer 
+from rest_framework.renderers import TemplateHTMLRenderer
 #from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
