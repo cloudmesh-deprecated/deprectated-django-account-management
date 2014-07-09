@@ -51,8 +51,13 @@ class User(Document):
     date_approved = None 
     date_deactivate = DateTimeField()
 
+    '''
+    def save(self,db):
+    	db.put({"firname":user.firname,...}_)
+    '''
+    	
     def is_active(self):
-        """find if user is in active project"""
+        """finds if a user is active or not"""
         d1 = datetime.datetime.now()
         if self.active == True:
             if d1 > self.date_deactivate:
@@ -62,18 +67,24 @@ class User(Document):
         else:
             return False
         
-    def activate(self):                                
+    def activate(self): 
+    	"""activates a user"""
         self.active = True
 
     def deactivate(self):
+    	"""deactivates a user after the date to deactivate has been reached"""
         check = is_active(self)
         if check == False:
             force_deactivate()
             
     def force_deactivate(self):
+    	"""forces a user to deactivate without checking if the date to be 
+    	deactivated has been reached or not"""
     	active = False
 
     def set_date_deactivate(self): 
+    	"""Sets the date for the user to be deactivated which is after 24 
+    	weeks, equivalent to 6 months"""
     	self.date_deactivate = datetime.datetime.now() + datetime.timedelta(weeks=24) 
     	return self.date_deactivate
 
@@ -157,6 +168,8 @@ class Users(object):
         user.set_date_deactivate()
         user.is_active()
         if self.verify(user):
+            print "A user is added"
+            print user.to_json()
             user.save()
         else:
             print "ERROR: a user with the e-mail `{0}` already exists".format(user.email)
@@ -168,7 +181,7 @@ class Users(object):
         return _user.count() == 0
 
     def find(self, email=None):
-        """returns the users based on the give query"""
+        """returns the users based on the given query"""
         if email == None:
             found = User.objects()
             return found
@@ -179,6 +192,7 @@ class Users(object):
             else:
                 return None
     def find_user(self, username):
+    	"""returns a user based on the username"""
     	return User.objects(username = username)
 
     def clear(self):
@@ -267,6 +281,8 @@ def main():
     print "Fugang username: "#, fugang.username
     print
     print users.find_user("gregvon12")
+    
+    users.find()
 
 
 if __name__ == "__main__":

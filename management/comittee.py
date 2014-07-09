@@ -16,9 +16,11 @@ STATUS = ('pending', 'approved', 'completed', 'denied')
     
 class Committee(Document):
     # status = StringField(choices=STATUS)
+    committee = StringField(Committee)
     project = ReferenceField(Project)
     reviewers = ListField(ReferenceField(User))
-    default_reviewer = ReferenceField(User)
+    default_reviewer = ListField(ReferenceField(User))
+    reviews = StringField()
     
     def __str__(self):
         return "{0} {1} {2} {3}".format(self.project,self.default_reviewer)
@@ -32,6 +34,7 @@ class Committee(Document):
     	"""by set_review, do you mean to state whether
     	approved or not and what type of message am I meant to 
     	pass into this function"""
+    	
         IMPLEMENT()
 
     def add_reviewer(self, project, user):
@@ -93,9 +96,17 @@ def main():
     projects = Projects()
     committee = Committee()
     
-    c = Committee()
+    _user = users.find_user("gregvon12")
+    committee.project = projects.find_by_title("Django Project")
+    #print _user, ": \n\n", _project
     
-    c.get_default_reviewer("gregvon12")
+    django_committee = Committee(project = projects.find_by_title("Django Project"),
+    	    			 reviewer = users.find_user("gregvon12"),
+    	    
+    
+    committee.add_reviewer(committee.project, _user)
+    #print committee.reviewers
+
     
     
     
