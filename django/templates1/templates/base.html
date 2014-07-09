@@ -8,14 +8,14 @@
     {% block extrastyle %}{% endblock %}
 
     <!-- Le styles, placed after extrastyle to correctly override default styling -->
-    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet"/>
+    <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet"/>
     <style type="text/css">
       body {
         padding-top: 60px;
         padding-bottom: 40px;
       }
     </style>
-    <link href="{% static "css/bootstrap-responsive.min.css" %}" rel="stylesheet"/>
+    <link href="{% static "bootstrap/css/bootstrap-responsive.min.css" %}" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="{% static "admin/css/overrides.css" %}" />
 
     <!-- <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}" /> -->
@@ -24,9 +24,9 @@
         window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";
     //]]>
     </script>
-    <script src="{% static "js/jquery-1.9.1.min.js" %}"></script>
-    <script src="{% static "js/jquery-migrate-1.2.1.min.js" %}"></script>
-    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "admin/js/jquery-1.9.1.min.js" %}"></script>
+    <script src="{% static "admin/js/jquery-migrate-1.2.1.min.js" %}"></script>
+    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
 
     {% block extrahead %}{% endblock %}
 

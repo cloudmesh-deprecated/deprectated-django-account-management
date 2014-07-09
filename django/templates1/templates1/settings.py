@@ -105,8 +105,4 @@ TEMPLATE_DIRS = (
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-	'/home/jeff01/github/management/django/templates1/static/',
-	)
-
-STATIC_ROOT = '/home/jeff01/github/management/django/templates1/'
+STATIC_ROOT = '/home/jeff01/github/management/django/templates1/static/'
