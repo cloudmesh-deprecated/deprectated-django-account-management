@@ -77,7 +77,7 @@ Now go into your ``settings.py`` in your project's directory and make sure it lo
 	connect('employeedb', username='your_username', password='your_password')
 	
 	SESSION_ENGINE = 'mongoengine.django.sessions'
-	SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer
+	SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
 	
 	
 .. note::
