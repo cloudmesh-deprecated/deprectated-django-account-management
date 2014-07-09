@@ -136,6 +136,9 @@ Ready Made Example
 A ready made example for you is contained in the directory
 ``management/django/mongo2``. Please cd into the directory.
 
+.. note::
+	Because the MakeFile is connected to a Ready Made Example, the user is ``"admin1"`` and the password is ``"mongo2"`` when you have to access the employeedb in the mongo shell. 
+
 In this directory you will also find a Makefile that you can use to
 execute the above steps. To start the server, you can say::
 
