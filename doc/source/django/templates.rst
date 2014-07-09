@@ -12,16 +12,11 @@ Then, In project do the following::
 	
 	mkdir templates 
 	mkdir static
-	cd static
-	mkdir js
-	mkdir css
 	cd exampleproject
 	texteditor settings.py
 	
 In the ``settings.py`` file go to ``TEMPLATE_DIRS ()``, ``TEMPLATE_LOADERS ()``,
-``STATIC_ROOT``, ``TEMPLATE_CONTEXT_PROCESSORS``, & ``STATICFILES_DIRS ()`` 
-functions and write the path to the templates folder you just created 
-and add these parameters to ``TEMPLATE_LOADERS ()`` & ``STATICFILES_DIRS ()``::
+``STATIC_ROOT``, &``TEMPLATE_CONTEXT_PROCESSORS``functions and write the path to the templates folder you just created and add these parameters to ``TEMPLATE_LOADERS ()``::
 	
 	TEMPLATE_CONTEXT_PROCESSORS = (
 		'django.contrib.auth.context_processors.auth',
@@ -42,11 +37,11 @@ and add these parameters to ``TEMPLATE_LOADERS ()`` & ``STATICFILES_DIRS ()``::
 		'/home/django/examplesite/templates',
 	)
 	..........
-	STATICFILES_DIRS = (
-		'/home/django/examplesite/static',
+	STATIC_URL = (
+		'/static/',
 	)
 	..........
-	STATIC_ROOT = '/home/django/example/'
+	STATIC_ROOT = '/home/django/example/static/'
 	
 Now go to your newly created Template directory and create a file named ``base.html``.
 In this file, copy and paste the html from your desired template from the 
