@@ -60,7 +60,7 @@ WSGI_APPLICATION = 'merge.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.dummy',
-        'NAME': ,
+        'NAME': 
     }
 }
 
