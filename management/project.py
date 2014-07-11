@@ -3,10 +3,12 @@ from mongoengine.context_managers import switch_db
 from datetime import datetime
 import hashlib, uuid
 from user import User, Users
+#from comittee import Committee
 
 
 port=27777
 db_name = 'project'
+
 
 def IMPLEMENT():
     print "IMPLEMENT ME"
@@ -81,7 +83,12 @@ class Project(Document):
 
     status =  StringField(choices=STATUS,required=True)
     # maybe we do not need active as this may be covered in status
-   
+    
+    # -------------------------------------------------------------------
+    # Project Comittee: contains all the information about the projects committee
+    # -------------------------------------------------------------------
+    #comittee = ReferenceField(Committee)
+    
     # -------------------------------------------------------------------
     # Member Fields
     # -------------------------------------------------------------------
@@ -189,6 +196,7 @@ class Projects(object):
     	"""adds a project to the database but only after it has been verified"""
     	_verify = self.verify_user(project.username, project)
     	if _verify == True:
+            #*****Add a committee here before saving, especially the default committee*******
     	    project.save()   	
     	else:
             print "ERROR: The user `{0}` has not registered with FutureGrid".format(project.lead)
@@ -264,7 +272,7 @@ def main():
     projects.clear()
     
     django = Project(
-    	    title = "Django Project",
+    	    title = "Django",
     	    abstract = "This is my abstract",
             intellectual_merit = "All about the merit thingy",    
             broader_impact = "Everything is broad according ...",

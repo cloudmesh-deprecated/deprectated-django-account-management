@@ -12,23 +12,49 @@ projects = Projects()
 def IMPLEMENT():
     print "IMPLEMENT ME"
 
-STATUS = ('pending', 'approved', 'completed', 'denied')
+DEFAULT_REVIEWERS = ('gregvon', 'jeff', 'gregvon1')
+
+STATUS = ('pending', 'approved', 'disapproved')
+
+CHOICES = ('Yes', 'No')
     
 class Committee(Document):
     # status = StringField(choices=STATUS)
-    committee = StringField(Committee)
-    project = ReferenceField(Project)
+    projects = ListField(StringField())
     reviewers = ListField(ReferenceField(User))
     default_reviewer = ListField(ReferenceField(User))
     reviews = StringField()
+    #--------------------------------------------------------------------
+    #	Default value showing if this is the first time the project is being applied for or not
+    #--------------------------------------------------------------------
+    default = StringField(choices=CHOICES, default = 'Yes')
+    
     
     def __str__(self):
-        return "{0} {1} {2} {3}".format(self.project,self.default_reviewer)
+        return "{0} {1} {2} {3}".format(self.status,self.reviewers)
+        
+    def get_project(self, title):
+        """This function wold be deleted later after we have been able
+        call this class from the project class, hence this is a sample"""
+        _project = projects.find_by_title("Django")
 
-    def get_default_reviewer(self, user_name):
-    	default_reviewer = users.find_user(user_name)
-    	self.reviewers.append(default_reviewer)
-    	return self.project.reviewers
+    def get_reviewer(self, user_name):
+    	if default == 'Yes':
+    	    count = len(STATUS)
+    	    while count <= 0:
+    	        default_reviewer = users.find_user(STATUS[count])
+    	        add_default_reviewer(default_reviewer)
+    	    default == 'No'
+    	else if default == 'No':
+    	    _reviewer = users.find_user(STATUS[count])
+    	    add_reviewer#****I am here****
+    
+    def add_default_reviewer(self, user):
+    	self.reviewers.append(user)
+
+    def add_reviewer(self, project, user):
+    	self.reviewers.append(user)
+        IMPLEMENT()
 
     def set_review(self, project, user, msg):
     	"""by set_review, do you mean to state whether
@@ -37,16 +63,8 @@ class Committee(Document):
     	
         IMPLEMENT()
 
-    def add_reviewer(self, project, user):
-    	self.project.reviewers.append(user)
-        IMPLEMENT()
-
     def delete_reviewer(self, project, user):
-    	self.project.reviewers.delete(user)
-        IMPLEMENT()
-
-    def add_default_reviewer(self, user):
-    	self.project.reviewers.append(user)
+    	#self.project.reviewers.delete(user)***wrong***
         IMPLEMENT()
 
     def delete_default_reviewer(self, user):
@@ -89,31 +107,20 @@ class Committee(Document):
         else:
             print "ERROR: wrong status", status
             return None
-            
+
+
 def main():
 
-    users = Users()
-    projects = Projects()
-    committee = Committee()
-    
-    _user = users.find_user("gregvon12")
-    committee.project = projects.find_by_title("Django Project")
-    #print _user, ": \n\n", _project
-    
-    django_committee = Committee(project = projects.find_by_title("Django Project"),
-    	    			 reviewer = users.find_user("gregvon12"),
-    	    
-    
-    committee.add_reviewer(committee.project, _user)
-    #print committee.reviewers
-
+    comittee = Committe()
     
     
-    
-    
-    
-    
-
-
+	
+	
 if __name__ == "__main__":
-    main()               
+    main()
+    
+    
+    
+    
+    
+    
