@@ -1,4 +1,4 @@
-Example: Bootstrap
+Example: Bootstrap1
 ==============================================================================
 
 Description 
@@ -43,6 +43,7 @@ To stop the server please say::
 
 	make stop
 
-The steps are implicitly included in the makefile::
+The steps are implicitly included in the makefile
 
-  ..include:: ../management/django/bootstrap1/Makefile
+.. include:: ../../../django/bootstrap1/Makefile
+  :literal:

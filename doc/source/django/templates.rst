@@ -122,10 +122,13 @@ To stop the server please say::
 
   make stop
 
-The steps are implicitly included in the makefile::
+The steps are implicitly included in the makefile
 
-  ..include:: ../management/django/templates1/Makefile
+.. include:: ../../../django/templates/Makefile
+   :literal:
   
+.. error::
+   BUG THE MAGEFILE DOES NOT SHOW
   
 Tips
 ----------------------------------------------------------------
