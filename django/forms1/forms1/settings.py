@@ -1,5 +1,5 @@
 """
-Django settings for practice project.
+Django settings for forms1 project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'lm7nvv7$haf#-9okcrm!k-60gw*571m@_e$=7g8=gy3dt*#mml'
+SECRET_KEY = '03%^mje9l9jr(fdo)p0ck#$ushksdsc0f5u3lexy2mqb2p(+09'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app_forms',
+    'admin_views',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -49,9 +50,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'forms.urls'
+ROOT_URLCONF = 'forms1.urls'
 
-WSGI_APPLICATION = 'forms.wsgi.application'
+WSGI_APPLICATION = 'forms1.wsgi.application'
 
 
 # Database
@@ -93,13 +94,12 @@ TEMPLATE_LOADERS = (
 	)
 
 TEMPLATE_DIRS = (
-	'/home/jeff01/github/management/learn/practice/templates',
+	'/home/jeff01/github/management/django/forms1/templates',
 	)
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/home/jeff01/github/management/learn/practice/static/'
+STATIC_ROOT = '/home/jeff01/github/management/django/forms1/static/'
