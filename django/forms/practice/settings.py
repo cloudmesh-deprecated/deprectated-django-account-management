@@ -1,5 +1,5 @@
 """
-Django settings for merge project.
+Django settings for practice project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'nfd#1i2d96jy0)evnz2+_ny(4id@(4u9tt^tu)k(ro1y7+h0$l'
+SECRET_KEY = 'lm7nvv7$haf#-9okcrm!k-60gw*571m@_e$=7g8=gy3dt*#mml'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,12 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app_merge',
-    'rest_framework',
-    'mongoadmin',
-    'mongoengine.django.mongo_auth',
+    'app_forms',
 )
-MONGOADMIN_OVERRIDE_ADMIN = True
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,18 +49,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-REST_FRAMEWORK = {
-    'DEFAULT_MODEL_SERIALIZER_CLASS':
-        'rest_framework.serializers.HyperlinkedModelSerializer',
+ROOT_URLCONF = 'practice.urls'
 
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
-}
-
-ROOT_URLCONF = 'merge.urls'
-
-WSGI_APPLICATION = 'merge.wsgi.application'
+WSGI_APPLICATION = 'practice.wsgi.application'
 
 
 # Database
@@ -72,24 +59,10 @@ WSGI_APPLICATION = 'merge.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.dummy'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-AUTHENTICATION_BACKENDS = (
-    'mongoengine.django.auth.MongoEngineBackend',
-)
-AUTH_USER_MODEL = 'mongo_auth.MongoUser'
-MONGOENGINE_USER_DOCUMENT = 'mongoengine.django.auth.User'
-
-from mongoengine import connect
-MONGO_DATABASE_NAME = 'testdb'
-MONGO_HOST = '192.168.105.108'
-MONGO_PORT = 27017
-connect(MONGO_DATABASE_NAME, host=MONGO_HOST, port=MONGO_PORT)
-
-SESSION_ENGINE = 'mongoengine.django.sessions'
-SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -105,23 +78,23 @@ USE_L10N = True
 USE_TZ = True
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-        'django.contrib.auth.context_processors.auth',
-        'django.core.context_processors.debug',
-        'django.core.context_processors.i18n',
-        'django.core.context_processors.media',
-        'django.core.context_processors.static',
-        'django.core.context_processors.tz',
-        'django.contrib.messages.context_processors.messages',
-)
+	'django.contrib.auth.context_processors.auth',
+	'django.core.context_processors.debug',
+	'django.core.context_processors.i18n',
+	'django.core.context_processors.media',
+	'django.core.context_processors.static',
+	'django.core.context_processors.tz',
+	'django.contrib.messages.context_processors.messages',
+	)
 
 TEMPLATE_LOADERS = (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-)
+	'django.template.loaders.filesystem.Loader',
+	'django.template.loaders.app_directories.Loader',
+	)
 
 TEMPLATE_DIRS = (
-        '/home/jeff01/github/management/learn/merge/templates',
-)
+	'/home/jeff01/github/management/learn/practice/templates',
+	)
 
 
 # Static files (CSS, JavaScript, Images)
@@ -129,4 +102,4 @@ TEMPLATE_DIRS = (
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/home/jeff01/github/management/learn/merge/static/'
+STATIC_ROOT = '/home/jeff01/github/management/learn/practice/static/'
