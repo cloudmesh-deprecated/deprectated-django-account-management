@@ -112,6 +112,8 @@ To stop the server please say::
 
   make stop
 
-The steps are implicitly included in the makefile::
+The steps are implicitly included in the makefile
 
-  ..include:: ../management/django/tables/Makefile
+.. include:: ../../../django/tables/Makefile
+  :literal:
+

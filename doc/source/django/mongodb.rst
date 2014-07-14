@@ -83,7 +83,11 @@ To stop the server please say::
 
   make stop
 
-The steps are implicitly included in the makefile::
+The steps are implicitly included in the makefile
 
-  ..include:: ../management/django/mongo1/Makefile
+.. include:: ../../../django/mongodb/Makefile
+   :literal:
+
+.. error::
+   BUG THE MAGEFILE DOES NOT SHOW
   
