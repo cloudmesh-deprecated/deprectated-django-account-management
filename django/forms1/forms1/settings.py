@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app_forms',
-    'admin_views',
+   # 'admin_views',
 )
 
 MIDDLEWARE_CLASSES = (
