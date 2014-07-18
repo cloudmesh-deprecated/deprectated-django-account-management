@@ -40,9 +40,11 @@ Cloudmesh Django
    django/models
    django/views
    django/templates
+   django/forms
    django/mongodb
    django/tables
    django/mongo2
+   
    
 
 
