@@ -45,6 +45,13 @@ class User(Document):
     adviser_contact = StringField()
     # advisor = pointer to another user
     
+    #
+    # Message received from either reviewers, 
+    # committee or other users. It is a list because 
+    # there might be more than one message
+    #
+    message = ListField(StringField())
+    
 
     date_modified = DateTimeField(default=datetime.datetime.now)
     date_created = DateTimeField(default=datetime.datetime.now)
@@ -193,8 +200,11 @@ class Users(object):
                 return None
     def find_user(self, username):
     	"""returns a user based on the username"""
-    	return User.objects(username = username)
-
+    	for user in User.objects:
+    	    if user.username == username:
+    	        return user
+    	    	break
+    	    	
     def clear(self):
         """removes all elements form the mongo db that are users"""
         for user in User.objects:
@@ -262,7 +272,7 @@ def main():
         firstname = "Fungang",
         lastname = "Nelson",
         email = "nelsonfug@gmail.com",
-        username = "gregvon",
+        username = "fugang",
         active = True,
         password = "none",
         phone = "6627865400",

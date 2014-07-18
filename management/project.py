@@ -296,11 +296,13 @@ def main():
     projects.add_project(django)
     
     projects.add_member("gregvon1", django)
-    print django.members, "yes this is it"
-    
+
     print "-"*80
     print projects.find_by_category('FutureGrid')
-    
+    print "-"*80
+    print
+
+  
     
     use = User.objects(username = "gregvon1")
     print use
