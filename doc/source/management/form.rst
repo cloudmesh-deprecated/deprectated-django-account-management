@@ -328,4 +328,35 @@ Project Object
        entire systems and for each I'll need about ____ days to do
        that").
                            
-    
+Committee Object
+----------------------------------------------------------------------
+
+.. list-table:: Committee
+   :header-rows: 1
+   :widths: 15 15 15 50
+
+   * - Attribute
+     - Label
+     - Required
+     - Description
+   * - status
+     - Status
+     - yes
+     - Set project status.
+   * - projects
+     - Projects
+     - no
+     - Add project to queue.
+   * - reviewers
+     - Reviewers
+     - yes
+     - Add reviewers to project committee.
+   * - reviews
+     - Reviews
+     - yes
+     - Set reviews.
+   * - default
+     - NB
+     - Required
+     - set "Yes" if it is the first time members are being added to the
+     committee of a project.
