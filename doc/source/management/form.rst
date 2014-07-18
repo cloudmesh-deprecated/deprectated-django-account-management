@@ -355,3 +355,8 @@ Committee Object
      - Reviews
      - yes
      - Set reviews.
+   * - default
+     - NB
+     - Required
+     - set "Yes" if it is the first time members are being added to the
+     committee of a project.
