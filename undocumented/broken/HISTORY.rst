@@ -4,6 +4,31 @@ History
 -------
 
 
+4.8.2 (2014-07-10)
+++++++++++++++++++
+
+* Internal fixes to master branch
+
+
+4.8.1 (2014-07-10)
+++++++++++++++++++
+
+* Make extra classes override bootstrap defaults
+
+
+4.8.0 (2014-07-10)
+++++++++++++++++++
+
+* Introduced new setting `set_placeholder`, default True
+
+
+4.7.1 (2014-07-07)
+++++++++++++++++++
+
+* Fixed rendering of various sizes (as introduced in 4.7.0)
+* Upgrade to Bootstrap 3.2.0 as default version
+
+
 4.7.0 (2014-06-04)
 ++++++++++++++++++
 

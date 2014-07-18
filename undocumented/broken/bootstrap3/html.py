@@ -17,14 +17,16 @@ def split_css_classes(css_classes):
     return [c for c in classes_list if c]
 
 
-def add_css_class(css_classes, css_class):
+def add_css_class(css_classes, css_class, prepend=False):
     """
     Add a CSS class to a string of CSS classes
     """
     classes_list = split_css_classes(css_classes)
-    for c in split_css_classes(css_class):
-        if c not in classes_list:
-            classes_list.append(c)
+    classes_to_add = [c for c in split_css_classes(css_class) if c not in classes_list]
+    if prepend:
+        classes_list = classes_to_add + classes_list
+    else:
+        classes_list += classes_to_add
     return ' '.join(classes_list)
 
 
@@ -41,7 +43,7 @@ def render_link_tag(url, rel='stylesheet', media='all'):
     """
     Build a link tag
     """
-    return render_tag('link', attrs = {'href': url, 'rel': rel, 'media': media}, close=False)
+    return render_tag('link', attrs={'href': url, 'rel': rel, 'media': media}, close=False)
 
 
 def render_tag(tag, attrs=None, content=None, close=True):

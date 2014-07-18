@@ -8,7 +8,7 @@ from django.utils.importlib import import_module
 # Default settings
 BOOTSTRAP3_DEFAULTS = {
     'jquery_url': '//code.jquery.com/jquery.min.js',
-    'base_url': '//netdna.bootstrapcdn.com/bootstrap/3.1.1/',
+    'base_url': '//netdna.bootstrapcdn.com/bootstrap/3.2.0/',
     'css_url': None,
     'theme_url': None,
     'javascript_url': None,
@@ -17,9 +17,10 @@ BOOTSTRAP3_DEFAULTS = {
     'horizontal_label_class': 'col-md-2',
     'horizontal_field_class': 'col-md-4',
     'set_required': True,
+    'set_placeholder': True,
     'form_required_class': '',
     'form_error_class': '',
-    'formset_renderers':{
+    'formset_renderers': {
         'default': 'bootstrap3.renderers.FormsetRenderer',
     },
     'form_renderers': {

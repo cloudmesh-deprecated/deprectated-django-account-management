@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@5=i3pg9m^d5-j)v-jydh681m-tf!&cw3*()a=x557+m_ygf(d'
+SECRET_KEY = '_ty*jlfdjs1l1i3!uy#8!op6(dmx_sn@8^qncurj=paqs14%pj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -30,14 +30,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django_admin_bootstrapped',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cloudmesh_app',
+    'cloudmesh_django',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -77,9 +76,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-#
-# Templates
-# 
 
 TEMPLATE_CONTEXT_PROCESSORS = (
         'django.contrib.auth.context_processors.auth',
@@ -97,12 +93,10 @@ TEMPLATE_LOADERS = (
 )
 
 TEMPLATE_DIRS = (
-    'templates',
+        'templates',
 )
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = 'cloudmesh_django/cloudmesh_django/static/'
+
+STATIC_ROOT = 'static/'
