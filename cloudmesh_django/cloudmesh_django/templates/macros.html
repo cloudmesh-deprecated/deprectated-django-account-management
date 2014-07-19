@@ -1,0 +1,27 @@
+{% load macros %}
+
+{% macro macro_text_input label="Label" id="id" value="Value" type="text"%}
+<div class="control-group">
+  <label class="control-label" for="textinput">{{ label }}</label>
+  <div class="controls">
+    <input id="{{ id }}" name="{{ id }}" type="{{ type }}" placeholder="{{ value }}" class="input-xlarge">
+    {% if help != "" %}<p class="help-block">{{ help }}</p>{% endif %}
+  </div>
+</div>
+{% endmacro %}
+
+{% macro macro_text_area label="Label" id="id" value="Value" type="text"%}
+<!-- Textarea -->
+<div class="control-group">
+  <label class="control-label" for="{{ id }}">{{ label }}</label>
+  <div class="controls">                     
+    <textarea id="{{ id }}" name="{{ id }}">{{ value }}</textarea>
+  </div>
+  {% if help != "" %}<p class="help-block">{{ help }}</p>{% endif %}
+</div>
+{% endmacro %}
+
+{% macro macro_options options="[]"%}
+{{ options }}
+
+{% endmacro %}

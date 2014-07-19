@@ -6,7 +6,10 @@ def index(request):
 def list(request):
         return render(request, 'list.html',)
 
-def project_add(request):
-        return render(request, 'project_add.html',)
+def project_apply(request):
+        return render(request, 'project_apply.html',)
+
+def user_apply(request):
+        return render(request, 'user_apply.html',)
 
     

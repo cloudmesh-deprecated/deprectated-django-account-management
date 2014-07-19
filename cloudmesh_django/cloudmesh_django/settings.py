@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cloudmesh_django',
+    'macros',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -88,9 +89,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 TEMPLATE_LOADERS = (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    'django_jinja.loaders.AppLoader',
+    'django_jinja.loaders.FileSystemLoader',        
 )
+
+INSTALLED_APPS += ('django_jinja',)
 
 TEMPLATE_DIRS = (
         'templates',

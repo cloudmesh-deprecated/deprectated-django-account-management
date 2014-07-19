@@ -1,4 +1,6 @@
 {% extends "simple.html" %}
+{% load macros %}
+{% loadmacros "macros.html" %}
 
 {% block content %}
 
@@ -16,47 +18,11 @@
   </div>
 </div>
 
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="title">Title</label>
-  <div class="controls">
-    <input id="title" name="title" type="text" placeholder="placeholder" class="input-xlarge">
-    
-  </div>
-</div>
-
-<!-- Textarea -->
-<div class="control-group">
-  <label class="control-label" for="abstract">Abstract</label>
-  <div class="controls">                     
-    <textarea id="abstract" name="abstract">default text</textarea>
-  </div>
-</div>
-
-<!-- Textarea -->
-<div class="control-group">
-  <label class="control-label" for="impact">Broader Impact</label>
-  <div class="controls">                     
-    <textarea id="impact" name="impact">default text</textarea>
-  </div>
-</div>
-
-<!-- Textarea -->
-<div class="control-group">
-  <label class="control-label" for="scale">Scale of use</label>
-  <div class="controls">                     
-    <textarea id="scale" name="scale">default text</textarea>
-  </div>
-</div>
-
-<!-- Password input-->
-<div class="control-group">
-  <label class="control-label" for="joinpassword">Join Password</label>
-  <div class="controls">
-    <input id="joinpassword" name="joinpassword" type="password" placeholder="none" class="input-xlarge">
-    <p class="help-block">put in a possword for user join request</p>
-  </div>
-</div>
+{% usemacro macro_text_input label="Title" id="title" value="" %}
+{% usemacro macro_text_area  label="Abstract" id="abstract" value="" %}
+{% usemacro macro_text_area  label="Broader Impact" id="impact" value="" %}
+{% usemacro macro_text_area  label="Scale of use" id="scale" value="" %}
+{% usemacro macro_text_input label="Join Password" id="password" value="" type="password"%}
 
 <!-- Multiple Checkboxes -->
 <div class="control-group">

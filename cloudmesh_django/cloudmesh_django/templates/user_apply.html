@@ -1,0 +1,46 @@
+{% extends "simple.html" %}
+{% load macros %}
+{% loadmacros "macros.html" %}
+
+{% block content %}
+
+<form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend>User Application</legend>
+
+{% usemacro macro_text_input label="Firstname" id="firstname" value="" %}
+{% usemacro macro_text_input label="Lastname" id="lastname" value="" %}
+{% usemacro macro_text_input label="Password" id="password" value="" type="password"%}
+{% usemacro macro_text_area  label="Address" id="address" value="" %}
+
+
+<!-- Multiple Checkboxes -->
+<div class="control-group">
+  <label class="control-label" for="checkboxes">Checkboxes</label>
+  <div class="controls">
+    <label class="checkbox" for="checkboxes-0">
+      <input type="checkbox" name="checkboxes" id="checkboxes-0" value="Option one">
+      Option one
+    </label>
+    <label class="checkbox" for="checkboxes-1">
+      <input type="checkbox" name="checkboxes" id="checkboxes-1" value="Option two">
+      Option two
+    </label>
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="control-group">
+  <label class="control-label" for="button_submit"></label>
+  <div class="controls">
+    <button id="button_submit" name="button_submit" class="btn btn-success">Submit</button>
+    <button id="button_cancel" name="button_cancel" class="btn btn-inverse">Cancel</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+{% endblock %}
