@@ -48,35 +48,8 @@ def generate_users(n):
         users.add(data)    
 
 
-
 def random_project():
-    firstname = fake.first_name()    
-    data = User(
-        title = fake.prefix(),
-        firstname = firstname,
-        lastname = fake.last_name(),
-        email = fake.safe_email(),
-        username = firstname.lower(),
-        active = True,
-        password = fake.word(),
-        phone = fake.phone_number(),
-        department = "IT",
-        institution = fake.company(),
-        address = fake.address(),
-        country = "USA",
-        citizenship = "US",
-        bio = fake.paragraph(),
-    )
-    return data
-
-
-
-        
-      
-
-
-def random_project():
-    """This function adds projects"""
+    """generates a random project"""
     data = Project(
     	    title = "Django",
     	    abstract = fake.paragraph(),
