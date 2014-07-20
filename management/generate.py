@@ -51,7 +51,7 @@ def generate_users(n):
 def random_project():
     """generates a random project"""
     data = Project(
-    	    title = "Django",
+    	    title = fake.sentence()[:-1],
     	    abstract = fake.paragraph(),
             intellectual_merit = fake.paragraph(),
             broader_impact = fake.paragraph(),

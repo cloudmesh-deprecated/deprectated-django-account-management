@@ -256,13 +256,14 @@ class Projects(object):
             
     def find(self, title = None):
     	"""Finds a project by its title"""
-    	print "\n\t\t--Projects--\n"
+    	print "Projects"
         if title == None:
             for project in Project.objects:
                 print 80 * "="
-                print project.title, ": ", project.to_json()
+                print project.title                
                 print 80 * "="
-                print
+                pprint(project.to_json(), width=80)
+            print 80 * "="                
     	else:
             found = Project.objects(title = title)
             if found.count() > 0:
