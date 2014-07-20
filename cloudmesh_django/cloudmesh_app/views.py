@@ -29,7 +29,11 @@ def user_approve(request):
     return render(request, 'user_approve.html',)
 
 def user_manage(request):
-    return render(request, 'user_manage.html',)
+    connect ('user', port=27777)
+    users = User.objects()
+    return render(request, 'user_manage.html', {"users": users})
+
+
 
 #
 # PROJECTS
@@ -54,6 +58,9 @@ def project_members(request):
     return render(request, 'project_members.html',)
 
 def project_manage(request):
-    return render(request, 'project_manage.html',)
+    connect ('user', port=27777)
+    projects = Project.objects()
+    print projects
+    return render(request, 'project_manage.html', {"projects": projects})
 
     

@@ -4,13 +4,16 @@
 <legend>User List</legend>
 
 <table class="table table-condensed">
+  <thead>
   <tr>
     <th> Firstname </th>
     <th> Lastname </th>
     <th> Email </th>
     <th> Username </th>            
   </tr>
+  </thead>
 
+   <tbody>
 {% for user in users %}
   <tr>
     <td>{{ user.firstname }}</td>
@@ -19,6 +22,7 @@
     <td>{{ user.username }}</td>            
   </tr>
 {% endfor %}
+  </tbody>
 </table>
   
 {% endblock %}
