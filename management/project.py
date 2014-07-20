@@ -203,11 +203,13 @@ class Projects(object):
     
     def add_member(self, user_name, project):
     	"""adds members to a particular project"""
+    	__found = False
     	for user in User.objects:
     	    if user.username == user_name:
     	    	project.members.append(user)
-    	    else:
-                print "ERROR: The user `{0}` has not registered with FutureGrid".format(user_name)
+    	    	__found == True
+    	if __found == False:
+            print "ERROR: The user `{0}` has not registered with FutureGrid".format(user_name)
     
     def find_all_members(self, project):
     	"""returns all the members of a particular project"""
@@ -216,13 +218,14 @@ class Projects(object):
     def verify_user(self, user_name, project):
     	"""Verifies that a user has been registered or stored in the 
     	database before adding the user to the members and project lead"""
-        for user in User.objects:
+        __found = False
+	for user in User.objects:
     	    if user.username == user_name:
     	    	project.lead = user
     	    	project.members.append(user)
-    	    	return True
-    	    else:
-                return False
+    	    	__found = True
+    	
+        return __found
             
     def find_by_id(self, id):
     	"""Finds a project by the given id"""
@@ -251,13 +254,21 @@ class Projects(object):
         else:
             return None
             
-    def find_by_title(self, title):
+    def find(self, title = None):
     	"""Finds a project by its title"""
-    	found = Project.objects(title = title)
-        if found.count() > 0:
-            return found[0].to_json()
-        else:
-            return None
+    	print "\n\t\t--Projects--\n"
+        if title == None:
+            for project in Project.objects:
+                print 80 * "="
+                print project.title, ": ", project.to_json()
+                print 80 * "="
+                print
+    	else:
+            found = Project.objects(title = title)
+            if found.count() > 0:
+                return found[0].to_json()
+            else:
+                return None
 
     def clear(self):
         """removes all projects from the database"""
@@ -297,15 +308,15 @@ def main():
     
     projects.add_member("gregvon1", django)
 
-    print "-"*80
-    print projects.find_by_category('FutureGrid')
-    print "-"*80
-    print
+    #print "-"*80
+    #print projects.find_by_category('FutureGrid')
+    #print "-"*80
+    #print
 
   
     
     use = User.objects(username = "gregvon1")
-    print use
+    #print use
              
 
 

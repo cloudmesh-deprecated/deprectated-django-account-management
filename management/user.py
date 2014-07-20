@@ -175,8 +175,7 @@ class Users(object):
         user.set_date_deactivate()
         user.is_active()
         if self.verify(user):
-            print "A user is added"
-            print user.to_json()
+            #print user.to_json()
             user.save()
         else:
             print "ERROR: a user with the e-mail `{0}` already exists".format(user.email)
@@ -184,14 +183,17 @@ class Users(object):
     def verify(self, user):
         """verifies if the user can be added. Checks if the e-mail is unique. Returns true."""
 	_user = User.objects(email=user.email)
-        print _user.count() == 0
         return _user.count() == 0
 
     def find(self, email=None):
         """returns the users based on the given query"""
+        print "\n\t\t--Users--\n"
         if email == None:
-            found = User.objects()
-            return found
+            for user in User.objects:
+                print 80 * "="
+                print user.firstname, ": ", user.to_json()
+                print 80 * "="
+                print
     	else:
             found = User.objects(email=email)
             if found.count() > 0:
@@ -292,7 +294,7 @@ def main():
     print
     print users.find_user("gregvon12")
     
-    users.find()
+    #users.find()
 
 
 if __name__ == "__main__":
