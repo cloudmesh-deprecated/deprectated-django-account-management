@@ -13,9 +13,11 @@ start:
 stop:
 	killall python
 
-view:
+server:
 	python manage.py runserver
-	open http://127.0.0.1:8000/admin
+
+view: 
+	open http://127.0.0.1:8000
 
 clean:
 	rm -f *.sqlite3

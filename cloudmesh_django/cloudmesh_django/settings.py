@@ -91,11 +91,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-    'django_jinja.loaders.AppLoader',
-    'django_jinja.loaders.FileSystemLoader',        
+    #'django_jinja.loaders.AppLoader',
+    #'django_jinja.loaders.FileSystemLoader',        
 )
 
-INSTALLED_APPS += ('django_jinja',)
+#INSTALLED_APPS += ('django_jinja',)
 
 TEMPLATE_DIRS = (
         'templates',

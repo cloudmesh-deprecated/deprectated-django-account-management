@@ -1,11 +1,24 @@
 {% extends "simple.html" %}
 
 {% block content %}
-<div class="alert alert-info" role="alert">
-  <h1>Not yet implemented</h1>
-</div>
+<legend>User List</legend>
 
-The team is working hard on this and this page is expected to be
-finished by July 25th.
+<table class="table table-condensed">
+  <tr>
+    <th> Firstname </th>
+    <th> Lastname </th>
+    <th> Email </th>
+    <th> Username </th>            
+  </tr>
 
+{% for user in users %}
+  <tr>
+    <td>{{ user.firstname }}</td>
+    <td>{{ user.lastname }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.username }}</td>            
+  </tr>
+{% endfor %}
+</table>
+  
 {% endblock %}
