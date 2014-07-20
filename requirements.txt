@@ -8,3 +8,4 @@ sphinx_rtd_theme
 django-bootstrap3
 django-jinja
 django-templates-macros
+fake-factory

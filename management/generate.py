@@ -2,6 +2,8 @@ from mongoengine import *
 #from other.user_dict import *
 from user import User, Users
 from project import Project, Projects
+import sys
+from faker import Factory
 
 connect ('user', port=27777)
 
@@ -12,66 +14,46 @@ connect ('user', port=27777)
 users = Users()
 projects = Projects()
 
-def add_users():
-    """This function adds 10 users"""
-    users.clear()
-    
-    gregor = User(
-        title = "",
-        firstname = "Gregor",
-        lastname = "von Laszewski",
-        email = "laszewski@gmail.com",
-        username = "gregvon",
+
+# http://www.joke2k.net/faker/
+
+fake = Factory.create()
+
+def random_user():
+    firstname = fake.first_name()    
+    data = User(
+        title = fake.prefix(),
+        firstname = firstname,
+        lastname = fake.last_name(),
+        email = fake.safe_email(),
+        username = firstname.lower(),
         active = True,
-        password = "none",
-        phone = "6625768900",
-        department = "School of Informatics and Computing",
-        institution = "Indiana University",
-        address = "Bloomington",
+        password = fake.word(),
+        phone = fake.phone_number(),
+        department = "IT",
+        institution = fake.company(),
+        address = fake.address(),
         country = "USA",
-        citizenship = "Germany",
-        bio = "I work at Indiana University Bloomington",
+        citizenship = "US",
+        bio = fake.paragraph(),
     )
-    users.add(gregor)
-        
-        
-    ifeanyi = User(
-        title = "",
-        firstname = "Ifeanyi",
-        lastname = "Onyenweaku",
-        email = "rowlandifeanyi17@gmail.com",
-        username = "gregvon",
-        active = True,
-        password = "none",
-        phone = "6625768900",
-        department = "School of Informatics and Computing",
-        institution = "Indiana University",
-        address = "Bloomington",
-        country = "USA",
-        citizenship = "Nigeria",
-        bio = "I research at Indiana University Bloomington"  
-    )
-    users.add(ifeanyi)
-        
-    fugang = User(
-        title = "",
-        firstname = "Fungang",
-        lastname = "Nelson",
-        email = "nelsonfug@gmail.com",
-        username = "fugang",
-        active = True,
-        password = "none",
-        phone = "6627865400",
-        department = "School of Informatics and Computing",
-        institution = "Indiana University",
-        address = "Bloomington",
-        country = "USA",
-        citizenship = "China",
-        bio = "I work at Indiana University Bloomington"  
-    )
-    users.add(fugang)
+    return data
+
+
+print 70 * "="
+users.clear()
+for i in range(0,10):
+    data = random_user()
+    print data
+    users.add(data)    
+
+print 70 * "="
+print users.find()
+
+sys.exit()
+
       
-    users.find()
+
 
 def add_projects():
     """This function adds projects"""

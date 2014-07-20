@@ -1,6 +1,7 @@
 from mongoengine import *
 import datetime, time
 import hashlib, uuid
+from pprint import pprint
 #    mongod --noauth --dbpath . --port 27777
 
 port=27777
@@ -158,6 +159,7 @@ class Users(object):
         number is added and checked if this new name is tacken, the first name
         with added number is used as a username
         """
+        proposal = proposal.lower()
         num = 1
         same = True
         while (same == True):
@@ -187,19 +189,19 @@ class Users(object):
 
     def find(self, email=None):
         """returns the users based on the given query"""
-        print "\n\t\t--Users--\n"
+        print "Users"
         if email == None:
             for user in User.objects:
                 print 80 * "="
-                print user.firstname, ": ", user.to_json()
-                print 80 * "="
-                print
+                pprint (user.to_json())
+            print 80 * "="                
     	else:
             found = User.objects(email=email)
             if found.count() > 0:
                 return found[0].to_json()
             else:
                 return None
+            
     def find_user(self, username):
     	"""returns a user based on the username"""
     	for user in User.objects:
