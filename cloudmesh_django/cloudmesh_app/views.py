@@ -6,11 +6,23 @@ from cloudmesh_management.user import User, Users
 from cloudmesh_management.project import Project, Projects
 from cloudmesh_app.forms import ContactForm
 from cloudmesh_app.forms import ApplyUserForm, ApplyProjectForm
+
 from django.views.generic.edit import FormView
 from django.shortcuts import render
 
+class ApplyProjectView(FormView):
+	template_name = 'project_apply_new.html'
+	form_class = ApplyProjectForm
+	success_url = '/thanks/'
+	
+	def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+            form.do_action()
+            return super(ApplyProjectView, self).form_valid(form)
+
 class ApplyUserView(FormView):
-    template_name = 'project_apply_new.html'
+    template_name = 'user_apply_new.html'
     form_class = ApplyUserForm
     success_url = '/thanks/'
 
@@ -88,20 +100,12 @@ def user_manage(request):
 # PROJECTS
 #
 
-def ApplyProjectView(FormView):
-	template_name = 'project_apply_new.html'
-	form_class = ApplyProjectForm
-	success_url = '/thanks/'
-	
-	def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-            form.do_action()
-            return super(ApplyProjectView, self).form_valid(form)
-	
+
+"""
 def project_apply(request):
     return render(request, 'project_apply.html',)
-
+"""
+        
 def project_list(request):
     connect ('user', port=27777)
     projects = Project.objects()
