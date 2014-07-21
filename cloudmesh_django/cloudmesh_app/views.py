@@ -2,13 +2,31 @@ from mongoengine import connect
 from cloudmesh_management.user import User, Users
 from cloudmesh_management.project import Project, Projects
 
+
+from cloudmesh_app.forms import ContactForm
+from django.views.generic.edit import FormView
 from django.shortcuts import render
+
+class ContactView(FormView):
+    template_name = 'contact.html'
+    form_class = ContactForm
+    success_url = '/thanks/'
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.handle_success()
+        return super(ContactView, self).form_valid(form)
+
 
 def index(request):
     return render(request, 'index.html',)
 
 def list(request):
     return render(request, 'list.html',)
+
+def thanks_msg(request):
+    return render(request, 'thanks.html',)
 
 def project_apply(request):
     return render(request, 'project_apply.html',)

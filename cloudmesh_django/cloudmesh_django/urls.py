@@ -2,6 +2,8 @@ from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
 
+from cloudmesh_app.views import ContactView
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -26,6 +28,9 @@ urlpatterns = patterns('',
     url(r'^project/list/', 'cloudmesh_app.views.project_list', name = 'project_list'),
     url(r'^project/manage/', 'cloudmesh_app.views.project_manage', name = 'project_manage'),
     url(r'^project/results/', 'cloudmesh_app.views.project_result', name = 'project_results'),
-    url(r'^project/members/', 'cloudmesh_app.views.project_members', name = 'project_members'),                           
-    
+    url(r'^project/members/', 'cloudmesh_app.views.project_members', name = 'project_members'),
+    url(r'^thanks/', 'cloudmesh_app.views.thanks_msg', name = 'thanks_msg'),                               
+
+    #url(r'^contact$', 'cloudmesh_app.views.project_members', name = 'project_members'),                               
+    url(r'^contact$', ContactView.as_view(), name='contact_add')
 )
