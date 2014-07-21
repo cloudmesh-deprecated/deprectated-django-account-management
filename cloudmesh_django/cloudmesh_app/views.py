@@ -7,8 +7,22 @@ from cloudmesh_management.project import Project, Projects
 
 
 from cloudmesh_app.forms import ContactForm
+from cloudmesh_app.forms import ApplyUserForm
+
 from django.views.generic.edit import FormView
 from django.shortcuts import render
+
+class ApplyUserView(FormView):
+    template_name = 'project_apply_new.html'
+    form_class = ApplyUserForm
+    success_url = '/thanks/'
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        form.do_action()
+        return super(ApplyUserView, self).form_valid(form)
+
 
 class ContactView(FormView):
     template_name = 'contact.html'
@@ -18,7 +32,7 @@ class ContactView(FormView):
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
-        form.handle_success()
+        form.do_action()
         return super(ContactView, self).form_valid(form)
 
 
@@ -38,17 +52,24 @@ def project_apply(request):
 # USERS
 #
 
+
+def user_apply(request):
+    return render(request, 'user_apply.html',)
+    
+"""
 def user_apply(request):
     if request.method == 'POST':
         firstname = request.POST['firstname']
         user = User(firstname=firstname)
         user.save()
-        
+        return render(request, 'thanks.html',)
+    
 	connect ('user', port=27777)
 	users = User.objects()
         return HttpResponse('user_apply.html',
                             {"users":users}, 
                             context_instance=RequestContext(request))
+"""
 
 def user_list(request):
 
@@ -95,3 +116,5 @@ def project_manage(request):
     return render(request, 'project_manage.html', {"projects": projects})
 
     
+
+

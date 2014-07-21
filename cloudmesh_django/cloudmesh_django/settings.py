@@ -61,13 +61,11 @@ SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
 #
 # DO NOT USE MONGO ADMIN
 #
-from mongoengine import connect
+#from mongoengine import connect
 #MONGO_DATABASE_NAME = 'user'
 #MONGO_HOST = 'cannot be set here'
-MONGO_PORT = 27777
-connect('mongodb', port=27777)
-
-
+#MONGO_PORT = 27777
+#connect('mongodb', port=27777)
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -93,8 +91,8 @@ DATABASES = {
     }
 }
 
-from mongoengine import connect
-connect('mongodb')
+#from mongoengine import connect
+#connect('mongodb')
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
