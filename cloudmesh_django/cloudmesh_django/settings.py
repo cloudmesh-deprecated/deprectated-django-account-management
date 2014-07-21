@@ -61,11 +61,11 @@ SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
 #
 # DO NOT USE MONGO ADMIN
 #
-#from mongoengine import connect
+from mongoengine import connect
 #MONGO_DATABASE_NAME = 'user'
 #MONGO_HOST = 'cannot be set here'
-#MONGO_PORT = 27777
-#connect('user', port=27777)
+MONGO_PORT = 27777
+connect('mongodb', port=27777)
 
 
 
@@ -88,10 +88,13 @@ WSGI_APPLICATION = 'cloudmesh_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.dummy',
-        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+from mongoengine import connect
+connect('mongodb')
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
