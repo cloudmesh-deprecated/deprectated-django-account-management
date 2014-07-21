@@ -63,6 +63,7 @@ class User(CloudmeshObject):
                 ("institution", self.institution),
                 ("department", self.department),
                 ("address", self.address),
+                ("country", self.country),                
                 ("advisor_contact", self.advisor_contact),
                 ("date_modified", self.date_modified),
                 ("date_created", self.date_created),

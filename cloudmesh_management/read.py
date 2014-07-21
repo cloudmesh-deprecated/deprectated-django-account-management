@@ -30,7 +30,12 @@ def main():
     user = read_user(FILENAME)
 
     print 70 * "="
-    print user.json()
+    pprint (user.json())
+    user.save()
+
+    user.update (**{"set__username": "Hallo"})
+    user.save()
+    print User.objects(username="Hallo")
     
 if __name__ == "__main__":
     main()
