@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Cloudmesh Django
 ========================
 
@@ -9,7 +8,7 @@ Code:
 Doc: 
 
 * http://cloudmesh.github.io/management
-=======
+
 ============================
 Welcome to django-bootstrap3
 ============================
@@ -100,4 +99,3 @@ Author
 ------
 
 My name is Dylan Verheul, you can reach me at dylan@dyve.net or follow me on Twitter (http://twitter.com/dyve). If you like this project, you can `support me on GitTip <https://www.gittip.com/dyve/>`_.
->>>>>>> 1cba0c85621efa61499076f20e47a8f60a67fae3
