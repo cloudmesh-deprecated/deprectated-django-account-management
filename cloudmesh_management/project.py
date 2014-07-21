@@ -4,7 +4,7 @@ from datetime import datetime
 import hashlib, uuid
 from user import User, Users
 #from comittee import Committee
-
+from pprint import pprint
 
 port=27777
 db_name = 'project'
@@ -92,11 +92,10 @@ class Project(Document):
     # -------------------------------------------------------------------
     # Member Fields
     # -------------------------------------------------------------------
-    username = StringField()
-    lead = ReferenceField(User, required=True)
+    lead = ReferenceField(User)
     #lead_institutional_role =  StringField(choices=INSTITUTE_ROLE, required=True)
     managers = ListField(StringField())
-    members = ListField(ReferenceField(User), default=[], required=True)
+    members = ListField(ReferenceField(User))
     alumnis = ListField(StringField())
 
     # active_members = lead u managers u members - alumnis
@@ -149,26 +148,26 @@ class Project(Document):
         """prints the project as a json object"""
          
         d ={
-             "title":self.title,
-             "abstract":self.abstract,
-             "intellectual_merit":self.intellectual_merit,    
-             "broader_impact":self.broader_impact,
-             "use_of_fg":self.use_of_fg,
-             "scale_of_use":self.scale_of_use,
-             "categories":self.categories,
-             "keywords":self.keywords,
-             "primary_discipline":self.primary_discipline,
-             "orientation":self.orientation,
-             "contact":self.contact,
-             "url":self.url,
-             "active":self.active,
-             "status":self.status,
-             "lead":self.lead,
-             "members":self.members,
-             "resources_services":self.resources_services,
-             "resources_software":self.resources_software,
-             "resources_clusters":self.resources_clusters,
-             "resources_provision":self.resources_provision
+             "title": self.title,
+             "abstract": self.abstract,
+             "intellectual_merit": self.intellectual_merit,    
+             "broader_impact": self.broader_impact,
+             "use_of_fg": self.use_of_fg,
+             "scale_of_use": self.scale_of_use,
+             "categories": self.categories,
+             "keywords": self.keywords,
+             "primary_discipline": self.primary_discipline,
+             "orientation": self.orientation,
+             "contact": self.contact,
+             "url": self.url,
+             "active": self.active,
+             "status": self.status,
+             "lead": self.lead,
+             "members": self.members,
+             "resources_services": self.resources_services,
+             "resources_software": self.resources_software,
+             "resources_clusters": self.resources_clusters,
+             "resources_provision": self.resources_provision
             }
         return d     
              
@@ -192,14 +191,15 @@ class Projects(object):
     def objects(self):
         return self.projects
     
-    def add_project(self, project):
+    def add(self, project):
     	"""adds a project to the database but only after it has been verified"""
-    	_verify = self.verify_user(project.username, project)
-    	if _verify == True:
-            #*****Add a committee here before saving, especially the default committee*******
-    	    project.save()   	
-    	else:
-            print "ERROR: The user `{0}` has not registered with FutureGrid".format(project.lead)
+        # THIS DOES NOT WORK SO I OUTCOMMENT IT
+        #_verify = self.verify_user(project)
+    	#if _verify == True:
+        #*****Add a committee here before saving, especially the default committee*******
+        project.save()   	
+    	#else:
+        #    print "ERROR: The user `{0}` has not registered with FutureGrid".format(project.lead)
     
     def add_member(self, user_name, project):
     	"""adds members to a particular project"""
@@ -256,13 +256,14 @@ class Projects(object):
             
     def find(self, title = None):
     	"""Finds a project by its title"""
-    	print "\n\t\t--Projects--\n"
+    	print "Projects"
         if title == None:
             for project in Project.objects:
                 print 80 * "="
-                print project.title, ": ", project.to_json()
+                print project.title                
                 print 80 * "="
-                print
+                pprint(project.to_json(), width=80)
+            print 80 * "="                
     	else:
             found = Project.objects(title = title)
             if found.count() > 0:
@@ -297,14 +298,15 @@ def main():
             url = 'https://www.facebook.com/',
             active = True,
             status = "pending",
-            username = "gregvon",
             resources_services = ['hadoop','openstack'],
             resources_software = ['other'],
             resources_clusters = ['india'],
             resources_provision = ['paas']
           )
     print django.abstract
-    projects.add_project(django)
+    projects.add(django)
+
+    pprint (Project.objects(title="Django"))
     
     projects.add_member("gregvon1", django)
 

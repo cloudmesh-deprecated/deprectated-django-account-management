@@ -1,19 +1,8 @@
-from mongoengine import *
-#from other.user_dict import *
 from user import User, Users
-from project import Project, Projects
 
-connect ('user', port=27777)
+def main():
 
-#----------------------------------------------------------
-#	The generate class generates 10 random users
-#----------------------------------------------------------
-
-users = Users()
-projects = Projects()
-
-def add_users():
-    """This function adds 10 users"""
+    users = Users()
     users.clear()
     
     gregor = User(
@@ -33,8 +22,14 @@ def add_users():
         bio = "I work at Indiana University Bloomington",
     )
     users.add(gregor)
-        
-        
+    print "Gregor username: ", gregor.username
+    print gregor.date_created
+    print gregor.date_deactivate
+    print
+
+
+    #print users.find("laszewski@gmail.com")
+    
     ifeanyi = User(
         title = "",
         firstname = "Ifeanyi",
@@ -50,9 +45,17 @@ def add_users():
         country = "USA",
         citizenship = "Nigeria",
         bio = "I research at Indiana University Bloomington"  
+                
+        
+        # add the other fields
     )
     users.add(ifeanyi)
-        
+    print    
+    print "ifeanyi username: ", ifeanyi.username
+    print
+
+    #print users.find("rowlandifeanyi17@gmail.com")
+    
     fugang = User(
         title = "",
         firstname = "Fungang",
@@ -68,49 +71,18 @@ def add_users():
         country = "USA",
         citizenship = "China",
         bio = "I work at Indiana University Bloomington"  
+                
+        
+        # add the other fields
     )
     users.add(fugang)
-      
-    users.find()
-
-def add_projects():
-    """This function adds projects"""
-    projects.clear()
-    django = Project(
-    	    title = "Django",
-    	    abstract = "This is my abstract",
-            intellectual_merit = "All about the merit thingy",    
-            broader_impact = "Everything is broad according ...",
-            use_of_fg = "Fg is about to use it",
-            scale_of_use = "Would be used to implement djandgo",
-            categories = ['FutureGrid'],
-            keywords = ['sqllite'],
-            primary_discipline = "other",  
-            orientation = "Lot's of all make",
-            contact = "Bloomington",
-            url = 'https://www.facebook.com/',
-            active = True,
-            status = "pending",
-            username = "gregvon",
-            resources_services = ['hadoop','openstack'],
-            resources_software = ['other'],
-            resources_clusters = ['india'],
-            resources_provision = ['paas']
-          )
-    print django.abstract
-    projects.add_project(django)
+    print    
+    print "Fugang username: "#, fugang.username
+    print
+    print users.find_user("gregvon12")
     
-    projects.add_member("gregvon1", django)
-    
-    projects.find()
+    #users.find()
 
-
-def main():
-
-    add_users()
-    add_projects()
-
-    
 
 if __name__ == "__main__":
     main()

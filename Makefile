@@ -6,18 +6,13 @@ TAG=`cat VERSION.txt`
 MANUALDIR=`pwd`
 
 
+FILE=index
+
 all:
 	make -f Makefile sphinx
 
 mongo:
 	mongod --noauth --dbpath . --port 27777
-
-
-setup:
-	make -f Makefile setupbuild_ubuntu
-
-
-FILE=index
 
 watchdog:
 	watchmedo shell-command --patterns="*.rst" --recursive --command="make; open doc/build/html/$(FILE).html" . 
@@ -28,8 +23,15 @@ c:
 f: 
 	firefox doc/build/html/index.html 
 
-view:
+doc:
 	open doc/build/html/index.html
+
+server:
+	python setup.py install
+	cd cloudmesh_django; make server 
+
+view:
+	cd cloudmesh_django; make view
 
 ######################################################################
 # GIT INTERFACES

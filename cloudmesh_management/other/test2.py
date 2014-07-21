@@ -33,7 +33,7 @@ Options:
 # https://code.google.com/p/prettytable/
 # https://code.google.com/p/prettytable/source/browse/trunk/README
 
-from management import User
+from user import User
 from management import Account
 from user_dict import *
 from docopt import docopt
