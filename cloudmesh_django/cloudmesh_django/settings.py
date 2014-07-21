@@ -58,12 +58,15 @@ SESSION_ENGINE = 'mongoengine.django.sessions'
 SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
 
 
-
+#
+# THE MONGO IP CAN OBVIOUSLY NOT BE SET HERE
+# TODO: also it must come form a separate .py via import as we use mongo connect all over.
+#
 from mongoengine import connect
 MONGO_DATABASE_NAME = 'user'
-MONGO_HOST = '129.79.135.83'
+#MONGO_HOST = 'cannot be set here'
 MONGO_PORT = 27777
-connect('user', host='129.79.135.83', port=27777)
+connect('user', port=27777)
 
 
 
