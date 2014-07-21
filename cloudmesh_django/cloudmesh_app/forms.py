@@ -5,6 +5,7 @@ from cloudmesh_management.user import User, Users
 from mongoengine import connect
 from cloudmesh_management.cloudmeshobject import update_document
 from cloudmesh_management.generate import random_user
+from cloudmesh_management.project import Project, Projects
 
 class ContactForm(forms.Form):
     name = forms.CharField()
@@ -70,4 +71,44 @@ class ApplyUserForm(forms.Form):
         except Exception, e:
             print e
             pass
+    
+    
+    
+class ApplyProjectForm(forms.Form):    
+    title = forms.CharField()
+    abstract = forms.CharField()
+    broader_impact = forms.CharField()
+    intellectual_merit = forms.CharField()
+    scale_of_use = forms.CharField()
+    use_of_fg = forms.CharField()
+    categories = forms.CharField()
+    keywords = forms.CharField()
+
+    def do_action(self):
+        print "CLEANED", self.cleaned_data
+        try:
+            connect ('user', port=27777)
+            users = Users()
+        except:
+            print "ERROR: INternal Server error, please contact the admin"
+            pass
+
+        try:
+            project = Project (
+                title = self.cleaned_data["title"],
+                abstract = self.cleaned_data["abstract"],
+                broader_impact = self.cleaned_data["broader_impact"],
+                intellectual_merit = self.cleaned_data["intellectual_merit"], 
+                scale_of_use = self.cleaned_data["scale_of_use"], 
+                use_of_fg = self.cleaned_data["use_of_fg"],
+                categories = self.cleaned_data["categories"], 
+                keywords = self.cleaned_data["keywords"], 
+                
+            )
+            projects.add(project)
+            pass
+        except Exception, e:
+            print e
+            pass
+
 
