@@ -21,10 +21,22 @@ def main():
         citizenship = "Germany",
         bio = "I work at Indiana University Bloomington",
     )
+
+    from pprint import pprint 
+    import sys
+    pprint (User.__dict__)
+    print gregor.fields()
+    print gregor.fields("optinal")
+    print gregor.fields("required")
+    print "\n".join(gregor._fields)
+    print "ORDER", gregor.order
+    sys.exit()
+    
     users.add(gregor)
     print "Gregor username: ", gregor.username
     print gregor.date_created
     print gregor.date_deactivate
+
     print
 
 

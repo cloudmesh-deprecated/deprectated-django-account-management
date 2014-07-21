@@ -14,15 +14,56 @@ def generate_password_hash(password)
     salt = uuid.uuid4().hex
     hashed_password = hashlib.sha512(password + salt).hexdigest()
     return hashed_password'''
-    
-class User(Document):
+
+class CloudmeshObject(Document):
+
+    active = BooleanField() 
+    date_modified = DateTimeField(default=datetime.datetime.now)
+    date_created = DateTimeField(default=datetime.datetime.now)
+    date_approved = None 
+    date_deactivate = DateTimeField()
+
+    meta = {'allow_inheritance': True}
+
+    def fields(self, kind=None):
+        if kind is None or kind in ["all"]:
+            return [k for k,v in self._fields.iteritems()]
+        elif kind in ["optional"]:
+            return [k for k,v in self._fields.iteritems() if not v.required]
+        elif kind in ["required"]:
+            return [k for k,v in self._fields.iteritems() if v.required]    
+
+class User(CloudmeshObject):
     """This class is sued to represent a user"""
 
+    order = [
+        "username", 
+        "title",
+        "firstname",
+        "lastname",
+        "email",
+        "url",
+        "citizenship",
+        "bio"
+        "password",
+        "phone",
+        "projects",
+        "institution",
+        "department",
+        "address",
+        "advisor_contact",
+        "date_modified",
+        "date_created",
+        "date_approved",
+        "date_deactivated"
+        ]
+    hidden = ["userid",
+              "active",
+              "message"]
     #
     # User Information
     #
     username = StringField(required=True)
-    
     title = StringField("")
     firstname = StringField(required=True)
     lastname = StringField(required=True)
@@ -32,7 +73,6 @@ class User(Document):
     bio = StringField(required=True)
     password = StringField(required=True)
     userid = UUIDField()
-    active = BooleanField() # and data of now is less date deactivate
     phone = StringField(required=True)
     
     projects = StringField() 
@@ -53,11 +93,6 @@ class User(Document):
     #
     message = ListField(StringField())
     
-
-    date_modified = DateTimeField(default=datetime.datetime.now)
-    date_created = DateTimeField(default=datetime.datetime.now)
-    date_approved = None 
-    date_deactivate = DateTimeField()
 
     '''
     def save(self,db):
