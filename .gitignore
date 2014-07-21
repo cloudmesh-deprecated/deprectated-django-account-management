@@ -3,6 +3,7 @@ __pycache__/
 *.sqlite3
 *.py[cod]
 .#*
+\#*
 
 # exclude emacs bak
 *~
