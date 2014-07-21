@@ -193,13 +193,13 @@ class Projects(object):
     
     def add(self, project):
     	"""adds a project to the database but only after it has been verified"""
-        # THIS DOES NOT WORK SO I OUTCOMMENT IT
-        #_verify = self.verify_user(project)
+        # THIS DOES NOT WORK SO I OUTCOMMENT IT: Response= Figured out the problem so I made the correction.
+        #_verify = self.verify_user(project.lead, project)
     	#if _verify == True:
-        #*****Add a committee here before saving, especially the default committee*******
+            #*****Add a committee here before saving, especially the default committee*******
         project.save()   	
     	#else:
-        #    print "ERROR: The user `{0}` has not registered with FutureGrid".format(project.lead)
+            #print "ERROR: The user `{0}` has not registered with FutureGrid".format(project.lead)
     
     def add_member(self, user_name, project):
     	"""adds members to a particular project"""
@@ -240,8 +240,6 @@ class Projects(object):
     	"""Finds and returns all project in that category"""
     	found = Project.objects(categories=category)
         if found.count() > 0:
-            print "="*70
-            print
             return found[0].to_json()
         else:
             return None   
@@ -258,12 +256,7 @@ class Projects(object):
     	"""Finds a project by its title"""
     	print "Projects"
         if title == None:
-            for project in Project.objects:
-                print 80 * "="
-                print project.title                
-                print 80 * "="
-                pprint(project.to_json(), width=80)
-            print 80 * "="                
+            return Project.objects()               
     	else:
             found = Project.objects(title = title)
             if found.count() > 0:
@@ -276,52 +269,4 @@ class Projects(object):
         for project in Project.objects:
             project.delete()
     
-
-def main():
-    
-    users = Users()
-    projects = Projects()
-    projects.clear()
-    
-    django = Project(
-    	    title = "Django",
-    	    abstract = "This is my abstract",
-            intellectual_merit = "All about the merit thingy",    
-            broader_impact = "Everything is broad according ...",
-            use_of_fg = "Fg is about to use it",
-            scale_of_use = "Would be used to implement djandgo",
-            categories = ['FutureGrid'],
-            keywords = ['sqllite'],
-            primary_discipline = "other",  
-            orientation = "Lot's of all make",
-            contact = "Bloomington",
-            url = 'https://www.facebook.com/',
-            active = True,
-            status = "pending",
-            resources_services = ['hadoop','openstack'],
-            resources_software = ['other'],
-            resources_clusters = ['india'],
-            resources_provision = ['paas']
-          )
-    print django.abstract
-    projects.add(django)
-
-    pprint (Project.objects(title="Django"))
-    
-    projects.add_member("gregvon1", django)
-
-    #print "-"*80
-    #print projects.find_by_category('FutureGrid')
-    #print "-"*80
-    #print
-
-  
-    
-    use = User.objects(username = "gregvon1")
-    #print use
-             
-
-
-if __name__ == "__main__":
-    main()
              

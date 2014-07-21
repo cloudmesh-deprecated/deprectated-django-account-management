@@ -1,6 +1,7 @@
 from mongoengine import *
 import datetime, time
 import hashlib, uuid
+import yaml
 from pprint import pprint
 #    mongod --noauth --dbpath . --port 27777
 
@@ -25,7 +26,9 @@ class CloudmeshObject(Document):
 
     meta = {'allow_inheritance': True}
 
+
     def fields(self, kind=None):
+    	#I tested this out and it does not return anything as supposed to
         if kind is None or kind in ["all"]:
             return [k for k,v in self._fields.iteritems()]
         elif kind in ["optional"]:
@@ -44,7 +47,7 @@ class User(CloudmeshObject):
         "email",
         "url",
         "citizenship",
-        "bio"
+        "bio",
         "password",
         "phone",
         "projects",
@@ -98,12 +101,6 @@ class User(CloudmeshObject):
     def save(self,db):
     	db.put({"firname":user.firname,...}_)
     '''
-
-    def read(filename):
-        stream = open("example.yaml", 'r')
-        data = yaml.load(stream)
-        # TODO: implement me
-        pass
         	
     def is_active(self):
         """finds if a user is active or not"""
@@ -227,7 +224,12 @@ class Users(object):
             user.save()
         else:
             print "ERROR: a user with the e-mail `{0}` already exists".format(user.email)
-            
+    
+    def read(self, filename):
+        stream = open(filename, 'r')
+        data = yaml.load(stream)
+        return data['User']
+    
     def verify(self, user):
         """verifies if the user can be added. Checks if the e-mail is unique. Returns true."""
 	_user = User.objects(email=user.email)
