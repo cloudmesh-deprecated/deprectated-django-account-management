@@ -2,46 +2,32 @@
 
 {% block herounit %}
 	    <h1>Cloudmesh Management</h1>
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+            <p>The cloudmesh management framework is a prototype to
+	    manage users, projects, and project comittee members in
+	    django with a mongo db backend.<p>
             <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
- {% endblock %}
+{% endblock %}
+
+{% block panel11 %}
+  <h2>Users</h2>
+     <p> some descriptions what users we have</p>
+     <p><a class="btn" href="#">View details &raquo;</a></p>
+{% endblock %}
+
+{% block panel12 %}
+  <h2>Projects</h2>
+     <p> some descriptions what users we have</p>
+     <p><a class="btn" href="#">View details &raquo;</a></p>
+{% endblock %}
+
+{% block panel13 %}
+  <h2>Committee</h2>
+     <p> some descriptions what users we have</p>
+     <p><a class="btn" href="#">View details &raquo;</a></p>
+{% endblock %}
+
 
 {% block content %}
-<div class="hero-unit">
-    <h1>Ready to Rango</h1>
-    <p>Find, Add, Share and Rango useful links and resources.</p>
-</div>
 
-<div class="row-fluid">
-    <div class="span6">
-        <h2>Top Five Categories</h2>
-        {% if categories %}
-        <ul>
-            {% for category in categories %}
-            <li><a href="/rango/category/{{ category.url }}">{{ category.name }}</a></li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <strong>No categories at present.</strong>
-        {% endif %}
-
-    </div>
-    <!--/span-->
-    <div class="span6">
-        <h2>Top Five Pages</h2>
-        {% if pages %}
-        <ul>
-            {% for page in pages %}
-            <li><a href="{{ page.url}}">{{ page.title }}</a> - {{ page.category }} ({{ page.views }} view(s))</li>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <strong>No pages at present.</strong>
-        {% endif %}
-
-    </div>
-    <!--/span-->
-</div>
-<!--/row-->
 {% endblock %}
 
