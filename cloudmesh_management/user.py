@@ -246,10 +246,11 @@ class Users(object):
             
     def find_user(self, username):
     	"""returns a user based on the username"""
-    	for user in User.objects:
-    	    if user.username == username:
-    	        return user
-    	    	break
+        return User.object(username=username)
+    	#for user in User.objects:
+    	#    if user.username == username:
+    	#        return user
+    	#    	break
     	    	
     def clear(self):
         """removes all elements form the mongo db that are users"""
