@@ -39,19 +39,19 @@ INSTALLED_APPS = (
     'cloudmesh_django',
     'macros',
     'django_jinja',
-    'mongoadmin',
-    'mongoengine.django.mongo_auth',
+#    'mongoadmin',
+#    'mongoengine.django.mongo_auth',
     'rest_framework',
 )
 
-MONGOADMIN_OVERRIDE_ADMIN = True
+#MONGOADMIN_OVERRIDE_ADMIN = True
 
-AUTHENTICATION_BACKENDS = ( 
-           'mongoengine.django.auth.MongoEngineBackend',
- )
+#AUTHENTICATION_BACKENDS = ( 
+#           'mongoengine.django.auth.MongoEngineBackend',
+# )
  
-AUTH_USER_MODEL = 'mongo_auth.MongoUser'
-MONGOENGINE_USER_DOCUMENT = 'mongoengine.django.auth.User'
+#AUTH_USER_MODEL = 'mongo_auth.MongoUser'
+#MONGOENGINE_USER_DOCUMENT = 'mongoengine.django.auth.User'
 
 
 SESSION_ENGINE = 'mongoengine.django.sessions'
@@ -59,14 +59,13 @@ SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
 
 
 #
-# THE MONGO IP CAN OBVIOUSLY NOT BE SET HERE
-# TODO: also it must come form a separate .py via import as we use mongo connect all over.
+# DO NOT USE MONGO ADMIN
 #
-from mongoengine import connect
-MONGO_DATABASE_NAME = 'user'
+#from mongoengine import connect
+#MONGO_DATABASE_NAME = 'user'
 #MONGO_HOST = 'cannot be set here'
-MONGO_PORT = 27777
-connect('user', port=27777)
+#MONGO_PORT = 27777
+#connect('user', port=27777)
 
 
 
