@@ -98,7 +98,13 @@ class User(CloudmeshObject):
     def save(self,db):
     	db.put({"firname":user.firname,...}_)
     '''
-    	
+
+    def read(filename):
+        stream = open("example.yaml", 'r')
+        data = yaml.load(stream)
+        # TODO: implement me
+        pass
+        	
     def is_active(self):
         """finds if a user is active or not"""
         d1 = datetime.datetime.now()
@@ -176,7 +182,12 @@ class User(CloudmeshObject):
         return d
     
     def __str__(self):
-        return "{0} {1} {2} {3}".format(self.title,self.firstname, self.lastname, self.email)
+
+        content = [self.title,
+                    self.firstname,
+                    self.lastname]
+        
+        return "\n".join(content)
 
 class Users(object):
 
@@ -224,16 +235,12 @@ class Users(object):
 
     def find(self, email=None):
         """returns the users based on the given query"""
-        print "Users"
         if email == None:
-            for user in User.objects:
-                print 80 * "="
-                pprint (user.to_json())
-            print 80 * "="                
+            return User.objects()
     	else:
             found = User.objects(email=email)
             if found.count() > 0:
-                return found[0].to_json()
+                return User.objects()[0]
             else:
                 return None
             

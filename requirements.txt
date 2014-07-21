@@ -10,3 +10,4 @@ django-jinja
 django-templates-macros
 fake-factory
 #mongoadmin
+djangorestframework

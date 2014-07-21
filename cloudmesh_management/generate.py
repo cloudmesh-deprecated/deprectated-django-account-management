@@ -93,7 +93,9 @@ def main():
     print 70 * "="    
     print projects.find()
 
-    
+    print 70* "&"
+    print users.find()[0]
+        
 
 if __name__ == "__main__":
     main()
