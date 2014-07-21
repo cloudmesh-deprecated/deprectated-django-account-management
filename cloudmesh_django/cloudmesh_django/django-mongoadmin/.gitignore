@@ -1,0 +1,13 @@
+*.pyc
+.project
+.pydevproject
+dist/*
+*~
+MANIFEST
+*egg*
+*.bak
+*.tmproj
+.tm_properties
+
+
+

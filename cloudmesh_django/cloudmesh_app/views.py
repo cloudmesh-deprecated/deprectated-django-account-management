@@ -1,3 +1,6 @@
+from django.http import HttpResponse
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 from mongoengine import connect
 from cloudmesh_management.user import User, Users
 from cloudmesh_management.project import Project, Projects
@@ -36,9 +39,19 @@ def project_apply(request):
 #
 
 def user_apply(request):
-    return render(request, 'user_apply.html',)
+    if request.method == 'POST':
+        firstname = request.POST['firstname']
+        user = User(firstname=firstname)
+        user.save()
+        
+	connect ('user', port=27777)
+	users = User.objects()
+        return HttpResponse('user_apply.html',
+                            {"users":users}, 
+                            context_instance=RequestContext(request))
 
 def user_list(request):
+
     connect ('user', port=27777)
     users = User.objects()
     return render(request, 'user_list.html', {"users": users})
