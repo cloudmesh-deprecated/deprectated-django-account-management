@@ -1,0 +1,20 @@
+#Creating a yaml file
+#A sample user informatiion file
+
+
+User:
+    username: row92
+    title: Mr.
+    firstname: Ifeanyi
+    lastname: Onyenweakau
+    email: rowland@mvsu.edu
+    url: www.google.com
+    citizenship: Nigerian
+    bio: I am a computer science major
+    password: jimthebull
+    phone: "6623789876"
+    projects: None
+    institution: Indiana University, Bloomington
+    department: School of Informatics and Computing
+    address: 150 North rose Avenue
+    advisor_contact: Dr. Gregor Von Laszewski
