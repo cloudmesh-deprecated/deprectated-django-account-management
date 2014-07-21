@@ -4,6 +4,8 @@ import hashlib, uuid
 from pprint import pprint
 #    mongod --noauth --dbpath . --port 27777
 from cloudmeshobject import CloudmeshObject
+import yaml
+
 port=27777
 
 def IMPLEMENT():
@@ -15,6 +17,32 @@ def generate_password_hash(password)
     hashed_password = hashlib.sha512(password + salt).hexdigest()
     return hashed_password'''
 
+def read_user(filename):
+        stream = open(filename, 'r')
+        data = yaml.load(stream)
+        user = User(
+                username = data["username"],
+                title = data["title"],
+                firstname = data["firstname"],
+                lastname = data["lastname"],
+                email = data["email"],
+                url = data["url"],
+                citizenship = data["citizenship"],
+                bio = data["bio"],
+                password = data["password"],
+                userid = data["userid"],
+                phone = data["phone"],
+                projects = data["projects"],
+                institution = data["institution"],
+                department = data["department"],
+                address = data["address"],
+                country = data["country"],
+                advisor_contact = data["advisor_contact"],
+                message = data["message"],
+        )
+        return user
+
+    
 class User(CloudmeshObject):
     """This class is sued to represent a user"""
 
@@ -35,6 +63,7 @@ class User(CloudmeshObject):
                 ("institution", self.institution),
                 ("department", self.department),
                 ("address", self.address),
+                ("country", self.country),                
                 ("advisor_contact", self.advisor_contact),
                 ("date_modified", self.date_modified),
                 ("date_created", self.date_created),
@@ -89,11 +118,6 @@ class User(CloudmeshObject):
     	db.put({"firname":user.firname,...}_)
     '''
 
-    def read(filename):
-        stream = open("example.yaml", 'r')
-        data = yaml.load(stream)
-        # TODO: implement me
-        pass
 
     def is_active(self):
         """finds if a user is active or not"""
