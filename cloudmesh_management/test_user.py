@@ -30,6 +30,8 @@ def main():
     print gregor.fields("required")
     print "\n".join(gregor._fields)
     print "ORDER", gregor.order
+    print gregor.json()
+    print gregor.yaml()
     sys.exit()
     
     users.add(gregor)
@@ -83,7 +85,6 @@ def main():
         country = "USA",
         citizenship = "China",
         bio = "I work at Indiana University Bloomington"  
-                
         
         # add the other fields
     )

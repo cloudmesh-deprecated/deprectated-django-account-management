@@ -21,7 +21,7 @@ class CloudmeshObject(Document):
     date_modified = DateTimeField(default=datetime.datetime.now)
     date_created = DateTimeField(default=datetime.datetime.now)
     date_approved = None 
-    date_deactivate = DateTimeField()
+    date_deactivated = DateTimeField()
 
     meta = {'allow_inheritance': True}
 
@@ -36,30 +36,39 @@ class CloudmeshObject(Document):
 class User(CloudmeshObject):
     """This class is sued to represent a user"""
 
-    order = [
-        "username", 
-        "title",
-        "firstname",
-        "lastname",
-        "email",
-        "url",
-        "citizenship",
-        "bio"
-        "password",
-        "phone",
-        "projects",
-        "institution",
-        "department",
-        "address",
-        "advisor_contact",
-        "date_modified",
-        "date_created",
-        "date_approved",
-        "date_deactivated"
-        ]
-    hidden = ["userid",
-              "active",
-              "message"]
+    def order(self):
+
+        try:
+            return [
+                ("username", self.username),
+                ("title", self.title),
+                ("firstname", self.firstname),
+                ("lastname", self.lastname),
+                ("email", self.email),
+                ("url", self.url),
+                ("citizenship", self.citizenship),
+                ("bio", self.bio),
+                ("password", self.password),
+                ("phone", self.phone),
+                ("projects", self.projects),
+                ("institution", self.institution),
+                ("department", self.department),
+                ("address", self.address),
+                ("advisor_contact", self.advisor_contact),
+                ("date_modified", self.date_modified),
+                ("date_created", self.date_created),
+                ("date_approved", self.date_approved),
+                ("date_deactivated", self.date_deactivated),
+            ]
+        except:
+            return None
+    
+    def hidden(self):
+        return [
+            "userid",
+            "active",
+            "message",
+            ]
     #
     # User Information
     #
@@ -83,7 +92,7 @@ class User(CloudmeshObject):
     department = StringField(required=True)
     address = StringField(required=True)
     country = StringField(required=True)
-    adviser_contact = StringField()
+    advisor_contact = StringField()
     # advisor = pointer to another user
     
     #
@@ -104,37 +113,25 @@ class User(CloudmeshObject):
         data = yaml.load(stream)
         # TODO: implement me
         pass
-        	
+
     def is_active(self):
         """finds if a user is active or not"""
         d1 = datetime.datetime.now()
-        if self.active == True:
-            if d1 > self.date_deactivate:
-                return True
-            else:
-            	return False
-        else:
-            return False
+        return (self.active == True) and (datetime.datetime.now() < self.date_deactivate)
         
-    def activate(self): 
+    def activate(self, state=True): 
     	"""activates a user"""
-        self.active = True
+        self.active = state
 
     def deactivate(self):
     	"""deactivates a user after the date to deactivate has been reached"""
-        check = is_active(self)
-        if check == False:
-            force_deactivate()
+    	self.activate(state=False)
             
-    def force_deactivate(self):
-    	"""forces a user to deactivate without checking if the date to be 
-    	deactivated has been reached or not"""
-    	active = False
-
-    def set_date_deactivate(self): 
+    def set_date_deactivate(self, weeks=24): 
     	"""Sets the date for the user to be deactivated which is after 24 
     	weeks, equivalent to 6 months"""
-    	self.date_deactivate = datetime.datetime.now() + datetime.timedelta(weeks=24) 
+    	self.date_deactivate = datetime.datetime.now() + datetime.timedelta(weeks=weeks)
+        self.activate()
     	return self.date_deactivate
 
     def set_password(self, password):
@@ -145,49 +142,31 @@ class User(CloudmeshObject):
         #return check_password_hash(self.password_hash, password)
         pass
         
-    def to_json(self):
+    def json(self):
         """prints the user as a json object"""
-        
-        d ={
-            "title" : self.title,
-            "firstname" : self.firstname,
-            "lastname" :  self.lastname,
-            "email" : self.email,
-            "active" : self.active,
-            #"password" : self.password,
-            "userid" : self.userid,
-            "date_modified" : self.date_modified,
-            
-            "phone":self.phone,
-            "department":self.department,
-            "institution":self.institution,
-            
-            "address":self.address,
-            "country":self.country,
-           
-            "citizenship":self.citizenship,
-            "bio":self.bio,
-            "username":self.username,
-            #"adviser_contact":self.adviser_contact,
-             #"url":self.url,
-            #"signup_code":self.signup_code}
-
-        }
-         
-        try:
-            d['url']=self.url
-            d['adviser_contact']=self.adviser_contact
-        except:
-            pass
+        d = {}
+        for (field, value) in self.order():
+            try:
+                d[field] = value
+            except:
+                pass
         return d
     
-    def __str__(self):
-
-        content = [self.title,
-                    self.firstname,
-                    self.lastname]
-        
-        return "\n".join(content)
+    def yaml(self):
+        """prints the user as a json object"""
+        return self.__str__(fields=True, all=True)
+    
+    def __str__(self, fields=False, all=False):
+        content = ""
+        for (field, value)  in self.order():
+            try:
+                if not (value is None or value == "") or all:
+                    if fields:
+                        content = content + field + ": "
+                    content = content + value + "\n"
+            except:
+                pass
+        return content
 
 class Users(object):
 
@@ -200,7 +179,7 @@ class Users(object):
     def objects(self):
         return self.users
     
-    def set_username(self, proposal):
+    def get_unique_username(self, proposal):
         """sets the username to the proposed username. if this name is taken, a
         number is added and checked if this new name is tacken, the first name
         with added number is used as a username
@@ -219,19 +198,18 @@ class Users(object):
     def add(self, user):
         """adds the specified user to mongodb, as well as activates the users' account
         as well as set's the deactivation date"""
-        user.username = self.set_username(user.username)
+        user.username = self.get_unique_username(user.username)
         user.set_date_deactivate()
-        user.is_active()
-        if self.verify(user):
-            #print user.to_json()
+        if self.validate(user):
             user.save()
         else:
             print "ERROR: a user with the e-mail `{0}` already exists".format(user.email)
             
-    def verify(self, user):
+    def validate(self, user):
         """verifies if the user can be added. Checks if the e-mail is unique. Returns true."""
-	_user = User.objects(email=user.email)
-        return _user.count() == 0
+        user = User.objects(email=user.email)
+        valid = user.count() == 0
+        return valid
 
     def find(self, email=None):
         """returns the users based on the given query"""
@@ -247,10 +225,6 @@ class Users(object):
     def find_user(self, username):
     	"""returns a user based on the username"""
         return User.object(username=username)
-    	#for user in User.objects:
-    	#    if user.username == username:
-    	#        return user
-    	#    	break
     	    	
     def clear(self):
         """removes all elements form the mongo db that are users"""
