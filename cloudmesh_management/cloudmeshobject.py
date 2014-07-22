@@ -33,7 +33,7 @@ def update_document(document, data_dict):
 
 class CloudmeshObject(Document):
 
-    active = BooleanField() 
+    active = BooleanField(default = False) 
     date_modified = DateTimeField(default=datetime.datetime.now)
     date_created = DateTimeField(default=datetime.datetime.now)
     date_approved = None 
@@ -61,7 +61,7 @@ class CloudmeshObject(Document):
     	"""Sets the date for the user to be deactivated which is after 24 
     	weeks, equivalent to 6 months"""
     	self.date_deactivate = datetime.datetime.now() + datetime.timedelta(weeks=weeks)
-        self.activate()
+        #self.activate()
     	return self.date_deactivate
 
         
