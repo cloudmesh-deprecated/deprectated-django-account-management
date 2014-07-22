@@ -3,7 +3,6 @@ from django import forms
 from models import Message
 from cloudmesh_management.user import User, Users
 from mongoengine import connect
-from cloudmesh_management.cloudmeshobject import update_document
 from cloudmesh_management.generate import random_user
 from cloudmesh_management.project import Project, Projects
 
@@ -32,7 +31,6 @@ class ApplyUserForm(forms.Form):
     citizenship = forms.CharField()
     bio = forms.CharField()
     password = forms.CharField()
-    userid = forms.CharField()
     phone = forms.CharField()
     projects = forms.CharField() 
     institution = forms.CharField()

@@ -83,7 +83,7 @@ class User(CloudmeshObject):
     # User Information
     #
     username = StringField(required=True)
-    title = StringField("")
+    title = StringField()
     firstname = StringField(required=True)
     lastname = StringField(required=True)
     email = EmailField(required=True)
@@ -221,4 +221,12 @@ class Users(object):
         for user in User.objects:
             user.delete()
 
+def verified_email_domain(email):
 
+    domains = ["indiana.edu"]
+
+    for domain in domains:
+        if email.endswith():
+            return True
+    return False
+    
