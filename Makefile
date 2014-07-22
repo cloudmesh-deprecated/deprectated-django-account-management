@@ -11,6 +11,9 @@ FILE=index
 all:
 	make -f Makefile sphinx
 
+random:
+	python cloudmesh_management/generate.py
+
 mongo:
 	mongod --noauth --dbpath . --port 27777
 

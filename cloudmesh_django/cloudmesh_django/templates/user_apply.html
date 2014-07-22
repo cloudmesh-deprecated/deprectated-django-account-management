@@ -4,17 +4,29 @@
 
 {% block content %}
 
-<form class="form-horizontal">
+<form class="form-horizontal" method="post">>
 <fieldset>
 
 <!-- Form Name -->
 <legend>User Application</legend>
 
+
+{% usemacro macro_text_input label="Username" id="username" value="" %}
+{% usemacro macro_text_input label="title" id="title" value="" %}
 {% usemacro macro_text_input label="Firstname" id="firstname" value="" %}
 {% usemacro macro_text_input label="Lastname" id="lastname" value="" %}
 {% usemacro macro_text_input label="Password" id="password" value="" type="password"%}
 {% usemacro macro_text_area  label="Address" id="address" value="" %}
-
+{% usemacro macro_text_input  label="Institution" id="institution" value="" %}
+{% usemacro macro_text_input  label="Department" id="department" value="" %}
+{% usemacro macro_text_area  label="Advisor" id="advisor" value="" %}
+{% usemacro macro_text_input label="Country" id="country" value="" %}
+{% usemacro macro_text_input label="Email" id="email" value="" %}
+{% usemacro macro_text_input label="Url" id="url" value="" %}
+{% usemacro macro_text_input label="Citizenship" id="citizenship" value="" %}
+{% usemacro macro_text_area  label="Bio" id="bio" value="" %}
+{% usemacro macro_text_input label="Phone" id="phone" value="" %}
+{% usemacro macro_text_input label="Projects" id="projects" value="" %}
 
 <!-- Multiple Checkboxes -->
 <div class="control-group">

@@ -1,4 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.views.generic.base import View
+from django.views.generic.edit import FormView
+from django.shortcuts import render
+
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from mongoengine import connect
@@ -7,8 +11,8 @@ from cloudmesh_management.project import Project, Projects
 from cloudmesh_app.forms import ContactForm
 from cloudmesh_app.forms import ApplyUserForm, ApplyProjectForm, EditUserForm
 
-from django.views.generic.edit import FormView
-from django.shortcuts import render
+
+
 
 class ApplyProjectView(FormView):
 	template_name = 'project_apply_new.html'
@@ -22,7 +26,7 @@ class ApplyProjectView(FormView):
             return super(ApplyProjectView, self).form_valid(form)
 
 class ApplyUserView(FormView):
-    template_name = 'user_apply.html'
+    template_name = 'user_apply_new.html'
     form_class = ApplyUserForm
     success_url = '/thanks/'
 
@@ -32,6 +36,22 @@ class ApplyUserView(FormView):
         form.do_action()
         return super(ApplyUserView, self).form_valid(form)
 
+    """
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+    """
+    
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            print ">>>>>POSTING", request.POST
+
+            return HttpResponseRedirect('/thanks/')
+
+        return render(request, self.template_name, {'form': form})
+    
+    
 class EditUserView(FormView):
     template_name = 'user_apply_new.html'
     form_class = EditUserForm

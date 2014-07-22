@@ -137,6 +137,6 @@ class EditUserForm(forms.Form):
             connect ('user', port=27777)
             users = Users()
         except:
-            print "ERROR: INternal Server error, please contact the admin"
+            print "ERROR: Internal Server error, please contact the admin"
             pass
 

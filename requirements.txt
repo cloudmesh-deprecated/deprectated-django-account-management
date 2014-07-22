@@ -11,3 +11,4 @@ django-templates-macros
 fake-factory
 #mongoadmin
 djangorestframework
+django-allauth
