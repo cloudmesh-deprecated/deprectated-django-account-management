@@ -1,0 +1,79 @@
+{% extends "simple.html" %}
+
+{% block content %}
+<legend>User Manage</legend>
+
+<table class="table table-condensed">
+  <thead>
+  <tr>
+    <th> </th>
+    <th> </th>
+    <th> Firstname </th>
+    <th> Lastname </th>
+    <th> Email </th>
+    <th> Active </th>
+    <th> Username </th>            
+  </tr>
+  </thead>
+
+   <tbody>
+{% for user in users %}
+  <tr>
+    <td> <input type="checkbox" name="box" id={{ user.username }}></td>
+    <td> <a href="/user/profile/{{ user.username }}"> edit </a> </td>    
+    <td>{{ user.firstname }}</td>
+    <td>{{ user.lastname }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.active }}</td>
+    <td>{{ user.username }}</td>            
+  </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+<form class="form-horizontal">
+
+<div class="control-group">
+  <label class="control-label" for="button_submit"></label>
+  <div class="controls">
+    <button id="button_activate"
+            name="button_activate"
+            class="btn btn-success"
+            onclick="check_boxes()">Activate</button>
+    <button id="button_deactivate"
+            name="button_cancel"
+            class="btn btn-inverse">Deactivate</button>
+    <button id="button_deactivate"
+            name="button_block"
+            class="btn btn-danger">Block</button>    
+  </div>
+</div>
+<form>
+
+<textarea id="textarea">Test Area</textarea>
+
+<script type="text/javascript">
+	function check_boxes(){
+<!--		document.getElementById("textarea").innerHTML = "ROWLAND"; -->
+		checkboxes = document.getElementsByName("box");
+		for(var i=0, n=checkboxes.length; i<n; i++){
+			if (checkboxes[i].checked)
+			{
+				document.getElementById("textarea").innerHTML = checkboxes[i].id;
+				{% for user in users %}
+					if (checkboxes[i].id == {{user.username}}){
+						user.is_active()
+						{{user.username = me}}
+						user.save()
+					}
+				{% endfor %}
+				
+				
+				
+			}
+		}
+
+	}
+</script>
+
+{% endblock %}
