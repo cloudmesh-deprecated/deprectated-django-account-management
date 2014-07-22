@@ -112,3 +112,33 @@ class ApplyProjectForm(forms.Form):
             pass
 
 
+
+class EditUserForm(forms.Form):
+    username = forms.CharField()    
+    title = forms.CharField()
+    firstname = forms.CharField()
+    lastname = forms.CharField()
+    email = forms.CharField()
+    url = forms.CharField()
+    citizenship = forms.CharField()
+    bio = forms.CharField()
+    password = forms.CharField()
+    userid = forms.CharField()
+    phone = forms.CharField()
+    projects = forms.CharField() 
+    institution = forms.CharField()
+    department = forms.CharField()
+    address = forms.CharField()
+    country = forms.CharField()
+    adviser_contact = forms.CharField()
+
+  
+    def do_action(self):
+    	print "CLEANED", self.cleaned_data
+        try:
+            connect ('user', port=27777)
+            users = Users()
+        except:
+            print "ERROR: INternal Server error, please contact the admin"
+            pass
+

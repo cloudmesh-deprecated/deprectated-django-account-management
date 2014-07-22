@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     url(r'^user/approve/', 'cloudmesh_app.views.user_approve', name = 'user_approve'),
     url(r'^user/list/', 'cloudmesh_app.views.user_list', name = 'user_list'),
     url(r'^user/manage/', 'cloudmesh_app.views.user_manage', name = 'user_manage'),                   
-
+    url(r'^user/profile/', 'cloudmesh_app.views.user_edit', name = 'user_edit'),
 
 
     #url(r'^project/apply/', 'cloudmesh_app.views.project_apply', name = 'project_apply'),

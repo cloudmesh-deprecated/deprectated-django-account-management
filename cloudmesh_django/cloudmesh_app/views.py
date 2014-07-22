@@ -5,7 +5,7 @@ from mongoengine import connect
 from cloudmesh_management.user import User, Users
 from cloudmesh_management.project import Project, Projects
 from cloudmesh_app.forms import ContactForm
-from cloudmesh_app.forms import ApplyUserForm, ApplyProjectForm
+from cloudmesh_app.forms import ApplyUserForm, ApplyProjectForm, EditUserForm
 
 from django.views.generic.edit import FormView
 from django.shortcuts import render
@@ -22,7 +22,7 @@ class ApplyProjectView(FormView):
             return super(ApplyProjectView, self).form_valid(form)
 
 class ApplyUserView(FormView):
-    template_name = 'user_apply_new.html'
+    template_name = 'user_apply.html'
     form_class = ApplyUserForm
     success_url = '/thanks/'
 
@@ -31,6 +31,11 @@ class ApplyUserView(FormView):
         # It should return an HttpResponse.
         form.do_action()
         return super(ApplyUserView, self).form_valid(form)
+
+class EditUserView(FormView):
+    template_name = 'user_apply_new.html'
+    form_class = EditUserForm
+    success_url = '/thanks/' 
 
 
 class ContactView(FormView):
@@ -93,6 +98,11 @@ def user_manage(request):
     connect ('user', port=27777)
     users = User.objects()
     return render(request, 'user_manage.html', {"users": users})
+
+def user_edit(request):
+    connect ('user', port=27777)
+    user = User.objects(username=username)
+    return render(request, 'user_manage.html', {"users": users}) 
 
 
 
