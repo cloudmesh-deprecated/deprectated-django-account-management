@@ -6,17 +6,18 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from mongoengine import connect
-from cloudmesh_management.user import User, Users
+from cloudmesh_management.user import User as MongoUser 
+from cloudmesh_management.user import Users
 from cloudmesh_management.project import Project, Projects
 from cloudmesh_app.forms import ContactForm
 from cloudmesh_app.forms import ApplyUserForm, ApplyProjectForm, EditUserForm
 
 from pprint import pprint
-
+import os
 
 
 class ApplyProjectView(FormView):
-	template_name = 'project_apply_new.html'
+	template_name = 'project_apply.html'
 	form_class = ApplyProjectForm
 	success_url = '/thanks/'
 	
@@ -27,7 +28,7 @@ class ApplyProjectView(FormView):
             return super(ApplyProjectView, self).form_valid(form)
 
 class ApplyUserView(FormView):
-    template_name = 'user_apply_new.html'
+    template_name = 'user_apply.html'
     form_class = ApplyUserForm
     success_url = '/thanks/'
 
@@ -51,7 +52,7 @@ class ApplyUserView(FormView):
     """
     
 class EditUserView(FormView):
-    template_name = 'user_apply_new.html'
+    template_name = 'user_apply.html'
     form_class = EditUserForm
     success_url = '/thanks/' 
 
@@ -91,7 +92,7 @@ def user_apply(request):
 def user_list(request):
 
     connect ('user', port=27777)
-    users = User.objects()
+    users = MongoUser.objects()
     return render(request, 'user_list.html', {"users": users})
 
 def user_approve(request):
@@ -106,13 +107,25 @@ def user_manage(request):
         return render(request, 'thanks.html', {"msg": msg})
 
     connect ('user', port=27777)
-    users = User.objects()
+    users = MongoUser.objects()
     return render(request, 'user_manage.html', {"users": users})
 
 def user_edit(request):
-    connect ('user', port=27777)        
-    user = User.objects(username=username)
-    return render(request, 'user_manage.html', {"users": users}) 
+    username = os.path.basename(request.path)        
+    connect ('user', port=27777)
+    try:
+        user = MongoUser.objects(username=username)
+        print user
+        print user.count()
+        if user.count() == 1:
+            print user[0]
+            print user[0].username            
+            return render(request, 'user_profile.html', {"user": user[0]})
+        else:
+            raise Exception
+    except:
+        print "Error: Username not found"
+        return render(request, 'error.html', {"error": "The user does not exist"}) 
 
 
 

@@ -145,7 +145,7 @@ class User(CloudmeshObject):
     def yaml(self):
         """prints the user as a json object"""
         return self.__str__(fields=True, all=True)
-    
+    """
     def __str__(self, fields=False, all=False):
         content = ""
         for (field, value)  in self.order():
@@ -157,7 +157,8 @@ class User(CloudmeshObject):
             except:
                 pass
         return content
-
+    """
+    
 class Users(object):
 
     def __init__(self):
