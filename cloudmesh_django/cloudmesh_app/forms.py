@@ -26,8 +26,8 @@ class ApplyUserForm(forms.Form):
     title = forms.CharField()
     firstname = forms.CharField()
     lastname = forms.CharField()
-    email = forms.CharField()
-    url = forms.CharField()
+    email = forms.EmailField()
+    url = forms.URLField()
     citizenship = forms.CharField()
     bio = forms.CharField()
     password = forms.CharField()
@@ -45,7 +45,7 @@ class ApplyUserForm(forms.Form):
             connect ('user', port=27777)
             users = Users()
         except:
-            print "ERROR: INternal Server error, please contact the admin"
+            print "ERROR: Internal Server error, please contact the admin"
             pass
 
         try:

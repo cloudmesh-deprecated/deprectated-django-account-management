@@ -11,6 +11,7 @@ from cloudmesh_management.project import Project, Projects
 from cloudmesh_app.forms import ContactForm
 from cloudmesh_app.forms import ApplyUserForm, ApplyProjectForm, EditUserForm
 
+from pprint import pprint
 
 
 
@@ -35,22 +36,15 @@ class ApplyUserView(FormView):
         # It should return an HttpResponse.
         form.do_action()
         return super(ApplyUserView, self).form_valid(form)
-
     """
-    def get(self, request, *args, **kwargs):
-        form = self.form_class(initial=self.initial)
-        return render(request, self.template_name, {'form': form})
-    """
-    
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
             print ">>>>>POSTING", request.POST
-
             return HttpResponseRedirect('/thanks/')
 
         return render(request, self.template_name, {'form': form})
-    
+    """
     
 class EditUserView(FormView):
     template_name = 'user_apply_new.html'
@@ -90,21 +84,6 @@ def project_apply(request):
 def user_apply(request):
     return render(request, 'user_apply.html',)
     
-"""
-def user_apply(request):
-    if request.method == 'POST':
-        firstname = request.POST['firstname']
-        user = User(firstname=firstname)
-        user.save()
-        return render(request, 'thanks.html',)
-    
-	connect ('user', port=27777)
-	users = User.objects()
-        return HttpResponse('user_apply.html',
-                            {"users":users}, 
-                            context_instance=RequestContext(request))
-"""
-
 def user_list(request):
 
     connect ('user', port=27777)
@@ -115,12 +94,19 @@ def user_approve(request):
     return render(request, 'user_approve.html',)
 
 def user_manage(request):
+
+    if request.method == 'POST':
+        print ">>> POSTING", request.POST
+        #pprint(request.__dict__)
+        msg = str(request.POST)
+        return render(request, 'thanks.html', {"msg": msg})
+
     connect ('user', port=27777)
     users = User.objects()
     return render(request, 'user_manage.html', {"users": users})
 
 def user_edit(request):
-    connect ('user', port=27777)
+    connect ('user', port=27777)        
     user = User.objects(username=username)
     return render(request, 'user_manage.html', {"users": users}) 
 
