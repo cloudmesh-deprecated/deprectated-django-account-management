@@ -1,11 +1,51 @@
 {% extends "simple.html" %}
 
 {% block content %}
-<div class="alert alert-info" role="alert">
-  <h1>Not yet implemented</h1>
-</div>
+<legend>Project Manage</legend>
 
-The team is working hard on this and this page is expected to be
-finished by July 25th.
+<form class="form-horizontal" method="post">
+{% csrf_token %}
+
+<table class="table table-condensed">
+  <thead>
+  <tr>
+    <th> </th>
+    <th> </th>
+    <th> ID </th>    
+    <th> Title </th>
+    <th> Contact </th>
+  </tr>
+  </thead>
+
+   <tbody>
+{% for project in projects %}
+  <tr>
+    <td> <input id="{{ project.username }}" name="selectedusers" type="checkbox" value="{{ user.username }}"></td>
+    <td> <a href="/project/profile/{{ project.projectid }}"> edit </a> </td>
+    <td>{{ project.projectid }}</td>
+    <td>{{ project.title }}</td>
+    <td>{{ project.contact }}</td>
+  </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+
+
+<div class="control-group">
+  <label class="control-label" for="button_submit"></label>
+  <div class="controls">
+    <button id="button_activate"
+            name="button_activate"
+            class="btn btn-success">Activate</button>
+    <button id="button_deactivate"
+            name="button_cancel"
+            class="btn btn-inverse">Deactivate</button>
+    <button id="button_deactivate"
+            name="button_block"
+            class="btn btn-danger">Block</button>    
+  </div>
+</div>
+</form>
 
 {% endblock %}

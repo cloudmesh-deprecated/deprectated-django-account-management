@@ -4,6 +4,7 @@ from user import User, Users
 from project import Project, Projects
 import sys
 from faker import Factory
+import uuid
 
 connect ('user', port=27777)
 
@@ -52,6 +53,7 @@ def random_project():
     """generates a random project"""
     data = Project(
     	    title = fake.sentence()[:-1],
+            projectid = uuid.uuid4(),
     	    abstract = fake.paragraph(),
             intellectual_merit = fake.paragraph(),
             broader_impact = fake.paragraph(),

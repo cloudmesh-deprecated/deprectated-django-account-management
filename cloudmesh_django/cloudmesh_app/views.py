@@ -127,8 +127,6 @@ def user_edit(request):
         print "Error: Username not found"
         return render(request, 'error.html', {"error": "The user does not exist"}) 
 
-
-
 #
 # PROJECTS
 #
@@ -155,10 +153,33 @@ def project_members(request):
     return render(request, 'project_members.html',)
 
 def project_manage(request):
+
+    if request.method == 'POST':
+        print ">>> POSTING", request.POST
+        #pprint(request.__dict__)
+        msg = str(request.POST)
+        return render(request, 'thanks.html', {"msg": msg})
+
     connect ('user', port=27777)
     projects = Project.objects()
     print projects
     return render(request, 'project_manage.html', {"projects": projects})
+
+def project_edit(request):
+    projectid = os.path.basename(request.path)
+    print projectid 
+    connect ('user', port=27777)
+    try:
+        project = Project.objects(projectid=projectid)
+        if project.count() == 1:
+            return render(request, 'project_profile.html', {"project": project[0]})
+        else:
+            raise Exception
+    except:
+        print "Error: Project not found"
+        return render(request, 'error.html', {"error": "The project does not exist"}) 
+
+
 
     
 

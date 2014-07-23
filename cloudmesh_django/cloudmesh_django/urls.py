@@ -23,12 +23,16 @@ urlpatterns = patterns('',
     url(r'^user/list/', 'cloudmesh_app.views.user_list', name = 'user_list'),
     url(r'^user/manage/', 'cloudmesh_app.views.user_manage', name = 'user_manage'),                   
     url(r'^user/profile/', 'cloudmesh_app.views.user_edit', name = 'user_edit'),
+    
 
 
     #url(r'^project/apply/', 'cloudmesh_app.views.project_apply', name = 'project_apply'),
     url(r'^project/apply/', ApplyProjectView.as_view(), name = 'project_apply'),
     url(r'^project/approve/', 'cloudmesh_app.views.project_approve', name = 'project_approve'),
     url(r'^project/list/', 'cloudmesh_app.views.project_list', name = 'project_list'),
+
+    url(r'^project/profile/', 'cloudmesh_app.views.project_edit', name = 'project_edit'),
+    
     url(r'^project/manage/', 'cloudmesh_app.views.project_manage', name = 'project_manage'),
     url(r'^project/results/', 'cloudmesh_app.views.project_result', name = 'project_results'),
     url(r'^project/members/', 'cloudmesh_app.views.project_members', name = 'project_members'),

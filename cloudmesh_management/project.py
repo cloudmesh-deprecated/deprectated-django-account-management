@@ -63,7 +63,7 @@ class Project(Document):
     # -------------------------------------------------------------------
     # Project Information
     # -------------------------------------------------------------------
-    title  = StringField(required=True)
+    title  = StringField(required=True)    
     abstract    = StringField(required=True) 
     intellectual_merit  = StringField(required=True)
     broader_impact  = StringField(required=True)
