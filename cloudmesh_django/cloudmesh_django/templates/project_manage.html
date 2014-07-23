@@ -11,7 +11,8 @@
   <tr>
     <th> </th>
     <th> </th>
-    <th> Status </th>        
+    <th> Status </th>
+    <th> </th>
     <th> Title </th>
     <th> Contact </th>
     <th> Created </th>    
@@ -22,22 +23,54 @@
 {% for project in projects %}
   <tr>
     <td> <input id="{{ project.projectid }}" name="selectedprojects" type="checkbox" value="{{ project.projectid }}"></td>
-    <td> <a href="/project/profile/{{ project.projectid }}"> view </a> </td>
-    <td>  <font 
+    <td> <a href="/project/profile/{{ project.projectid }}"> <i class="fa fa-file-text-o"></i></a> </td>
+
+
       {% if project.status == 'approved' %}
-        color="green"
+        <td>
+	  <font  color="green"> <i class="fa fa-check-square-o"></i> </font>	  
+	</td>
+	<td>  
+          <font  color="green"> {{ project.status|capfirst }} </font>
+	</td>
+	
+
       {% elif project.status == 'completed' %}
-        color="blue"
+        <td>
+	  <font  color="blue"> <i class="fa fa-check-square"></i> </font>	  
+	</td>
+	<td>  
+          <font  color="blue"> {{ project.status|capfirst }} </font>
+	</td>
+
+
       {% elif project.status == 'pending' %}
-        color="grey"
+        <td>
+	  <font  color="grey"> <i class="fa fa-pause"></i> </font>	  
+	</td>
+	<td>  
+          <font  color="grey"> {{ project.status|capfirst }} </font>
+	</td>
+
       {% elif project.status == 'denied' %}
-        color="red"
+        <td>
+	  <font  color="red"> <i class="fa fa-ban"></i> </font>	  
+	</td>
+	<td>  
+          <font  color="red"> {{ project.status|capfirst }} </font>
+	</td>
+
       {% else %}
-        color="black"
+        <td>
+	  <font  color="black"> <i class="fa fa-question-circle"></i> </font>	  
+	</td>
+	<td>  
+          <font  color="black"> {{ project.status|capfirst }} </font>
+	</td>
+
+
       {% endif %}
-      >
-      {{ project.status|capfirst }}
-    </font></td>
+
     <td>{{ project.title }}</td>    
     <td>{{ project.contact }}</td>
     <td>{{ project.date_created }}</td>    
