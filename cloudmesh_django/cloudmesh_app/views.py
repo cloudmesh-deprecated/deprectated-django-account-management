@@ -31,11 +31,15 @@ class ApplyUserView(FormView):
     form_class = ApplyUserForm
     success_url = '/thanks/'
 
+    title = "hallo"
+    
     def form_valid(self, form):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         form.do_action()
         return super(ApplyUserView, self).form_valid(form)
+
+
     """
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)

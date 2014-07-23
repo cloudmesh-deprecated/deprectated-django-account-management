@@ -1,11 +1,6 @@
-{% extends "simple.html" %}
+{% extends "form.html" %}
 
-{% block content %}
-
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Apply" />
-</form>
-
+{% block title %}
+Project Application
 {% endblock %}
+
