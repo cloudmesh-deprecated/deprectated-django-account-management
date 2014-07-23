@@ -11,7 +11,7 @@
   <tr>
     <th> </th>
     <th> </th>
-    <th> ID </th>    
+    <th> Status </th>        
     <th> Title </th>
     <th> Contact </th>
   </tr>
@@ -21,9 +21,9 @@
 {% for project in projects %}
   <tr>
     <td> <input id="{{ project.username }}" name="selectedusers" type="checkbox" value="{{ user.username }}"></td>
-    <td> <a href="/project/profile/{{ project.projectid }}"> edit </a> </td>
-    <td>{{ project.projectid }}</td>
-    <td>{{ project.title }}</td>
+    <td> <a href="/project/profile/{{ project.projectid }}"> view </a> </td>
+    <td>{{ project.status }}</td>
+    <td>{{ project.title }}</td>    
     <td>{{ project.contact }}</td>
   </tr>
 {% endfor %}
