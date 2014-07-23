@@ -20,9 +20,23 @@
    <tbody>
 {% for project in projects %}
   <tr>
-    <td> <input id="{{ project.username }}" name="selectedusers" type="checkbox" value="{{ user.username }}"></td>
+    <td> <input id="{{ project.projectid }}" name="selectedprojects" type="checkbox" value="{{ project.projectid }}"></td>
     <td> <a href="/project/profile/{{ project.projectid }}"> view </a> </td>
-    <td>{{ project.status }}</td>
+    <td>  <font 
+      {% if project.status == 'approved' %}
+        color="green"
+      {% elif project.status == 'completed' %}
+        color="blue"
+      {% elif project.status == 'pending' %}
+        color="grey"
+      {% elif project.status == 'denied' %}
+        color="red"
+      {% else %}
+        color="black"
+      {% endif %}
+      >
+      {{ project.status|capfirst }}
+    </font></td>
     <td>{{ project.title }}</td>    
     <td>{{ project.contact }}</td>
   </tr>
@@ -31,19 +45,28 @@
 </table>
 
 
-
 <div class="control-group">
   <label class="control-label" for="button_submit"></label>
   <div class="controls">
-    <button id="button_activate"
-            name="button_activate"
-            class="btn btn-success">Activate</button>
-    <button id="button_deactivate"
-            name="button_cancel"
-            class="btn btn-inverse">Deactivate</button>
-    <button id="button_deactivate"
-            name="button_block"
-            class="btn btn-danger">Block</button>    
+
+    {% for state in states %}
+        <button id="button_{{ state }}" value="{{ state }}"
+            name="button"
+            {% if state == 'approved' %}
+               class="btn btn-success"
+            {% elif state == 'completed' %}
+               class="btn btn-primary"
+            {% elif state == 'pending' %}
+               class="btn btn-default"
+            {% elif state == 'denied' %}
+               class="btn btn-danger"
+            {% else %}
+                class="btn"
+            {% endif %}
+         >{{ state|capfirst }}
+    </button>
+    {% endfor %}
+
   </div>
 </div>
 </form>

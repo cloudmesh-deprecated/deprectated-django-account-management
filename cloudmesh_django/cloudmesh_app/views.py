@@ -9,6 +9,7 @@ from mongoengine import connect
 from cloudmesh_management.user import User as MongoUser 
 from cloudmesh_management.user import Users
 from cloudmesh_management.project import Project, Projects
+from cloudmesh_management.project import STATUS as ProjectSTATUS
 from cloudmesh_app.forms import ContactForm
 from cloudmesh_app.forms import ApplyUserForm, ApplyProjectForm, EditUserForm
 
@@ -155,15 +156,28 @@ def project_members(request):
 def project_manage(request):
 
     if request.method == 'POST':
-        print ">>> POSTING", request.POST
-        #pprint(request.__dict__)
-        msg = str(request.POST)
-        return render(request, 'thanks.html', {"msg": msg})
+        #
+        # check for selection
+        #
+        if 'selectedprojects' in request.POST:
+            data = dict(request.POST.iterlists())
+            print data
+            project_ids = data['selectedprojects']
+            action = str(data['button'][0])
+            print "ACTION", action, action in ProjectSTATUS, 'approved' in ProjectSTATUS
+            print "PROJECTS", project_ids
+            
+            msg = str(request.POST)
+
+            for projectid in project_ids:
+                project = Project.objects(projectid=projectid)[0]
+                project.status = action                
+                project.save()
 
     connect ('user', port=27777)
     projects = Project.objects()
     print projects
-    return render(request, 'project_manage.html', {"projects": projects})
+    return render(request, 'project_manage.html', {"projects": projects, 'states': ProjectSTATUS})
 
 def project_edit(request):
     projectid = os.path.basename(request.path)

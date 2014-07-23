@@ -5,6 +5,7 @@ import hashlib, uuid
 from user import User, Users
 #from comittee import Committee
 from pprint import pprint
+from cloudmeshobject import CloudmeshObject
 
 port=27777
 db_name = 'project'
@@ -58,7 +59,7 @@ GRANT_ORG = ('NSF',
              'NIH',
              'other', 'None')
     
-class Project(Document):
+class Project(CloudmeshObject):
 
     # -------------------------------------------------------------------
     # Project Information
