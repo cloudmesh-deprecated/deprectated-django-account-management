@@ -214,15 +214,17 @@ def project_edit(request):
         print "POSTING"
         data = dict(request.POST.iterlists())
         action = str(data['button'][0])
-        del data['button']
+        #del data['button']
         for key in data:
             data[key] = data[key][0]
     
         print ">>>>ACTION", action
-        project = Project.objects(projectid=projectid)[0]
+        #project = Project.objects(projectid=projectid)[0]
+        project = project[0]        
             
         if action == 'save':
-            print data
+            for d in data:
+                print d, ":", data[d]
             try:
                 project.title = data["title"]
                 project.abstract = data["abstract"]
@@ -274,9 +276,10 @@ def project_edit(request):
                 project.resources_provision = data["resources_provision"]
                 """
                 project.save()                
-
+                print "SAVING"
+                
             except Exception, e:
-                print e
+                print "ERROR",e 
                 
 
 

@@ -16,7 +16,8 @@
     <th> </th>
     <th> Title </th>
     <th> Contact </th>
-    <th> Created </th>    
+    <th> Created </th>
+    <th> Modified </th>        
   </tr>
   </thead>
 
@@ -76,7 +77,8 @@
 
     <td>{{ project.title }}</td>    
     <td>{{ project.contact }}</td>
-    <td>{{ project.date_created }}</td>    
+    <td>{{ project.date_created|timesince }}</td>
+    <td>{{ project.date_modified|timesince }}</td>        
   </tr>
 {% endfor %}
   </tbody>

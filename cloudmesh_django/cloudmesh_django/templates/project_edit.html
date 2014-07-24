@@ -31,6 +31,14 @@
       <td bgcolor="#E6E6E6"><i>Status </i></td>
       <td>{{ project.status }}</td>
     </tr>
+    <tr>
+      <td bgcolor="#E6E6E6"><i>Created</i></td>
+      <td>{{ project.date_created }}, {{ project.date_created|timesince }}</td>
+    </tr>
+    <tr>
+      <td bgcolor="#E6E6E6"><i>Modified</i></td>
+      <td>{{ project.date_modified }}, {{ project.date_modified|timesince }}</td>
+    </tr>
 
     <tr>
       <th colspan="2" bgcolor="#CCCCCC"> Contact Information </th>
@@ -43,6 +51,10 @@
     <tr>
       <td bgcolor="#E6E6E6"><i>Broader impact  </i></td>
       <td><input type="text" name = "broader_impact" value="{{ project.broader_impact }}"></td>
+    </tr>
+    <tr>
+      <td bgcolor="#E6E6E6"><i>Merit  </i></td>
+      <td><input type="text" name = "intellectual_merit" value="{{ project.intellectual_merit }}"></td>
     </tr>
     <tr>
       <td bgcolor="#E6E6E6"><i>Use of FG  </i></td>

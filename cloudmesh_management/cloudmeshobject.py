@@ -9,7 +9,7 @@ class CloudmeshObject(Document):
 
     active = BooleanField(default = False) 
     date_modified = DateTimeField(default=datetime.datetime.now)
-    date_created = DateTimeField(default=datetime.datetime.now)
+    date_created = DateTimeField()
     date_approved = None 
     date_deactivated = DateTimeField()
 
@@ -45,4 +45,9 @@ class CloudmeshObject(Document):
         #self.activate()
     	return self.date_deactivate
 
+    def save(self, *args, **kwargs):
+        if not self.date_created:
+            self.date_created = datetime.datetime.now()
+        self.date_modified = datetime.datetime.now()
+        return super(CloudmeshObject, self).save(*args, **kwargs)
         
