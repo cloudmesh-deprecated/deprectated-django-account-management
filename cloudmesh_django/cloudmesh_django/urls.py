@@ -31,6 +31,7 @@ urlpatterns = patterns('',
     url(r'^project/apply/', ApplyProjectView.as_view(), name = 'project_apply'),
     url(r'^project/approve/', 'cloudmesh_app.views.project_approve', name = 'project_approve'),
     url(r'^project/list/', 'cloudmesh_app.views.project_list', name = 'project_list'),
+    url(r'^project/edit/', 'cloudmesh_app.views.project_edit', name = 'project_edit'),    
 
     url(r'^project/profile/', 'cloudmesh_app.views.project_profile', name = 'project_profile'),
     

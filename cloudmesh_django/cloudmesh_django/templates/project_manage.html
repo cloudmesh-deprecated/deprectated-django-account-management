@@ -11,6 +11,7 @@
   <tr>
     <th> </th>
     <th> </th>
+    <th> </th>    
     <th> Status </th>
     <th> </th>
     <th> Title </th>
@@ -23,7 +24,9 @@
 {% for project in projects %}
   <tr>
     <td> <input id="{{ project.projectid }}" name="selectedprojects" type="checkbox" value="{{ project.projectid }}"></td>
-    <td> <a href="/project/profile/{{ project.projectid }}"> <i class="fa fa-file-text-o"></i></a> </td>
+    <td> <a href="/project/profile/{{ project.projectid }}"> <i
+      class="fa fa-file-text-o"></i></a> </td>
+    <td> <a href="/project/edit/{{ project.projectid }}"> <i class="fa fa-edit"></i></a> </td>      
 
 
       {% if project.status == 'approved' %}
