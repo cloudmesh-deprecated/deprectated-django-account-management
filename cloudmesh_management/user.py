@@ -40,7 +40,7 @@ def read_user(filename):
                 department = data["department"],
                 address = data["address"],
                 country = data["country"],
-                advisor_contact = data["advisor_contact"],
+                advisor = data["advisor"],
                 message = data["message"],
         )
         return user
@@ -68,7 +68,7 @@ class User(CloudmeshObject):
                 ("department", self.department),
                 ("address", self.address),
                 ("country", self.country),                
-                ("advisor_contact", self.advisor_contact),
+                ("advisor", self.advisor),
                 ("date_modified", self.date_modified),
                 ("date_created", self.date_created),
                 ("date_approved", self.date_approved),
@@ -107,7 +107,7 @@ class User(CloudmeshObject):
     department = StringField(required=True)
     address = StringField(required=True)
     country = StringField(required=True)
-    advisor_contact = StringField()
+    advisor = StringField()
     # advisor = pointer to another user
     
     #
