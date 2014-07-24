@@ -1,16 +1,14 @@
 """
 Usage: 
-    test2.py -h
-    test2.py gen [rand]
+    cm-management -h
+    cm-management gen [rand]
     		 [--num=N]
-    test2.py add [--file=N]
+    cm-management add [--file=N]
     		 [--line=N]
-    test2.py del [all]
-    		 [--num=N]
+    cm-management del [all]
     		 [--user=name]    		 
-    test2.py find[all]
+    cm-management find[all]
     		 [--user=name]
-    		 [--city=user_city]
 
 Arguments:
     del		 deletes users
@@ -27,7 +25,6 @@ Options:
     		   arguments.
     --num=ARG 	 : performs an operation to a number of users
     --user=ARG   : performs an operation on specific users
-    --city=ARG 	 : prints all users
 """
 
 # https://code.google.com/p/prettytable/
@@ -60,26 +57,11 @@ class generate_random_user():
     p = 10
     
     def generate_random(self):
-    	num = random.randint(0,3)
-        self.phone = phone[num]
-        self.inst = institution[num]
-        self.city = city[num]
-        self.country = country[num]
-        print self.city + self.country + self.inst + self.phone
-    
-    def generate_firstname(self):
-        num1 = random.randint(0,4)
-        return names[num1]
-
-    def generate_lastname(self):
-        num2 = random.randint(0,4)
-        return names[num2]
-    
-    def get_names(self):
-        self.first_name = self.generate_firstname()
-        self.last_name = self.generate_lastname()
+        # see generate.py
+        pass
 
     def add_user(self):
+        # see generate.py
         user = User(title="Mr.",
         	firstname = self.user_info[0],
         	lastname= self.user_info[1],
@@ -133,7 +115,7 @@ class generate_random_user():
             account.delete()
         print "\n"
         print 70 * "-"
-        print "\n\t\t***All Accounts Deleted*** \n"
+        print "All Accounts Deleted\n"
         print 70 * "-"
 
     def delete_user(self):
