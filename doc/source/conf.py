@@ -134,7 +134,7 @@ html_theme = 'bootstrap'
 # html_theme_options = {}
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
-    'navbar_title': "Django",
+    'navbar_title': "CM Management",
 
     # Tab name for entire site. (Default: "Site")
     'navbar_site_name': "Site",

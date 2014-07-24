@@ -358,5 +358,5 @@ Committee Object
    * - default
      - NB
      - Required
-     - set "Yes" if it is the first time members are being added to the
-     committee of a project.
+     - set "Yes" if it is the first time members are being 
+       added to the committee of a project.
