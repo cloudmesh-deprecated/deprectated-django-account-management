@@ -23,6 +23,7 @@ fake = Factory.create()
 def random_user():
     firstname = fake.first_name()    
     data = User(
+        status = "pending",
         title = fake.prefix(),
         firstname = firstname,
         lastname = fake.last_name(),

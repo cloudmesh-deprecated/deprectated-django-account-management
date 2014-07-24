@@ -10,6 +10,7 @@ from cloudmesh_management.user import User as MongoUser
 from cloudmesh_management.user import Users
 from cloudmesh_management.project import Project, Projects
 from cloudmesh_management.project import STATUS as ProjectSTATUS
+from cloudmesh_management.user import STATUS as UserSTATUS
 from cloudmesh_app.forms import ContactForm
 from cloudmesh_app.forms import ApplyUserForm, ApplyProjectForm, EditUserForm
 
@@ -102,16 +103,28 @@ def user_approve(request):
 def user_manage(request):
 
     if request.method == 'POST':
-        print ">>> POSTING", request.POST
-        #pprint(request.__dict__)
-        msg = str(request.POST)
-        return render(request, 'thanks.html', {"msg": msg})
+        if 'selectedusers' in request.POST:
+            print ">>> POSTING", request.POST
+            data = dict(request.POST.iterlists())
+            print "DATA", data
+            action = str(data['button'][0])
+            print "ACTION", action            
+            usernames = data['selectedusers']
+            
+            #pprint(request.__dict__)
+            msg = str(request.POST)
 
+            for username in usernames:
+                user = MongoUser.objects(username=username)[0]
+                user.status = action                
+                user.save()
+
+            
     connect ('user', port=27777)
     users = MongoUser.objects()
-    return render(request, 'user_manage.html', {"users": users})
+    return render(request, 'user_manage.html', {"users": users, 'states': UserSTATUS})
 
-def user_edit(request):
+def user_profile(request):
     username = os.path.basename(request.path)        
     connect ('user', port=27777)
     try:
@@ -128,7 +141,54 @@ def user_edit(request):
         print "Error: Username not found"
         return render(request, 'error.html', {"error": "The user does not exist"}) 
 
+
+def user_edit(request):
+    username = os.path.basename(request.path)        
+    connect ('user', port=27777)
+
+    try:
+        user = MongoUser.objects(username=username)
+    except:
+        print "Error: Username not found"
+        return render(request, 'error.html', {"error": "The user does not exist"}) 
+
+    
+    if request.method == 'GET':
+        
+        return render(request, 'user_edit.html', {"user": user[0], "states": ['save', 'cancel']})                
+
+    elif request.method == 'POST':
+
+        data = dict(request.POST.iterlists())
+        action = str(data['button'][0])
+        del data['button']
+        for key in data:
+            data[key] = data[key][0]
+
+        user = MongoUser.objects(username=username)[0]
+        if action == 'save':
+
+            user.bio = data["bio"]
+            user.citizenship = data["citizenship"]
+            user.firstname = data["firstname"]
+            user.title = data["title"]
+            user.url = data["url"]
+            user.lastname = data["lastname"]
+            user.address = data["address"]
+            user.institution = data["institution"]
+            user.phone = data["phone"]
+            user.advisor = data["advisor"]
+            user.department = data["department"]
+            user.csrfmiddlewaretoken = data["csrfmiddlewaretoken"]
+            user.country = data["country"]
+            user.email = data["email"]
+
+            user.save()
+
+        return render(request, 'user_edit.html', {"user": user, "states": ['save', 'cancel']})                
+        
 #
+
 # PROJECTS
 #
 
@@ -167,8 +227,6 @@ def project_manage(request):
             print "ACTION", action, action in ProjectSTATUS, 'approved' in ProjectSTATUS
             print "PROJECTS", project_ids
             
-            msg = str(request.POST)
-
             for projectid in project_ids:
                 project = Project.objects(projectid=projectid)[0]
                 project.status = action                
@@ -179,7 +237,7 @@ def project_manage(request):
     print projects
     return render(request, 'project_manage.html', {"projects": projects, 'states': ProjectSTATUS})
 
-def project_edit(request):
+def project_profile(request):
     projectid = os.path.basename(request.path)
     print projectid 
     connect ('user', port=27777)

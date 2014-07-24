@@ -6,6 +6,8 @@ from pprint import pprint
 from cloudmeshobject import CloudmeshObject
 import yaml
 
+STATUS = ('pending', 'approved', 'blocked', 'denied')
+
 port=27777
 
 def IMPLEMENT():
@@ -21,6 +23,7 @@ def read_user(filename):
         stream = open(filename, 'r')
         data = yaml.load(stream)
         user = User(
+                status = data["status"],            
                 username = data["username"],
                 title = data["title"],
                 firstname = data["firstname"],
@@ -50,6 +53,7 @@ class User(CloudmeshObject):
         try:
             return [
                 ("username", self.username),
+                ("status", self.status),                
                 ("title", self.title),
                 ("firstname", self.firstname),
                 ("lastname", self.lastname),
@@ -82,6 +86,7 @@ class User(CloudmeshObject):
     #
     # User Information
     #
+    status = StringField(required=True, default='pending')
     username = StringField(required=True)
     title = StringField()
     firstname = StringField(required=True)

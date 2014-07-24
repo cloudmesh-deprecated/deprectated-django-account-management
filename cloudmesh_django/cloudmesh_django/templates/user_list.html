@@ -7,6 +7,9 @@
   <thead>
   <tr>
     <th> </th>
+    <th> </th>
+    <th> </th>    
+    <th> Status </th>    
     <th> Firstname </th>
     <th> Lastname </th>
     <th> Email </th>
@@ -19,6 +22,53 @@
   <tr>
     <td> <a href="/user/profile/{{ user.username }}">
       view <i class="fa fa-user"></i> </a> </td>        
+    <td> <a href="/user/edit/{{ user.username }}">
+      edit <i class="fa fa-user"></i> </a> </td>        
+      {% if user.status == 'approved' %}
+        <td>
+	  <font  color="green"> <i class="fa fa-check-square-o"></i> </font>	  
+	</td>
+	<td>  
+          <font  color="green"> {{ user.status|capfirst }} </font>
+	</td>
+	
+
+      {% elif user.status == 'denied' %}
+        <td>
+	  <font  color="red"> <i class="fa fa-ban"></i> </font>	  
+	</td>
+	<td>  
+          <font  color="red"> {{ user.status|capfirst }} </font>
+	</td>
+
+
+      {% elif user.status == 'pending' %}
+        <td>
+	  <font  color="grey"> <i class="fa fa-pause"></i> </font>	  
+	</td>
+	<td>  
+          <font  color="grey"> {{ user.status|capfirst }} </font>
+	</td>
+
+      {% elif user.status == 'blocked' %}
+        <td>
+	  <font  color="red"> <i class="fa fa-ban"></i> </font>	  
+	</td>
+	<td>  
+          <font  color="red"> {{ user.status|capfirst }} </font>
+	</td>
+
+      {% else %}
+        <td>
+	  <font  color="black"> <i class="fa fa-question-circle"></i> </font>	  
+	</td>
+	<td>  
+          <font  color="black"> {{ user.status|capfirst }} </font>
+	</td>
+
+
+      {% endif %}
+
     <td>{{ user.firstname }}</td>
     <td>{{ user.lastname }}</td>
     <td>{{ user.email }}</td>
