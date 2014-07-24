@@ -9,7 +9,7 @@ MANUALDIR=`pwd`
 FILE=index
 
 all:
-	make -f Makefile sphinx
+	fab doc.html
 
 random:
 	python cloudmesh_management/generate.py
@@ -26,8 +26,11 @@ c:
 f: 
 	firefox doc/build/html/index.html 
 
-doc:
-	open doc/build/html/index.html
+doc.html:
+	fab doc.html
+
+doc.view:
+	fab doc.view
 
 server:
 	python setup.py install
@@ -112,6 +115,11 @@ clean:
 	cd doc; make clean
 	rm -rf *.egg-info
 	rm -f user.* local.* mongod.lock
+
+cleanmongo:
+	rm -rf mongodb.?
+	rm -rf mongodb.ns
+
 
 #############################################################################
 # SETUP SPHINX BUILD ENVIRONMENT
